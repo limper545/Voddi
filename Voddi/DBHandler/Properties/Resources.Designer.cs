@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DBHandler.Properties
+namespace DBHandler2.Properties
 {
 
 
