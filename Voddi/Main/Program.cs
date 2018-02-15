@@ -7,17 +7,17 @@ using System.Windows.Forms;
 
 namespace Main
 {
-    static class Program
+    public static class Program
     {
         /// <summary>
         /// Der Haupteinstiegspunkt für die Anwendung.
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StartMenu());
+           // Application.Run(new StartMenu());
         }
     }
 }
