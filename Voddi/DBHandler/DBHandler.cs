@@ -1,16 +1,17 @@
-﻿using System;
+﻿using System.Configuration;
+using System;
 using System.Collections;
 using System.Data;
 using System.Data.SQLite;
-using System.Configuration;
 
 namespace DBHandler
 {
    
     public class Handler
     {
-       
+
         #region DB Abfragen
+ 
         private static string dbName = "SaschaDB.sqlite";
         public static String queryCreateCharacters = "CREATE TABLE IF NOT EXISTS classes (id INTEGER PRIMARY KEY, name VARCHAR(20), life DOUBLE, mana DOUBLE, exp DOUBLE)";
         public static String queryCreateUsers = "CREATE TABLE IF NOT EXISTS userManager (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -52,7 +53,8 @@ namespace DBHandler
 
         public static bool CheckLogin(String username, String password)
         {
-            string test = ConfigurationManager.AppSettings.Get("sascha");
+
+            //var test1 = ConfigurationManager.AppSettings.Get("loglevel");
             String query = "SELECT username FROM userManager WHERE username = '" + username + "' AND password = '" + password + "'";
             SQLiteCommand command = new SQLiteCommand(query, dbConnection);
             object response = command.ExecuteScalar();
