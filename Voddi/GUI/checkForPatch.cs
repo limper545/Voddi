@@ -38,7 +38,7 @@ namespace GUI
         {
             List<Form> openForms = new List<Form>();
 
-            LoadingScreen game = new LoadingScreen(username);
+          //  LoadingScreen game = new LoadingScreen(username);
             foreach (Form f in Application.OpenForms)
             {
                 openForms.Add(f);
@@ -55,7 +55,7 @@ namespace GUI
                     f.Hide();
                 }
 
-                game.Show();
+               // game.Show();
 
             }
         }
