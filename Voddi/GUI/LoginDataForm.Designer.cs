@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class loginDataForm
+    partial class LoginDataForm
     {
         /// <summary>
         /// Required designer variable.

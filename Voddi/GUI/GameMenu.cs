@@ -1,12 +1,6 @@
 ﻿
+using GUI;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BaB_1._0.GUI
@@ -25,7 +19,7 @@ namespace BaB_1._0.GUI
 
         void GetUserCharacterInformations(String username)
         {
-            if (DBHandler.HasUserCharacters(username))
+            if (DBHandler.DBHandler.HasUserCharacters(username))
             {
 
             }

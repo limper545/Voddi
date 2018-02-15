@@ -1,4 +1,4 @@
-﻿using BaB_1._0.Core;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,12 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-namespace BaB_1._0.GUI
+using Core;
+namespace GUI
 {
-    public partial class registrationForm : Form
+    public partial class RegistrationForm : Form
     {
-        public registrationForm()
+        public RegistrationForm()
         {
             InitializeComponent();
         }

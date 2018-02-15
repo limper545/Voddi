@@ -1,6 +1,6 @@
-﻿namespace BaB_1._0.GUI
+﻿namespace GUI
 {
-    partial class registrationForm
+    partial class RegistrationForm
     {
         /// <summary>
         /// Required designer variable.

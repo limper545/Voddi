@@ -1,5 +1,4 @@
-﻿using Bab_1.DB;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,9 +10,9 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class loginDataForm : Form
+    public partial class LoginDataForm : Form
     {
-        public loginDataForm()
+        public LoginDataForm()
         {
 
             InitializeComponent();

@@ -20,7 +20,7 @@ namespace GUI
             this.username = username;
             InitializeComponent();
            // ArrayList charList = DBHandler.GetAllClasses();
-            FillClassField(charList);
+            //FillClassField(charList);
         }
 
         private void FillClassField(ArrayList list)
