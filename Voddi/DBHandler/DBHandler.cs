@@ -9,7 +9,7 @@ namespace DBHandler
    
     public class Handler
     {
-        string test = ConfigurationManager.AppSettings.Get("sascha");
+       
         #region DB Abfragen
         private static string dbName = "SaschaDB.sqlite";
         public static String queryCreateCharacters = "CREATE TABLE IF NOT EXISTS classes (id INTEGER PRIMARY KEY, name VARCHAR(20), life DOUBLE, mana DOUBLE, exp DOUBLE)";
@@ -52,7 +52,7 @@ namespace DBHandler
 
         public static bool CheckLogin(String username, String password)
         {
-
+            string test = ConfigurationManager.AppSettings.Get("sascha");
             String query = "SELECT username FROM userManager WHERE username = '" + username + "' AND password = '" + password + "'";
             SQLiteCommand command = new SQLiteCommand(query, dbConnection);
             object response = command.ExecuteScalar();
