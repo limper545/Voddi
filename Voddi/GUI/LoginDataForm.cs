@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using DBHandler;
 
 namespace GUI
 {
@@ -22,8 +16,7 @@ namespace GUI
         {
             string username = loginUsernameField.Text;
             string password = loginPasswordField.Text;
-
-           /* if (DBHandler.CheckLogin(username, password))
+           if (Handler.CheckLogin(username, password))
             {
                 MessageBox.Show("Erfolgreich", "Anmeldung", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 checkForPatch modalPatch = new checkForPatch(username);
@@ -33,7 +26,7 @@ namespace GUI
             else
             {
                 MessageBox.Show("Fehler", "Anmeldung", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }*/
+            }
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)

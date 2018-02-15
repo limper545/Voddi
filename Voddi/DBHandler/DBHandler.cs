@@ -2,13 +2,16 @@
 using System.Collections;
 using System.Data;
 using System.Data.SQLite;
+using System.Configuration;
 
 namespace DBHandler
 {
-    public class DBHandler
+   
+    public class Handler
     {
+        string test = ConfigurationManager.AppSettings.Get("sascha");
         #region DB Abfragen
-        private static string dbName = "MyDatabase.sqlite";
+        private static string dbName = "SaschaDB.sqlite";
         public static String queryCreateCharacters = "CREATE TABLE IF NOT EXISTS classes (id INTEGER PRIMARY KEY, name VARCHAR(20), life DOUBLE, mana DOUBLE, exp DOUBLE)";
         public static String queryCreateUsers = "CREATE TABLE IF NOT EXISTS userManager (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "vorname VARCHAR(30), nachname VARCHAR (30), email VARCHAR(50), username VARCHAR(20), created VARCHAR(30), lastlogin VARCHAR(30), charid INT, password VARCHAR(30))";

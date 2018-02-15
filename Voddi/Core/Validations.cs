@@ -1,6 +1,6 @@
-﻿using System;
+﻿using DBHandler;
+using System;
 using System.Text.RegularExpressions;
-using DBHandler;
 
 namespace Core
 {
@@ -24,6 +24,6 @@ namespace Core
 
         public static bool CorrectEmailFormat(String email) => new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Match(email).Success;
 
-        public static bool UserNotExists(String username) => DBHandler.DBHandler.ExistsUser(username);
+        public static bool UserNotExists(String username) => Handler.ExistsUser(username);
     }
 }

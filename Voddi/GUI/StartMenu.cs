@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBHandler;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -18,7 +19,7 @@ namespace GUI
 
         private void Login_Btn_Click(object sender, EventArgs e)
         {
-            //DBHandler.DBHandler.LoginDataCorrect("a", "b");
+            //Handler.LoginDataCorrect("a", "b");
         }
 
         private void close_Btn_Click(object sender, EventArgs e)

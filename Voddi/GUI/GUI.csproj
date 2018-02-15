@@ -63,6 +63,7 @@
     <Compile Include="GameMenu.Designer.cs">
       <DependentUpon>GameMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="k.cs" />
     <Compile Include="LoadingScreen.cs">
       <SubType>Form</SubType>
     </Compile>
