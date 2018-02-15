@@ -35,28 +35,19 @@ namespace BaB_1._0.GUI
         private void charOneBtn_Click(object sender, EventArgs e)
         {
             if (charOneBtn.Text == NoChar)
-            {
-                CreateCharacter charC = new CreateCharacter(username);
-                charC.Show();
-            }
+                new CreateCharacter(username: username).Show();
         }
 
         private void charTwoBtn_Click(object sender, EventArgs e)
         {
             if (charTwoBtn.Text == NoChar)
-            {
-                CreateCharacter charC = new CreateCharacter(username);
-                charC.Show();
-            }
+                new CreateCharacter(username: username).Show();
         }
 
         private void charThreeBtn_Click(object sender, EventArgs e)
         {
             if (charThreeBtn.Text == NoChar)
-            {
-                CreateCharacter charC = new CreateCharacter(username);
-                charC.Show();
-            }
+                new CreateCharacter(username: username).Show();
         }
     }
 }

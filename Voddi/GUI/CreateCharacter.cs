@@ -18,16 +18,16 @@ namespace GUI
         {
             this.username = username;
             InitializeComponent();
-           // ArrayList charList = DBHandler.GetAllClasses();
+            // ArrayList charList = DBHandler.GetAllClasses();
             //FillClassField(charList);
         }
 
+
+
         private void FillClassField(ArrayList list)
         {
-            foreach (var item in list)
-            {
-                classComboBox.Items.Add(item);
-            }
+            foreach (var item in list) { classComboBox.Items.Add(item); }
+                
         }
 
         private void createCharBtn_Click_1(object sender, EventArgs e)

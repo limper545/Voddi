@@ -23,10 +23,8 @@ namespace GUI
             patchBar.Maximum = 100;
             patchBar.Step = 10;
             patchBar.Value = 0;
-            for (int i = 0; i < 10; i++)
-            {
-                patchBar.Value += 10;
-            }
+            for (int i = 0; i < 10; i++) { patchBar.Value += 10; }
+                
             /* if (patchBar.Value == 100)
              {
                  MessageBox.Show("Es wurden keine neuen Updates gefunden", "Patcher", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -38,26 +36,28 @@ namespace GUI
         {
             List<Form> openForms = new List<Form>();
 
-          //  LoadingScreen game = new LoadingScreen(username);
-            foreach (Form f in Application.OpenForms)
-            {
-                openForms.Add(f);
-            }
+            //  LoadingScreen game = new LoadingScreen(username);
+            foreach (Form f in Application.OpenForms) { openForms.Add(f); }
 
-            foreach (Form f in openForms)
-            {
+            openForms.ForEach(f => {
                 if (f.Name != "LoadingScreen" && f.Name != "StartMenu")
                 {
                     f.Close();
-                }
-                else if (f.Name == "StartMenu")
+                } else
                 {
                     f.Hide();
                 }
-
+            });
+           /* {
+                ;
+                if (f.Name != "LoadingScreen" && f.Name != "StartMenu")
+                    f.Close();
+                else if (f.Name == "StartMenu")
+                    f.Hide();
+                
                // game.Show();
 
-            }
+            }*/
         }
     }
 }

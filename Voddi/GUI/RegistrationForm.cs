@@ -13,10 +13,7 @@ namespace GUI
 {
     public partial class RegistrationForm : Form
     {
-        public RegistrationForm()
-        {
-            InitializeComponent();
-        }
+        public RegistrationForm() => InitializeComponent();
 
         private void cancelRegiBtn_Click(object sender, EventArgs e)
         {

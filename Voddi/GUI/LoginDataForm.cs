@@ -7,12 +7,7 @@ namespace GUI
 {
     public partial class LoginDataForm : Form
     {
-        public LoginDataForm()
-        {
-
-            InitializeComponent();
-        }
-
+        public LoginDataForm() => InitializeComponent();
         private void loginDataBtn_Click(object sender, EventArgs e)
         {
             string username = loginUsernameField.Text;
@@ -30,9 +25,6 @@ namespace GUI
             }
         }
 
-        private void cancelBtn_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void cancelBtn_Click(object sender, EventArgs e) => this.Close();
     }
 }
