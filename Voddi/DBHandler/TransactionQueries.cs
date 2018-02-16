@@ -35,7 +35,7 @@ namespace DBHandler
                     }
                     catch (Exception ex2)
                     {
-                        throw ex2;
+                        throw new Exception(ex2.Message);
                     }
                 }
             }
@@ -117,9 +117,30 @@ namespace DBHandler
                     }
                     catch (Exception ex2)
                     {
-                        throw ex2;
+                        throw new Exception(ex2.Message);
                     }
                     return false;
+                }
+
+            }
+        }
+
+        public static bool HasUserCharacters(String username)
+        {
+            String query = Queries.UsersCharacters(username);
+
+            using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
+            {
+                SQLiteCommand command = CreateCommandMeta(connection);
+                try
+                {
+                    command.CommandText = query;
+                    object queryReader = command.ExecuteScalar();
+                    return queryReader == null;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
                 }
 
             }

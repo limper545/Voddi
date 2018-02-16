@@ -28,25 +28,10 @@ namespace DBHandler
 
         public static bool ExistsUser(String username) => TransactionQueries.CheckIfUserRegistered(username);
 
-        public static bool CreateUser(String vornameNew, String nachnameNew, String emailNew, String usernameNew, String passwordOne)
-        {
-    
-        }
+        public static bool CreateUser(String vorname, String nachname, String email, String username, String password)
+        => TransactionQueries.RegisterNewUser(vorname, nachname, email, username, password);
 
-        public static bool HasUserCharacters(String username)
-        {
-            String query = "SELECT charid FROM userManager WHERE username  = '" + username + "'";
-            SQLiteCommand command = new SQLiteCommand(query, dbConnection);
-            object response = command.ExecuteNonQuery();
-            if (response.ToString() == "0")
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
+        public static bool HasUserCharacters(String username) => TransactionQueries.HasUserCharacters(username);
 
         public static ArrayList GetAllClasses()
         {

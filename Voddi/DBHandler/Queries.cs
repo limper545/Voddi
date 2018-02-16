@@ -20,18 +20,20 @@ namespace DBHandler
         public static String queryAddRanger = "INSERT INTO classes(id, name, life, mana, exp) VALUES(3, 'Ranger', 9, 8, 1)";
         public static String queryUserCharacter = "CREATE TABLE IF NOT EXISTS charactersFromUser (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(20), userid int, charid int)";
 
-        public static String LoginQuery(String username, String password) => "SELECT username FROM userManager WHERE username = '" + username + "' AND password = '" + password + "'";
+        public static String LoginQuery(String username, String password)
+            => "SELECT username FROM userManager WHERE username = '" + username + "' AND password = '" + password + "'";
 
-        public static String SaveUserTimestamp(String username) => "UPDATE userManager SET lastlogin = CURRENT_TIMESTAMP WHERE username = '" + username + "'";
+        public static String SaveUserTimestamp(String username)
+            => "UPDATE userManager SET lastlogin = CURRENT_TIMESTAMP WHERE username = '" + username + "'";
 
         public static String ExistUser(String username) => "SELECT username FROM userManager WHERE username = '" + username + "'";
 
         public static String RegisterUser(String vorname, String nachname, String email, String username, String password)
-        {
-            return "INSERT INTO userManager(vorname, nachname, email, username, password, created) VALUES" +
+       => "INSERT INTO userManager(vorname, nachname, email, username, password, created) VALUES" +
               "('" + vorname + "', '" + nachname + "', '" + email + "', '" + username + "', '" + password + "', CURRENT_TIMESTAMP)";
-        }
 
+        public static String UsersCharacters(String username)
+            => "SELECT charid FROM userManager WHERE username  = '" + username + "'";
         #endregion
 
         public static List<String> GetAllQuerysForInitProject()
