@@ -9,18 +9,6 @@ namespace DBHandler
    
     public class Handler
     {
-
-        #region DB Abfragen
- 
-        private static string dbName = "SaschaDB.sqlite";
-        public static String queryCreateCharacters = "CREATE TABLE IF NOT EXISTS classes (id INTEGER PRIMARY KEY, name VARCHAR(20), life DOUBLE, mana DOUBLE, exp DOUBLE)";
-        public static String queryCreateUsers = "CREATE TABLE IF NOT EXISTS userManager (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            "vorname VARCHAR(30), nachname VARCHAR (30), email VARCHAR(50), username VARCHAR(20), created VARCHAR(30), lastlogin VARCHAR(30), charid INT, password VARCHAR(30))";
-        public static String queryAddMage = "INSERT OR REPLACE INTO classes(id, name, life, mana, exp) VALUES(1, 'Magier', 8, 9, 1) ";
-        public static String queryAddWarrior = "INSERT OR REPLACE INTO classes(id, name, life, mana, exp) VALUES(2, 'Krieger', 10, 7, 1)";
-        public static String queryAddRanger = "INSERT OR REPLACE INTO classes(id, name, life, mana, exp) VALUES(3, 'Ranger', 9, 8, 1)";
-        public static String queryUserCharacter = "CREATE TABLE IF NOT EXISTS charactersFromUser (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(20), userid int, charid int)";
-        #endregion
         public static SQLiteConnection dbConnection = new SQLiteConnection("Data Source=" + dbName + "; Version=3;");
         public void CreateAndConfigureDatabase() => SQLiteConnection.CreateFile(dbName);
 
@@ -29,7 +17,7 @@ namespace DBHandler
 
             //dbConnection = new SQLiteConnection("Data Source=" + dbName + "; Version=3;");
             dbConnection.Open();
-            CreateTableCommand(queryCreateCharacters);
+            CreateTableCommand(Queries.queryCreateCharacters);
             return dbConnection.State == ConnectionState.Open;
 
         }
@@ -37,11 +25,11 @@ namespace DBHandler
         public static void CreateTableCommand(String sqlQuery)
         {
             SQLiteCommand command = new SQLiteCommand(sqlQuery, dbConnection);
-            SQLiteCommand commandMage = new SQLiteCommand(queryAddMage, dbConnection);
-            SQLiteCommand commandWarrior = new SQLiteCommand(queryAddWarrior, dbConnection);
-            SQLiteCommand commandRanger = new SQLiteCommand(queryAddRanger, dbConnection);
-            SQLiteCommand commandUser = new SQLiteCommand(queryCreateUsers, dbConnection);
-            SQLiteCommand commandUserChar = new SQLiteCommand(queryUserCharacter, dbConnection);
+            SQLiteCommand commandMage = new SQLiteCommand(Queries.queryAddMage, dbConnection);
+            SQLiteCommand commandWarrior = new SQLiteCommand(Queries.queryAddWarrior, dbConnection);
+            SQLiteCommand commandRanger = new SQLiteCommand(Queries.queryAddRanger, dbConnection);
+            SQLiteCommand commandUser = new SQLiteCommand(Queries.queryCreateUsers, dbConnection);
+            SQLiteCommand commandUserChar = new SQLiteCommand(Queries.queryUserCharacter, dbConnection);
             command.ExecuteScalar();
             commandMage.ExecuteScalar();
             commandWarrior.ExecuteScalar();
@@ -54,7 +42,7 @@ namespace DBHandler
         public static bool CheckLogin(String username, String password)
         {
 
-            //var test1 = ConfigurationManager.AppSettings.Get("loglevel");
+            
             String query = "SELECT username FROM userManager WHERE username = '" + username + "' AND password = '" + password + "'";
             SQLiteCommand command = new SQLiteCommand(query, dbConnection);
             object response = command.ExecuteScalar();
