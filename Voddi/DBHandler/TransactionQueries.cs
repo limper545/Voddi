@@ -14,15 +14,10 @@ namespace DBHandler
             List<String> queriesList = Queries.GetAllQuerysForInitProject();
             using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
             {
-                connection.Open();
-                SQLiteCommand command = connection.CreateCommand();
+                SQLiteCommand command = CreateCommandMeta(connection);
                 SQLiteTransaction transaction;
-
                 transaction = connection.BeginTransaction();
-
-                command.Connection = connection;
                 command.Transaction = transaction;
-
                 try
                 {
                     queriesList.ForEach(query =>
@@ -52,9 +47,7 @@ namespace DBHandler
 
             using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
             {
-                connection.Open();
-                SQLiteCommand command = connection.CreateCommand();
-                command.Connection = connection;
+                SQLiteCommand command = CreateCommandMeta(connection);
                 try
                 {
                     command.CommandText = query;
@@ -84,9 +77,7 @@ namespace DBHandler
 
             using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
             {
-                connection.Open();
-                SQLiteCommand command = connection.CreateCommand();
-                command.Connection = connection;
+                SQLiteCommand command = CreateCommandMeta(connection);
                 try
                 {
                     command.CommandText = query;
@@ -101,21 +92,50 @@ namespace DBHandler
             }
         }
 
-        //
-        //SQLiteCommand command = new SQLiteCommand(query, dbConnection);
-        //object response = command.ExecuteScalar();
-        //    if (response == null)
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
+        public static bool RegisterNewUser(String vorname, String nachname, String email, String username, String password)
+        {
+            String query = Queries.RegisterUser(vorname, nachname, email, username, password);
+
+            using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
+            {
+                SQLiteCommand command = CreateCommandMeta(connection);
+                SQLiteTransaction transaction;
+                transaction = connection.BeginTransaction();
+                command.Transaction = transaction;
+                try
+                {
+                    command.CommandText = query;
+                    command.ExecuteNonQuery();
+                    transaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        throw ex2;
+                    }
+                    return false;
+                }
+
+            }
+        }
 
         public static SQLiteConnection GetConnectionString()
         {
             return Handler.dbConnection;
+        }
+
+        public static SQLiteCommand CreateCommandMeta(SQLiteConnection connection)
+        {
+            connection.Open();
+            SQLiteCommand command = connection.CreateCommand();
+            command.Connection = connection;
+            return command;
         }
     }
 }

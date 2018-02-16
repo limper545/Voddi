@@ -25,6 +25,13 @@ namespace DBHandler
         public static String SaveUserTimestamp(String username) => "UPDATE userManager SET lastlogin = CURRENT_TIMESTAMP WHERE username = '" + username + "'";
 
         public static String ExistUser(String username) => "SELECT username FROM userManager WHERE username = '" + username + "'";
+
+        public static String RegisterUser(String vorname, String nachname, String email, String username, String password)
+        {
+            return "INSERT INTO userManager(vorname, nachname, email, username, password, created) VALUES" +
+              "('" + vorname + "', '" + nachname + "', '" + email + "', '" + username + "', '" + password + "', CURRENT_TIMESTAMP)";
+        }
+
         #endregion
 
         public static List<String> GetAllQuerysForInitProject()

@@ -26,25 +26,11 @@ namespace DBHandler
         }
         public static bool CheckLogin(String username, String password) => TransactionQueries.CheckIfLoginDataAreCorrect(username, password);
 
-        public static bool ExistsUser(String username)
-        {
-  
-        }
+        public static bool ExistsUser(String username) => TransactionQueries.CheckIfUserRegistered(username);
 
         public static bool CreateUser(String vornameNew, String nachnameNew, String emailNew, String usernameNew, String passwordOne)
         {
-            String query = "INSERT INTO userManager(vorname, nachname, email, username, password, created) VALUES" +
-                "('" + vornameNew + "', '" + nachnameNew + "', '" + emailNew + "', '" + usernameNew + "', '" + passwordOne + "', CURRENT_TIMESTAMP)";
-            SQLiteCommand command = new SQLiteCommand(query, dbConnection);
-            object response = command.ExecuteNonQuery();
-            if (response == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+    
         }
 
         public static bool HasUserCharacters(String username)
