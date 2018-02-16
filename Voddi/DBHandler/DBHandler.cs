@@ -3,42 +3,28 @@ using System;
 using System.Collections;
 using System.Data;
 using System.Data.SQLite;
+using System.Collections.Generic;
 
 namespace DBHandler
 {
    
     public class Handler
     {
-        public static SQLiteConnection dbConnection = new SQLiteConnection("Data Source=" + dbName + "; Version=3;");
-        public void CreateAndConfigureDatabase() => SQLiteConnection.CreateFile(dbName);
+        public static SQLiteConnection dbConnection = new SQLiteConnection("Data Source=" + Queries.dbName + "; Version=3;");
 
-        public static bool CreateDatabaseConnection()
+        public static void CreateDatabase()
         {
-
-            //dbConnection = new SQLiteConnection("Data Source=" + dbName + "; Version=3;");
-            dbConnection.Open();
-            CreateTableCommand(Queries.queryCreateCharacters);
-            return dbConnection.State == ConnectionState.Open;
-
+            SQLiteConnection.CreateFile(Queries.dbName);
+            TransactionQueries.InitProjectDatabase(dbConnection);
+            //try
+            //{
+            //    TransactionQueries.InitProjectDatabase(dbConnection);
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception("Fehler beim erstellen der Datenbank. Fehler: " + ex.Message);
+            //}
         }
-
-        public static void CreateTableCommand(String sqlQuery)
-        {
-            SQLiteCommand command = new SQLiteCommand(sqlQuery, dbConnection);
-            SQLiteCommand commandMage = new SQLiteCommand(Queries.queryAddMage, dbConnection);
-            SQLiteCommand commandWarrior = new SQLiteCommand(Queries.queryAddWarrior, dbConnection);
-            SQLiteCommand commandRanger = new SQLiteCommand(Queries.queryAddRanger, dbConnection);
-            SQLiteCommand commandUser = new SQLiteCommand(Queries.queryCreateUsers, dbConnection);
-            SQLiteCommand commandUserChar = new SQLiteCommand(Queries.queryUserCharacter, dbConnection);
-            command.ExecuteScalar();
-            commandMage.ExecuteScalar();
-            commandWarrior.ExecuteScalar();
-            commandRanger.ExecuteScalar();
-            commandUser.ExecuteScalar();
-            commandUserChar.ExecuteScalar();
-        }
-
-
         public static bool CheckLogin(String username, String password)
         {
 

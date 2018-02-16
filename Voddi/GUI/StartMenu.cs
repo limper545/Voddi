@@ -11,6 +11,8 @@ namespace GUI
         {
             InitializeComponent();
             //dbConnection.Text = Handler.GetConnectionStatus();
+            Handler.CreateDatabase();
+            
             dbConnection.BackColor = Color.Transparent;
 
             gameTitleLabel.Text = "BaB";
