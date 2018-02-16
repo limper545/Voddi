@@ -10,11 +10,8 @@ namespace GUI
         public StartMenu()
         {
             InitializeComponent();
-            //dbConnection.Text = Handler.GetConnectionStatus();
             Handler.CreateDatabase();
-            
-            dbConnection.BackColor = Color.Transparent;
-
+          
             gameTitleLabel.Text = "BaB";
             gameTitleLabel.BackColor = Color.Transparent;
         }

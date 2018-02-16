@@ -37,5 +37,17 @@ namespace DBHandler
 
         public static String GetAllClassesFromDB = "SELECT name FROM classes";
         #endregion
+
+        public static List<String> GetAllQuerysForInitProject()
+        {
+            List<String> list = new List<String>();
+            list.Add(queryCreateCharacters);
+            list.Add(queryCreateUsers);
+            list.Add(queryAddMage);
+            list.Add(queryAddWarrior);
+            list.Add(queryAddRanger);
+            list.Add(queryUserCharacter);
+            return list;
+        }
     }
 }
