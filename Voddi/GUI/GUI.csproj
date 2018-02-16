@@ -110,6 +110,9 @@
     <EmbeddedResource Include="checkForPatch.resx">
       <DependentUpon>checkForPatch.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GameMenu.resx">
+      <DependentUpon>GameMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

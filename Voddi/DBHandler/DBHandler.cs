@@ -37,13 +37,8 @@ namespace DBHandler
         public static List<String> GetAllClasses()
         {
             List<String> listClasses = new List<String>();
-            SQLiteDataReader query = TransactionQueries.GetAllClasses();
-            while (query.Read())
-            {
-                listClasses.Add(item: query.GetValue(0).ToString());
-            }
-
-            return listClasses;
+            List<String> classes = TransactionQueries.GetAllClasses();
+            return classes;
         }
     }
 }

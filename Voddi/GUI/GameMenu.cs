@@ -35,19 +35,19 @@ namespace GUI
         private void charOneBtn_Click(object sender, EventArgs e)
         {
             if (charOneBtn.Text == NoChar)
-                new CreateCharacter(username: username).Show();
+                new CreateCharacter(username).Show();
         }
 
         private void charTwoBtn_Click(object sender, EventArgs e)
         {
             if (charTwoBtn.Text == NoChar)
-                new CreateCharacter(username: username).Show();
+                new CreateCharacter(username).Show();
         }
 
         private void charThreeBtn_Click(object sender, EventArgs e)
         {
             if (charThreeBtn.Text == NoChar)
-                new CreateCharacter(username: username).Show();
+                new CreateCharacter(username).Show();
         }
     }
 }

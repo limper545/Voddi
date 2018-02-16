@@ -37,7 +37,7 @@
             // charOneBtn
             // 
             this.charOneBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.25F);
-            this.charOneBtn.Location = new System.Drawing.Point(425, 78);
+            this.charOneBtn.Location = new System.Drawing.Point(309, 84);
             this.charOneBtn.Name = "charOneBtn";
             this.charOneBtn.Size = new System.Drawing.Size(384, 78);
             this.charOneBtn.TabIndex = 0;
@@ -47,7 +47,7 @@
             // charTwoBtn
             // 
             this.charTwoBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.25F);
-            this.charTwoBtn.Location = new System.Drawing.Point(425, 225);
+            this.charTwoBtn.Location = new System.Drawing.Point(309, 250);
             this.charTwoBtn.Name = "charTwoBtn";
             this.charTwoBtn.Size = new System.Drawing.Size(384, 78);
             this.charTwoBtn.TabIndex = 1;
@@ -57,7 +57,7 @@
             // charThreeBtn
             // 
             this.charThreeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.25F);
-            this.charThreeBtn.Location = new System.Drawing.Point(425, 372);
+            this.charThreeBtn.Location = new System.Drawing.Point(309, 419);
             this.charThreeBtn.Name = "charThreeBtn";
             this.charThreeBtn.Size = new System.Drawing.Size(384, 78);
             this.charThreeBtn.TabIndex = 2;
@@ -77,7 +77,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1220, 626);
+            this.BackgroundImage = global::GUI.Properties.Resources.pirates_rock_castle_bird_mountain;
+            this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.labelWelcome);
             this.Controls.Add(this.charThreeBtn);
             this.Controls.Add(this.charTwoBtn);

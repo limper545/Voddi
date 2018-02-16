@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using DBHandler;
+using System.Collections.Generic;
 
 namespace GUI
 {
@@ -18,15 +13,15 @@ namespace GUI
         {
             this.username = username;
             InitializeComponent();
-            // ArrayList charList = DBHandler.GetAllClasses();
-            //FillClassField(charList);
+            FillClassField();
         }
 
 
 
-        private void FillClassField(ArrayList list)
+        private void FillClassField()
         {
-            foreach (var item in list) { classComboBox.Items.Add(item); }
+            List<String> listClasses = Handler.GetAllClasses();
+            foreach (var item in listClasses) { classComboBox.Items.Add(item); }
                 
         }
 

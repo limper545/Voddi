@@ -146,8 +146,9 @@ namespace DBHandler
             }
         }
 
-        public static SQLiteDataReader GetAllClasses()
+        public static List<String> GetAllClasses()
         {
+            List<String> list = new List<String>();
             String query = Queries.GetAllClassesFromDB;
 
             using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
@@ -157,7 +158,11 @@ namespace DBHandler
                 {
                     command.CommandText = query;
                     SQLiteDataReader queryReader = command.ExecuteReader();
-                    return queryReader;
+                    while (queryReader.Read())
+                    {
+                        list.Add(queryReader.GetValue(0).ToString());
+                    }
+                    return list;
                 }
                 catch (Exception ex)
                 {
