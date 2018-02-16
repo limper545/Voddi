@@ -19,6 +19,10 @@ namespace DBHandler
         public static String queryAddWarrior = "INSERT OR REPLACE INTO classes(id, name, life, mana, exp) VALUES(2, 'Krieger', 10, 7, 1)";
         public static String queryAddRanger = "INSERT OR REPLACE INTO classes(id, name, life, mana, exp) VALUES(3, 'Ranger', 9, 8, 1)";
         public static String queryUserCharacter = "CREATE TABLE IF NOT EXISTS charactersFromUser (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(20), userid int, charid int)";
+
+        public static String LoginQuery(String username, String password) => "SELECT username FROM userManager WHERE username = '" + username + "' AND password = '" + password + "'";
+
+        public static String SaveUserTimestamp(String username) => "UPDATE userManager SET lastlogin = CURRENT_TIMESTAMP WHERE username = '" + username + "'";
         #endregion
 
         public static List<String> GetAllQuerysForInitProject()

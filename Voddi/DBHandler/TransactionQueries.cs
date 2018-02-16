@@ -45,5 +45,37 @@ namespace DBHandler
                 }
             }
         }
+
+        public static bool CheckIfLoginDataAreCorrect(string username, string password, SQLiteConnection connectionString)
+        {
+            String query = Queries.LoginQuery(username, password);
+
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                SQLiteCommand command = connection.CreateCommand();
+                command.Connection = connection;
+                try
+                {
+                    command.CommandText = Queries.LoginQuery(username, password);
+                    SQLiteDataReader queryReader = command.ExecuteReader();
+                    if (queryReader.StepCount == 0)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        command.CommandText = Queries.SaveUserTimestamp(username);
+                        command.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+
+            }
+        }
     }
 }

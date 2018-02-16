@@ -15,36 +15,18 @@ namespace DBHandler
         public static void CreateDatabase()
         {
             SQLiteConnection.CreateFile(Queries.dbName);
-            TransactionQueries.InitProjectDatabase(dbConnection);
-            //try
-            //{
-            //    TransactionQueries.InitProjectDatabase(dbConnection);
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception("Fehler beim erstellen der Datenbank. Fehler: " + ex.Message);
-            //}
-        }
-        public static bool CheckLogin(String username, String password)
-        {
-
-            
-            String query = "SELECT username FROM userManager WHERE username = '" + username + "' AND password = '" + password + "'";
-            SQLiteCommand command = new SQLiteCommand(query, dbConnection);
-            object response = command.ExecuteScalar();
-            if (response == null)
+           
+            try
             {
-                return false;
+                TransactionQueries.InitProjectDatabase(dbConnection);
             }
-            else
+            catch (Exception ex)
             {
-                String querySave = "UPDATE userManager SET lastlogin = CURRENT_TIMESTAMP WHERE username = '" + response + "'";
-                SQLiteCommand commandSave = new SQLiteCommand(querySave, dbConnection);
-                commandSave.ExecuteScalar();
-                return true;
+                // TODO Fehler an das Frontend melden
+                throw new Exception("Fehler beim erstellen der Datenbank. Fehler: " + ex.Message);
             }
-
         }
+        public static bool CheckLogin(String username, String password) => TransactionQueries.CheckIfLoginDataAreCorrect(username, password, dbConnection);
 
         public static bool ExistsUser(String username)
         {
