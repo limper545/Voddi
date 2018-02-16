@@ -15,8 +15,7 @@ namespace GUI
            if (Handler.CheckLogin(username, password))
             {
                 MessageBox.Show("Erfolgreich", "Anmeldung", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                checkForPatch modalPatch = new checkForPatch(username);
-                modalPatch.Show();
+                new checkForPatch(username).Show();
                 this.Close();
             }
             else

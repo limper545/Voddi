@@ -1,4 +1,4 @@
-﻿namespace BaB_1._0.GUI
+﻿namespace GUI
 {
     partial class LoadingScreen
     {

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 
-namespace BaB_1._0.GUI
+namespace GUI
 {
     public partial class LoadingScreen : Form
     {
@@ -29,8 +29,7 @@ namespace BaB_1._0.GUI
         {
             await Task.Delay(TimeSpan.FromSeconds(1));
             this.Close();
-            GameMenu gameM = new GameMenu(username);
-            gameM.Show();
+            new GameMenu(username).Show();
         }
 
         private async void LoadingScreen_LoadAsync(object sender, EventArgs e)

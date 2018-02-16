@@ -4,7 +4,7 @@ using GUI;
 using System;
 using System.Windows.Forms;
 
-namespace BaB_1._0.GUI
+namespace GUI
 {
     public partial class GameMenu : Form
     {
