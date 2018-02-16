@@ -11,15 +11,12 @@ namespace DBHandler
     public class Handler
     {
         public static SQLiteConnection dbConnection = new SQLiteConnection("Data Source=" + Queries.dbName + "; Version=3;");
-
         public static void CreateDatabase()
         {
             if (!System.IO.File.Exists(Queries.dbName)) SQLiteConnection.CreateFile(Queries.dbName);
-
-
             try
             {
-                TransactionQueries.InitProjectDatabase(dbConnection);
+                TransactionQueries.InitProjectDatabase();
             }
             catch (Exception ex)
             {
@@ -27,21 +24,11 @@ namespace DBHandler
                 throw new Exception("Fehler beim erstellen der Datenbank. Fehler: " + ex.Message);
             }
         }
-        public static bool CheckLogin(String username, String password) => TransactionQueries.CheckIfLoginDataAreCorrect(username, password, dbConnection);
+        public static bool CheckLogin(String username, String password) => TransactionQueries.CheckIfLoginDataAreCorrect(username, password);
 
         public static bool ExistsUser(String username)
         {
-            String query = "SELECT username FROM userManager WHERE username = '" + username + "'";
-            SQLiteCommand command = new SQLiteCommand(query, dbConnection);
-            object response = command.ExecuteScalar();
-            if (response == null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+  
         }
 
         public static bool CreateUser(String vornameNew, String nachnameNew, String emailNew, String usernameNew, String passwordOne)

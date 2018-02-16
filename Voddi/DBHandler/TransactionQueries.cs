@@ -9,10 +9,10 @@ namespace DBHandler
 {
     class TransactionQueries
     {
-        public static void InitProjectDatabase(SQLiteConnection connectionString)
+        public static void InitProjectDatabase()
         {
             List<String> queriesList = Queries.GetAllQuerysForInitProject();
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
             {
                 connection.Open();
                 SQLiteCommand command = connection.CreateCommand();
@@ -46,18 +46,18 @@ namespace DBHandler
             }
         }
 
-        public static bool CheckIfLoginDataAreCorrect(string username, string password, SQLiteConnection connectionString)
+        public static bool CheckIfLoginDataAreCorrect(string username, string password)
         {
             String query = Queries.LoginQuery(username, password);
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
             {
                 connection.Open();
                 SQLiteCommand command = connection.CreateCommand();
                 command.Connection = connection;
                 try
                 {
-                    command.CommandText = Queries.LoginQuery(username, password);
+                    command.CommandText = query;
                     object queryReader = command.ExecuteScalar();
                     if (queryReader == null)
                     {
@@ -76,6 +76,46 @@ namespace DBHandler
                 }
 
             }
+        }
+
+        public static bool CheckIfUserRegistered(String username)
+        {
+            String query = Queries.ExistUser(username);
+
+            using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
+            {
+                connection.Open();
+                SQLiteCommand command = connection.CreateCommand();
+                command.Connection = connection;
+                try
+                {
+                    command.CommandText = query;
+                    object queryReader = command.ExecuteScalar();
+                    return queryReader == null;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+
+            }
+        }
+
+        //
+        //SQLiteCommand command = new SQLiteCommand(query, dbConnection);
+        //object response = command.ExecuteScalar();
+        //    if (response == null)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+
+        public static SQLiteConnection GetConnectionString()
+        {
+            return Handler.dbConnection;
         }
     }
 }

@@ -23,6 +23,8 @@ namespace DBHandler
         public static String LoginQuery(String username, String password) => "SELECT username FROM userManager WHERE username = '" + username + "' AND password = '" + password + "'";
 
         public static String SaveUserTimestamp(String username) => "UPDATE userManager SET lastlogin = CURRENT_TIMESTAMP WHERE username = '" + username + "'";
+
+        public static String ExistUser(String username) => "SELECT username FROM userManager WHERE username = '" + username + "'";
         #endregion
 
         public static List<String> GetAllQuerysForInitProject()
