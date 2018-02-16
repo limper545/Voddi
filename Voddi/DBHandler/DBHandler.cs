@@ -40,5 +40,7 @@ namespace DBHandler
             List<String> classes = TransactionQueries.GetAllClasses();
             return classes;
         }
+
+        public static void CreateCharacterForAUser(String characterName, String characterKlasse) => TransactionQueries.CreateCharacterForUser(characterName, characterKlasse);
     }
 }

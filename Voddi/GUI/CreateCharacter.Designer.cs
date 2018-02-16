@@ -75,7 +75,7 @@
             this.createCharBtn.TabIndex = 3;
             this.createCharBtn.Text = "Create";
             this.createCharBtn.UseVisualStyleBackColor = true;
-            this.createCharBtn.Click += new System.EventHandler(this.createCharBtn_Click_1);
+            this.createCharBtn.Click += new System.EventHandler(this.CreateCharBtn_Click_1);
             // 
             // charNameBox
             // 

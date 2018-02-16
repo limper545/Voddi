@@ -1,5 +1,5 @@
 ﻿using System;
-using System.ComponentModel;
+using DBHandler;
 using System.Windows.Forms;
 using DBHandler;
 using System.Collections.Generic;
@@ -8,15 +8,13 @@ namespace GUI
 {
     public partial class CreateCharacter : Form
     {
-        public string username;
+        public String username;
         public CreateCharacter(string username)
         {
             this.username = username;
             InitializeComponent();
             FillClassField();
         }
-
-
 
         private void FillClassField()
         {
@@ -25,10 +23,9 @@ namespace GUI
                 
         }
 
-        private void createCharBtn_Click_1(object sender, EventArgs e)
+        private void CreateCharBtn_Click_1(object sender, EventArgs e)
         {
-            string charName = charNameBox.Text;
-            string charClass = classComboBox.Text;
+            Handler.CreateCharacterForAUser(charNameBox.Text, classComboBox.Text);
         }
     }
 }

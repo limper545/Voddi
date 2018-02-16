@@ -172,6 +172,39 @@ namespace DBHandler
             }
         }
 
+        public static void CreateCharacterForUser(String name, String klasse)
+        {
+            String query = Queries.CreateCharacterForUser(name, klasse);
+
+            using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
+            {
+                SQLiteCommand command = CreateCommandMeta(connection);
+                SQLiteTransaction transaction;
+                transaction = connection.BeginTransaction();
+                command.Transaction = transaction;
+                try
+                {
+                    //command.CommandText = query;
+                    //command.ExecuteNonQuery();
+                    //transaction.Commit();
+                    //return true;
+                }
+                catch (Exception ex)
+                {
+                    //try
+                    //{
+                    //    transaction.Rollback();
+                    //}
+                    //catch (Exception ex2)
+                    //{
+                    //    throw new Exception(ex2.Message);
+                    //}
+                    //return false;
+                }
+
+            }
+        }
+
         public static SQLiteConnection GetConnectionString()
         {
             return Handler.dbConnection;

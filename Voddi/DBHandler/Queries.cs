@@ -49,5 +49,10 @@ namespace DBHandler
             list.Add(queryUserCharacter);
             return list;
         }
+
+        public static String CreateCharacterForUser(String name, String klasse)
+        {
+            return "";
+        }
     }
 }
