@@ -41,6 +41,7 @@ namespace DBHandler
             return classes;
         }
 
-        public static void CreateCharacterForAUser(String characterName, String characterKlasse) => TransactionQueries.CreateCharacterForUser(characterName, characterKlasse);
+        public static void CreateCharacterForAUser(String characterName, String characterKlasse, String username) 
+            => TransactionQueries.CreateCharacterForUser(characterName, characterKlasse, username);
     }
 }

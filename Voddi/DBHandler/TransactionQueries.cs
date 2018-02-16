@@ -172,9 +172,11 @@ namespace DBHandler
             }
         }
 
-        public static void CreateCharacterForUser(String name, String klasse)
+        public static void CreateCharacterForUser(String name, String klasse, String username)
         {
-            String query = Queries.CreateCharacterForUser(name, klasse);
+            //String query = Queries.CreateCharacterForUser(name, cID, uID);
+            String queryCharacterID = Queries.GetCharacterID(name);
+            String queryUserID = Queries.GetUserID(username);
 
             using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
             {
@@ -184,10 +186,22 @@ namespace DBHandler
                 command.Transaction = transaction;
                 try
                 {
-                    //command.CommandText = query;
-                    //command.ExecuteNonQuery();
-                    //transaction.Commit();
-                    //return true;
+                    Task t1 = new Task(() =>
+                    {
+                        command.CommandText = queryCharacterID;
+                        SQLiteDataReader readerCharacterID = command.ExecuteReader();
+                    });
+
+                    Task t2 = new Task(() =>
+                    {
+                        command.CommandText = queryUserID;
+                        SQLiteDataReader readerUserID = command.ExecuteReader();
+                    });
+                    t1.Start();
+                    t2.Start();
+
+
+                    Task.WaitAll();
                 }
                 catch (Exception ex)
                 {

@@ -25,7 +25,7 @@ namespace GUI
 
         private void CreateCharBtn_Click_1(object sender, EventArgs e)
         {
-            Handler.CreateCharacterForAUser(charNameBox.Text, classComboBox.Text);
+            Handler.CreateCharacterForAUser(charNameBox.Text, classComboBox.Text, username);
         }
     }
 }

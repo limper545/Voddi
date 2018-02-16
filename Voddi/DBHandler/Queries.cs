@@ -50,6 +50,10 @@ namespace DBHandler
             return list;
         }
 
+        public static String GetCharacterID(String name) => "SELECT id FROM classes WHERE name = '" + name + "'";
+
+        public static String GetUserID(String name) => "SELECT id FROM userManager WHERE username = '" + name + "'";
+
         public static String CreateCharacterForUser(String name, String klasse)
         {
             return "";
