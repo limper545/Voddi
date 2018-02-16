@@ -11,6 +11,7 @@ namespace DBHandler
     public class Handler
     {
         public static SQLiteConnection dbConnection = new SQLiteConnection("Data Source=" + Queries.dbName + "; Version=3;");
+
         public static void CreateDatabase()
         {
             if (!System.IO.File.Exists(Queries.dbName)) SQLiteConnection.CreateFile(Queries.dbName);
@@ -33,17 +34,16 @@ namespace DBHandler
 
         public static bool HasUserCharacters(String username) => TransactionQueries.HasUserCharacters(username);
 
-        public static ArrayList GetAllClasses()
+        public static List<String> GetAllClasses()
         {
-            ArrayList classes = new ArrayList();
-            String query = "SELECT name FROM classes";
-            SQLiteCommand command = new SQLiteCommand(query, dbConnection);
-            SQLiteDataReader response = command.ExecuteReader();
-            while (response.Read())
+            List<String> listClasses = new List<String>();
+            SQLiteDataReader query = TransactionQueries.GetAllClasses();
+            while (query.Read())
             {
-                classes.Add(response.GetValue(0).ToString());
+                listClasses.Add(item: query.GetValue(0).ToString());
             }
-            return classes;
+
+            return listClasses;
         }
     }
 }

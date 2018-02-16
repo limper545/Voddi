@@ -146,6 +146,27 @@ namespace DBHandler
             }
         }
 
+        public static SQLiteDataReader GetAllClasses()
+        {
+            String query = Queries.GetAllClassesFromDB;
+
+            using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
+            {
+                SQLiteCommand command = CreateCommandMeta(connection);
+                try
+                {
+                    command.CommandText = query;
+                    SQLiteDataReader queryReader = command.ExecuteReader();
+                    return queryReader;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+
+            }
+        }
+
         public static SQLiteConnection GetConnectionString()
         {
             return Handler.dbConnection;

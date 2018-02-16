@@ -9,7 +9,7 @@ namespace DBHandler
 {
     public class Queries
     {
-        #region DB Abfragen
+        #region DB Queries
 
         public static string dbName = "SaschaDB.sqlite";
         public static String queryCreateCharacters = "CREATE TABLE IF NOT EXISTS classes (id INTEGER PRIMARY KEY, name VARCHAR(20), life DOUBLE, mana DOUBLE, exp DOUBLE)";
@@ -34,18 +34,8 @@ namespace DBHandler
 
         public static String UsersCharacters(String username)
             => "SELECT charid FROM userManager WHERE username  = '" + username + "'";
-        #endregion
 
-        public static List<String> GetAllQuerysForInitProject()
-        {
-            List<String> list = new List<String>();
-            list.Add(queryCreateCharacters);
-            list.Add(queryCreateUsers);
-            list.Add(queryAddMage);
-            list.Add(queryAddWarrior);
-            list.Add(queryAddRanger);
-            list.Add(queryUserCharacter);
-            return list;
-        }
+        public static String GetAllClassesFromDB = "SELECT name FROM classes";
+        #endregion
     }
 }
