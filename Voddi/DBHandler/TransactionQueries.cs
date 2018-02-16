@@ -58,8 +58,8 @@ namespace DBHandler
                 try
                 {
                     command.CommandText = Queries.LoginQuery(username, password);
-                    SQLiteDataReader queryReader = command.ExecuteReader();
-                    if (queryReader.StepCount == 0)
+                    object queryReader = command.ExecuteScalar();
+                    if (queryReader == null)
                     {
                         return false;
                     }

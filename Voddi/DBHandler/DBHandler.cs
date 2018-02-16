@@ -14,8 +14,9 @@ namespace DBHandler
 
         public static void CreateDatabase()
         {
-            SQLiteConnection.CreateFile(Queries.dbName);
-           
+            if (!System.IO.File.Exists(Queries.dbName)) SQLiteConnection.CreateFile(Queries.dbName);
+
+
             try
             {
                 TransactionQueries.InitProjectDatabase(dbConnection);
