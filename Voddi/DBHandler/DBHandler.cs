@@ -4,7 +4,7 @@ using System.Collections;
 using System.Data;
 using System.Data.SQLite;
 using System.Collections.Generic;
-
+// TODO Es ist möglich mehrere USer zu erstellen, beheben!!
 namespace DBHandler
 {
    

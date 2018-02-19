@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DBHandler
 {
-    class TransactionQueries
+    public class TransactionQueries
     {
         public static void InitProjectDatabase()
         {
@@ -82,7 +82,8 @@ namespace DBHandler
                 {
                     command.CommandText = query;
                     object queryReader = command.ExecuteScalar();
-                    return queryReader == null;
+                    return queryReader != null;
+
                 }
                 catch (Exception ex)
                 {
@@ -136,7 +137,7 @@ namespace DBHandler
                 {
                     command.CommandText = query;
                     object queryReader = command.ExecuteScalar();
-                    return queryReader == null;
+                    return queryReader != null;
                 }
                 catch (Exception ex)
                 {
