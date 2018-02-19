@@ -174,9 +174,8 @@ namespace DBHandler
 
         public static void CreateCharacterForUser(String name, String klasse, String username)
         {
-            //String query = Queries.CreateCharacterForUser(name, cID, uID);
-            String queryCharacterID = Queries.GetCharacterID(name);
-            String queryUserID = Queries.GetUserID(username);
+            String characterID;
+            String userID;
 
             using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
             {
@@ -186,22 +185,32 @@ namespace DBHandler
                 command.Transaction = transaction;
                 try
                 {
-                    Task t1 = new Task(() =>
+                    // TDOD Muss mit Async und Await gebaut werden, da es sonst zu lange dauert bis die Antwort kommt
+                    /*Task t1 = new Task(() =>
                     {
-                        command.CommandText = queryCharacterID;
+                        command.CommandText = Queries.GetCharacterID(name);
                         SQLiteDataReader readerCharacterID = command.ExecuteReader();
+                        while(readerCharacterID.Read())
+                        {
+                            characterID = readerCharacterID.GetValue(0).ToString();
+                        }
                     });
 
                     Task t2 = new Task(() =>
                     {
-                        command.CommandText = queryUserID;
+                        command.CommandText = Queries.GetUserID(username); ;
                         SQLiteDataReader readerUserID = command.ExecuteReader();
+                        while(readerUserID.Read())
+                        {
+                            userID = readerUserID.GetValue(0).ToString();
+                        }
                     });
                     t1.Start();
                     t2.Start();
 
 
-                    Task.WaitAll();
+                    Task.WaitAll();*/
+
                 }
                 catch (Exception ex)
                 {
@@ -214,6 +223,7 @@ namespace DBHandler
                     //    throw new Exception(ex2.Message);
                     //}
                     //return false;
+                    throw new Exception(ex.Message);
                 }
 
             }
