@@ -186,7 +186,10 @@ namespace DBHandler
                 command.Transaction = transaction;
                 try
                 {
-                    // TDOD Muss mit Async und Await gebaut werden, da es sonst zu lange dauert bis die Antwort kommt
+
+                    // TOOD Muss mit Async und Await gebaut werden, da es sonst zu lange dauert bis die Antwort kommt
+                    // Ablauf: CharacterID und ClassID holen, Speichern mit den beiden ID's und username
+                    // Dann die neue ID des neuen Characters in Usermanager speichern
                     /*Task t1 = new Task(() =>
                     {
                         command.CommandText = Queries.GetCharacterID(name);
