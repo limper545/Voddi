@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Data.SQLite;
 using DBHandler;
+using Core;
 
 namespace GUI
 {
@@ -11,11 +12,13 @@ namespace GUI
         private void loginDataBtn_Click(object sender, EventArgs e)
         {
             string username = loginUsernameField.Text;
-            string password = loginPasswordField.Text;
-           if (Handler.CheckLogin(username, password))
+             string password = loginPasswordField.Text;
+            User user = Handler.CheckLogin(username, password);
+            Console.WriteLine();
+           if (user != null)
             {
                 MessageBox.Show("Erfolgreich", "Anmeldung", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                new checkForPatch(username).Show();
+                new checkForPatch(user).Show();
                 this.Close();
             }
             else

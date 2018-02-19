@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Core;
 using System.Windows.Forms;
 
 namespace GUI
@@ -13,9 +8,10 @@ namespace GUI
     public partial class checkForPatch : Form
     {
         public string username;
-        public checkForPatch(String username)
+        public User u;
+        public checkForPatch(User username)
         {
-            this.username = username;
+            this.u = username;
             InitializeComponent();
         }
         private void checkForPatch_Load(object sender, EventArgs e)
@@ -36,7 +32,7 @@ namespace GUI
         {
             List<Form> openForms = new List<Form>();
 
-            new LoadingScreen(username).Show();
+            new LoadingScreen(u).Show();
             foreach (Form f in Application.OpenForms) { openForms.Add(f); }
 
             openForms.ForEach(f =>

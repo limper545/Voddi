@@ -5,6 +5,7 @@ using System.Data.SQLite;
 using System.Collections.Generic;
 using System.Linq;
 
+// TODO Tests Anpassen
 namespace SQL_Statements_Tests
 {
     [TestClass]

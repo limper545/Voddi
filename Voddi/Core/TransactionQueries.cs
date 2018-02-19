@@ -42,7 +42,7 @@ namespace DBHandler
             }
         }
 
-        public static bool CheckIfLoginDataAreCorrect(string username, string password)
+        public static List<Tuple<String, String>> CheckIfLoginDataAreCorrect(string username, string password)
         {
             String query = Queries.LoginQuery(username, password);
 
@@ -51,18 +51,22 @@ namespace DBHandler
                 SQLiteCommand command = CreateCommandMeta(connection);
                 try
                 {
+                    var user = new List<Tuple<String, String>>();
                     command.CommandText = query;
-                    object queryReader = command.ExecuteScalar();
-                    if (queryReader == null)
+                    SQLiteDataReader queryReader = command.ExecuteReader();
+                    if (queryReader.HasRows)
                     {
-                        return false;
-                    }
+                        while (queryReader.Read())
+                        {
+                            user.Add(new Tuple<String, String>(queryReader.GetValue(0).ToString(), queryReader.GetValue(1).ToString()));
+                        }
+                        return user;
+                    } 
                     else
                     {
-                        command.CommandText = Queries.SaveUserTimestamp(username);
-                        command.ExecuteNonQuery();
-                        return true;
+                        return null;
                     }
+             
                 }
                 catch (Exception ex)
                 {
@@ -175,11 +179,9 @@ namespace DBHandler
             }
         }
 
-        public static void CreateCharacterForUser(String name, String klasse, String username)
+        public static bool CreateCharacterForUser(String name, String classID, String userID)
         {
-            String characterID;
-            String userID;
-
+            String query = Queries.CreateUserCharacter(name, Convert.ToInt32(classID), Convert.ToInt32(classID));
             using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
             {
                 SQLiteCommand command = CreateCommandMeta(connection);
@@ -188,48 +190,23 @@ namespace DBHandler
                 command.Transaction = transaction;
                 try
                 {
-
-                    // TOOD Muss mit Async und Await gebaut werden, da es sonst zu lange dauert bis die Antwort kommt
-                    // Ablauf: CharacterID und ClassID holen, Speichern mit den beiden ID's und username
-                    // Dann die neue ID des neuen Characters in Usermanager speichern
-                    /*Task t1 = new Task(() =>
-                    {
-                        command.CommandText = Queries.GetCharacterID(name);
-                        SQLiteDataReader readerCharacterID = command.ExecuteReader();
-                        while(readerCharacterID.Read())
-                        {
-                            characterID = readerCharacterID.GetValue(0).ToString();
-                        }
-                    });
-
-                    Task t2 = new Task(() =>
-                    {
-                        command.CommandText = Queries.GetUserID(username); ;
-                        SQLiteDataReader readerUserID = command.ExecuteReader();
-                        while(readerUserID.Read())
-                        {
-                            userID = readerUserID.GetValue(0).ToString();
-                        }
-                    });
-                    t1.Start();
-                    t2.Start();
-
-
-                    Task.WaitAll();*/
-
+                    command.CommandText = query;
+                    command.ExecuteNonQuery();
+                    transaction.Commit();
+                    // TODO Speichern der CHARID bei User
+                    return true;
                 }
                 catch (Exception ex)
                 {
-                    //try
-                    //{
-                    //    transaction.Rollback();
-                    //}
-                    //catch (Exception ex2)
-                    //{
-                    //    throw new Exception(ex2.Message);
-                    //}
-                    //return false;
-                    throw new Exception(ex.Message);
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        throw new Exception(ex2.Message);
+                    }
+                    return false;
                 }
 
             }

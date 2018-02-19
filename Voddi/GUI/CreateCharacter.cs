@@ -9,27 +9,35 @@ namespace GUI
     public partial class CreateCharacter : Form
     {
         public String username;
-        public CreateCharacter(string username)
+        public User u;
+        public CreateCharacter(User username)
         {
-            this.username = username;
+            this.u = username;
             InitializeComponent();
             FillClassField();
         }
 
         private void FillClassField()
         {
-            List<Classes> listClasses = Handler.GetAllClasses();
-            foreach (var item in listClasses) {
+            foreach (var item in Handler.GetAllClasses()) {
                 classComboBox.ValueMember = item.ID.ToString();
-                classComboBox.Items.Add(item.Name); 
+                classComboBox.Items.Add(item: item.Name); 
             }
                 
         }
 
         private void CreateCharBtn_Click_1(object sender, EventArgs e)
         {
-            // ValueMember
-            Handler.CreateCharacterForAUser(charNameBox.Text, classComboBox.Text, username);
+            if(Handler.CreateCharacterForAUser(charNameBox.Text, classComboBox.ValueMember, u.ID.ToString()))
+            {
+                MessageBox.Show("Character " + charNameBox.Text + " erfolgreich erstellt." , "Erfolgreich", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Fehler beim erstellen.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+            
     }
 }

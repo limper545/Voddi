@@ -9,15 +9,16 @@ using System.Timers;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using Core;
 
 namespace GUI
 {
     public partial class LoadingScreen : Form
     {
-        private string username;
-        public LoadingScreen(String username)
+        private User u;
+        public LoadingScreen(User username)
         {
-            this.username = username;
+            this.u = username;
             InitializeComponent();
         }
 
@@ -29,7 +30,7 @@ namespace GUI
         {
             await Task.Delay(TimeSpan.FromSeconds(1));
             this.Close();
-            new GameMenu(username).Show();
+            new GameMenu(u).Show();
         }
 
         private async void LoadingScreen_LoadAsync(object sender, EventArgs e)

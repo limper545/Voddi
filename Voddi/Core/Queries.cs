@@ -21,7 +21,7 @@ namespace Core
         public static String queryUserCharacter = "CREATE TABLE IF NOT EXISTS charactersFromUser (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(20), userid int, charid int)";
 
         public static String LoginQuery(String username, String password)
-            => "SELECT username FROM userManager WHERE username = '" + username + "' AND password = '" + password + "'";
+            => "SELECT username, id FROM userManager WHERE username = '" + username + "' AND password = '" + password + "'";
 
         public static String SaveUserTimestamp(String username)
             => "UPDATE userManager SET lastlogin = CURRENT_TIMESTAMP WHERE username = '" + username + "'";
@@ -58,5 +58,8 @@ namespace Core
         {
             return "";
         }
+
+        public static String CreateUserCharacter(String name, int classID, int userID) => "INSERT INTO charactersFromUser(name, charid, userid) VALUES" +
+                         "('" + name + "', " + classID + " ," + userID + ")";
     }
 }

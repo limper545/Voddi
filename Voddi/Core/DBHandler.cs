@@ -27,8 +27,11 @@ namespace DBHandler
                 throw new Exception("Fehler beim erstellen der Datenbank. Fehler: " + ex.Message);
             }
         }
-        public static bool CheckLogin(String username, String password) => TransactionQueries.CheckIfLoginDataAreCorrect(username, password);
-
+        public static User CheckLogin(String username, String password)
+        {
+            User u = User.CreateUser(TransactionQueries.CheckIfLoginDataAreCorrect(username, password)); ;
+            return u;
+        }
         public static bool ExistsUser(String username) => TransactionQueries.CheckIfUserRegistered(username);
 
         public static bool CreateUser(String vorname, String nachname, String email, String username, String password)
@@ -38,7 +41,7 @@ namespace DBHandler
 
         public static List<Classes> GetAllClasses() => Classes.FillListWithClasses(TransactionQueries.GetAllClasses());
 
-        public static void CreateCharacterForAUser(String characterName, String characterKlasse, String username) 
-            => TransactionQueries.CreateCharacterForUser(characterName, characterKlasse, username);
+        public static bool CreateCharacterForAUser(String characterName, String classID, String userID) 
+            => TransactionQueries.CreateCharacterForUser(characterName, classID, userID);
     }
 }
