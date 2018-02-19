@@ -4,6 +4,8 @@ using System.Collections;
 using System.Data;
 using System.Data.SQLite;
 using System.Collections.Generic;
+using Core;
+
 // TODO Es ist möglich mehrere USer zu erstellen, beheben!!
 namespace DBHandler
 {
@@ -34,12 +36,7 @@ namespace DBHandler
 
         public static bool HasUserCharacters(String username) => TransactionQueries.HasUserCharacters(username);
 
-        public static List<String> GetAllClasses()
-        {
-            List<String> listClasses = new List<String>();
-            List<String> classes = TransactionQueries.GetAllClasses();
-            return classes;
-        }
+        public static List<Classes> GetAllClasses() => Classes.FillListWithClasses(TransactionQueries.GetAllClasses());
 
         public static void CreateCharacterForAUser(String characterName, String characterKlasse, String username) 
             => TransactionQueries.CreateCharacterForUser(characterName, characterKlasse, username);

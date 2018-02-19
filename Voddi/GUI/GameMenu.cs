@@ -1,6 +1,4 @@
-﻿
-using DBHandler;
-using GUI;
+﻿using GUI;
 using System;
 using System.Windows.Forms;
 
@@ -20,7 +18,7 @@ namespace GUI
 
         void GetUserCharacterInformations(String username)
         {
-            if (Handler.HasUserCharacters(username))
+            if (!DBHandler.Handler.HasUserCharacters(username))
             {
 
             }

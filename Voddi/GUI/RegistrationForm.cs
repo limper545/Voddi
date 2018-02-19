@@ -40,7 +40,7 @@ namespace GUI
                 {
                     if (Validations.CorrectEmailFormat(email))
                     {
-                        if (Validations.UserNotExists(username))
+                        if (!Validations.UserNotExists(username))
                         {
                             if (Registration.CreateNewUser(vorname, nachname, email, username, passwordOne))
                             {

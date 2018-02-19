@@ -4,7 +4,8 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using DBHandler;
+using Core;
 namespace DBHandler
 {
     public class TransactionQueries
@@ -147,7 +148,7 @@ namespace DBHandler
             }
         }
 
-        public static List<String> GetAllClasses()
+        public static List<Tuple<String, String>> GetAllClasses()
         {
             List<String> list = new List<String>();
             String query = Queries.GetAllClassesFromDB;
@@ -157,13 +158,14 @@ namespace DBHandler
                 SQLiteCommand command = CreateCommandMeta(connection);
                 try
                 {
+                    var listClasses = new List<Tuple<String, String>>();
                     command.CommandText = query;
                     SQLiteDataReader queryReader = command.ExecuteReader();
                     while (queryReader.Read())
                     {
-                        list.Add(queryReader.GetValue(0).ToString());
+                        listClasses.Add(new Tuple<String, String>(queryReader.GetValue(0).ToString(), queryReader.GetValue(1).ToString()));
                     }
-                    return list;
+                    return listClasses;
                 }
                 catch (Exception ex)
                 {

@@ -65,11 +65,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBHandler.cs" />
     <Compile Include="k.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queries.cs" />
-    <Compile Include="TransactionQueries.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

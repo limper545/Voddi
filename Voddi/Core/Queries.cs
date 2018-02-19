@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DBHandler
+namespace Core
 {
     public class Queries
     {
@@ -35,7 +35,7 @@ namespace DBHandler
         public static String UsersCharacters(String username)
             => "SELECT charid FROM userManager WHERE username  = '" + username + "'";
 
-        public static String GetAllClassesFromDB = "SELECT name FROM classes";
+        public static String GetAllClassesFromDB = "SELECT name, id FROM classes";
         #endregion
 
         public static List<String> GetAllQuerysForInitProject()

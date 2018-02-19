@@ -1,6 +1,5 @@
-﻿using DBHandler;
-using System;
-
+﻿using System;
+using DBHandler;
 namespace Core
 {
     public class Registration

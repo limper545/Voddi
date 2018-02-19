@@ -1,5 +1,4 @@
-﻿using DBHandler;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -10,7 +9,7 @@ namespace GUI
         public StartMenu()
         {
             InitializeComponent();
-            Handler.CreateDatabase();
+            DBHandler.Handler.CreateDatabase();
           
             gameTitleLabel.Text = "BaB";
             gameTitleLabel.BackColor = Color.Transparent;

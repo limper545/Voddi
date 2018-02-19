@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using DBHandler;
 using System.Data.SQLite;
+using DBHandler;
 
 namespace GUI
 {
