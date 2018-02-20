@@ -6,7 +6,6 @@ using System.Data.SQLite;
 using System.Collections.Generic;
 using Core;
 
-// TODO Es ist möglich mehrere USer zu erstellen, beheben!!
 namespace DBHandler
 {
    

@@ -61,5 +61,9 @@ namespace Core
 
         public static String CreateUserCharacter(String name, int classID, int userID) => "INSERT INTO charactersFromUser(name, charid, userid) VALUES" +
                          "('" + name + "', " + classID + " ," + userID + ")";
+
+        public static String GetCharIDForUserManager(int userID) => "SELECT id FROM charactersFromUser WHERE userid = " + userID + "";
+
+        public static String SaveCharIDFOrUser(String userID, String charID) => "UPDATE userManager SET charid = '" + charID + "' WHERE id = " + userID + "";
     }
 }

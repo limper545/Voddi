@@ -61,12 +61,12 @@ namespace DBHandler
                             user.Add(new Tuple<String, String>(queryReader.GetValue(0).ToString(), queryReader.GetValue(1).ToString()));
                         }
                         return user;
-                    } 
+                    }
                     else
                     {
                         return null;
                     }
-             
+
                 }
                 catch (Exception ex)
                 {
@@ -181,26 +181,33 @@ namespace DBHandler
 
         public static bool CreateCharacterForUser(String name, String classID, String userID)
         {
-            String query = Queries.CreateUserCharacter(name, Convert.ToInt32(classID), Convert.ToInt32(classID));
+            String query = Queries.CreateUserCharacter(name, Convert.ToInt32(classID), Convert.ToInt32(userID));
             using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
             {
                 SQLiteCommand command = CreateCommandMeta(connection);
-                SQLiteTransaction transaction;
-                transaction = connection.BeginTransaction();
-                command.Transaction = transaction;
+                //SQLiteTransaction transaction;
+                //transaction = connection.BeginTransaction();
+                //command.Transaction = transaction;
                 try
                 {
                     command.CommandText = query;
-                    command.ExecuteNonQuery();
-                    transaction.Commit();
-                    // TODO Speichern der CHARID bei User
-                    return true;
+                    if (command.ExecuteNonQuery() == 1)
+                    {
+
+                        GetCharID(Convert.ToInt32(userID));
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    //transaction.Commit();
                 }
                 catch (Exception ex)
                 {
                     try
                     {
-                        transaction.Rollback();
+                        //transaction.Rollback();
                     }
                     catch (Exception ex2)
                     {
@@ -209,6 +216,48 @@ namespace DBHandler
                     return false;
                 }
 
+            }
+        }
+
+        public static bool GetCharID(int userID)
+        {
+            // TODO Transaction hinzufügen für das Speichern
+            String query = Queries.GetCharIDForUserManager(userID);
+            using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
+            {
+                SQLiteCommand command = CreateCommandMeta(connection);
+                command.CommandText = query;
+                SQLiteDataReader queryReader = command.ExecuteReader();
+                String charID = String.Empty;
+                while (queryReader.Read())
+                {
+                    charID = (String)queryReader.GetValue(0);
+                }
+                SaveCharIDInUserManager(queryReader.GetValue(0).ToString(), userID.ToString());
+                return false;
+            }
+        }
+
+        public static bool SaveCharIDInUserManager(String charID, String userID)
+        {
+            // TODO Transaction hinzufügen für das Speichern
+            String query = Queries.SaveCharIDFOrUser(userID, charID);
+            using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
+            {
+
+
+                String quer = Queries.SaveCharIDFOrUser(userID.ToString(), charID);
+                SQLiteCommand command = CreateCommandMeta(connection);
+                command.CommandText = quer;
+                object queryReader = command.ExecuteScalar();
+                if (queryReader != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 

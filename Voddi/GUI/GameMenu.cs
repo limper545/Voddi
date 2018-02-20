@@ -21,7 +21,7 @@ namespace GUI
 
         public void GetUserCharacterInformations(String username)
         {
-            if (Handler.HasUserCharacters(username))
+            if (!Handler.HasUserCharacters(username))
             {
                 Console.WriteLine();
             }
