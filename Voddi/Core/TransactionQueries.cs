@@ -142,7 +142,7 @@ namespace DBHandler
                 {
                     command.CommandText = query;
                     object queryReader = command.ExecuteScalar();
-                    return queryReader != null;
+                    return !queryReader.Equals(0);
                 }
                 catch (Exception ex)
                 {
