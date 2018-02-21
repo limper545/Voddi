@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class GameWindow
+    partial class DetailsCharacter
     {
         /// <summary>
         /// Required designer variable.
@@ -28,31 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.expBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
-            // expBar
-            // 
-            this.expBar.Location = new System.Drawing.Point(12, 695);
-            this.expBar.Name = "expBar";
-            this.expBar.Size = new System.Drawing.Size(982, 18);
-            this.expBar.TabIndex = 0;
-            // 
-            // GameWindow
+            // DetailsCharacter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1006, 721);
-            this.Controls.Add(this.expBar);
-            this.Name = "GameWindow";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "GameWindow";
+            this.Name = "DetailsCharacter";
+            this.Text = "DetailsCharacter";
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ProgressBar expBar;
     }
 }

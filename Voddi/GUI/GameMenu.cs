@@ -57,14 +57,28 @@ namespace GUI
 
         private void charTwoBtn_Click(object sender, EventArgs e)
         {
-            //if (charTwoBtn.Text == NoChar)
-            //    new CreateCharacter(u).Show();
+            if (charTwoBtn.Text == NoChar)
+            {
+                new CreateCharacter(u).Show();
+            }
+            else
+            {
+                new GameWindow(charTwoBtn.Name).Show();
+                this.Close();
+            }
         }
 
         private void charThreeBtn_Click(object sender, EventArgs e)
         {
-            //if (charThreeBtn.Text == NoChar)
-            //    new CreateCharacter(u).Show();
+            if (charThreeBtn.Text == NoChar)
+            {
+                new CreateCharacter(u).Show();
+            }
+            else
+            {
+                new GameWindow(charThreeBtn.Name).Show();
+                this.Close();
+            }
         }
     }
 }
