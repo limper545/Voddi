@@ -3,6 +3,7 @@ using GUI;
 using System;
 using System.Windows.Forms;
 using DBHandler;
+using System.Collections.Generic;
 
 namespace GUI
 {
@@ -22,9 +23,15 @@ namespace GUI
         public void GetUserCharacterInformations(String username)
         {
             // TODO Richtige behandlung mit der Antwort und eventuell ist die Antwort von der DB falsch.
-            if (Handler.HasUserCharacters(username))
+            List<Tuple<String, String>> characterList = Handler.HasUserCharacters(username);
+            if (characterList != null)
             {
-                Console.WriteLine();
+                foreach (var item in characterList)
+                {
+                    charOneBtn.Text = String.Format("{0} - {1}", item.Item1.ToUpper(), item.Item2);
+                }
+                charTwoBtn.Text = NoChar;
+                charThreeBtn.Text = NoChar;
             }
             else
             {
@@ -42,14 +49,14 @@ namespace GUI
 
         private void charTwoBtn_Click(object sender, EventArgs e)
         {
-            if (charTwoBtn.Text == NoChar)
-                new CreateCharacter(u).Show();
+            //if (charTwoBtn.Text == NoChar)
+            //    new CreateCharacter(u).Show();
         }
 
         private void charThreeBtn_Click(object sender, EventArgs e)
         {
-            if (charThreeBtn.Text == NoChar)
-                new CreateCharacter(u).Show();
+            //if (charThreeBtn.Text == NoChar)
+            //    new CreateCharacter(u).Show();
         }
     }
 }

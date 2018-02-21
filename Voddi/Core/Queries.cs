@@ -65,5 +65,8 @@ namespace Core
         public static String GetCharIDForUserManager(int userID) => "SELECT id FROM charactersFromUser WHERE userid = " + userID + "";
 
         public static String SaveCharIDFOrUser(String userID, String charID) => "UPDATE userManager SET charid = '" + charID + "' WHERE id = " + userID + "";
+
+        public static String GetAllCharactersForAUserFromTheDB(String charID)
+            => "SELECT charactersFromUser.name, classes.name FROM charactersFromUser LEFT JOIN classes ON classes.id = charactersFromUser.charid WHERE charactersFromUser.id = " + charID;
     }
 }

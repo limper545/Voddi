@@ -131,7 +131,7 @@ namespace DBHandler
             }
         }
 
-        public static bool HasUserCharacters(String username)
+        public static String HasUserCharacters(String username)
         {
             String query = Queries.UsersCharacters(username);
 
@@ -142,13 +142,45 @@ namespace DBHandler
                 {
                     command.CommandText = query;
                     object queryReader = command.ExecuteScalar();
-                    return !queryReader.Equals(0);
+                    if (!queryReader.Equals(0))
+                    {
+                        return queryReader.ToString();
+                    }
+                    else
+                    {
+                        return String.Empty;
+                    }
                 }
                 catch (Exception ex)
                 {
                     throw new Exception(ex.Message);
                 }
 
+            }
+        }
+
+        public static List<Tuple<String, String>> GetCharacterInformations(String charID)
+        {
+            String query = Queries.GetAllCharactersForAUserFromTheDB(charID);
+
+            using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
+            {
+                SQLiteCommand command = CreateCommandMeta(connection);
+                try
+                {
+                    var list = new List<Tuple<String, String>>();
+                    command.CommandText = query;
+                    SQLiteDataReader queryReader = command.ExecuteReader();
+                    while (queryReader.Read())
+                    {
+                        list.Add(new Tuple<String, String>(queryReader.GetValue(0).ToString(), queryReader.GetValue(1).ToString()));
+                    }
+                    return list;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
             }
         }
 
