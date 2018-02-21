@@ -16,6 +16,7 @@ namespace GUI
         {
             InitializeComponent();
             InitProgressBarProperties();
+            SetTextForLabels();
             // TODO Glow Animation löschen irgendwie
         }
 
@@ -38,6 +39,11 @@ namespace GUI
             ExpValues.Text = " 10 / 1230";
             ExpBar.Maximum = 100;
             ExpBar.Value = 70;
+        }
+
+        private void CharacterStatus_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
