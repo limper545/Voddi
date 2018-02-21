@@ -22,7 +22,7 @@ namespace GUI
 
         public void GetUserCharacterInformations(String username)
         {
-            // TODO Richtige behandlung mit der Antwort und eventuell ist die Antwort von der DB falsch.
+            // TODO Später mit mehrer Character umbauen
             List<Tuple<String, String>> characterList = Handler.HasUserCharacters(username);
             if (characterList != null)
             {
