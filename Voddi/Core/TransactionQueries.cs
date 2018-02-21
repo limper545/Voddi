@@ -28,7 +28,7 @@ namespace DBHandler
                     });
                     transaction.Commit();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     try
                     {
@@ -115,7 +115,7 @@ namespace DBHandler
                     transaction.Commit();
                     return true;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     try
                     {
@@ -185,29 +185,29 @@ namespace DBHandler
             using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
             {
                 SQLiteCommand command = CreateCommandMeta(connection);
-                //SQLiteTransaction transaction;
-                //transaction = connection.BeginTransaction();
-                //command.Transaction = transaction;
+                SQLiteTransaction transaction;
+                transaction = connection.BeginTransaction();
+                command.Transaction = transaction;
                 try
                 {
                     command.CommandText = query;
                     if (command.ExecuteNonQuery() == 1)
                     {
-
                         GetCharID(Convert.ToInt32(userID));
+                        transaction.Commit();
                         return true;
                     }
                     else
                     {
-                        return false;
+                        throw new Exception("Transaction failed");
                     }
-                    //transaction.Commit();
+                    //
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     try
                     {
-                        //transaction.Rollback();
+                        transaction.Rollback();
                     }
                     catch (Exception ex2)
                     {
@@ -219,9 +219,8 @@ namespace DBHandler
             }
         }
 
-        public static bool GetCharID(int userID)
+        public static String GetCharID(int userID)
         {
-            // TODO Transaction hinzufügen für das Speichern
             String query = Queries.GetCharIDForUserManager(userID);
             using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
             {
@@ -231,16 +230,14 @@ namespace DBHandler
                 String charID = String.Empty;
                 while (queryReader.Read())
                 {
-                    charID = (String)queryReader.GetValue(0);
+                    charID = queryReader.GetValue(0).ToString();
                 }
-                SaveCharIDInUserManager(queryReader.GetValue(0).ToString(), userID.ToString());
-                return false;
+                return charID;
             }
         }
 
         public static bool SaveCharIDInUserManager(String charID, String userID)
         {
-            // TODO Transaction hinzufügen für das Speichern
             String query = Queries.SaveCharIDFOrUser(userID, charID);
             using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
             {
@@ -250,14 +247,7 @@ namespace DBHandler
                 SQLiteCommand command = CreateCommandMeta(connection);
                 command.CommandText = quer;
                 object queryReader = command.ExecuteScalar();
-                if (queryReader != null)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return queryReader != null;
             }
         }
 

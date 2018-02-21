@@ -8,7 +8,7 @@ using Core;
 
 namespace DBHandler
 {
-   
+
     public class Handler
     {
         public static SQLiteConnection dbConnection = new SQLiteConnection("Data Source=" + Queries.dbName + "; Version=3;");
@@ -40,7 +40,27 @@ namespace DBHandler
 
         public static List<Classes> GetAllClasses() => Classes.FillListWithClasses(TransactionQueries.GetAllClasses());
 
-        public static bool CreateCharacterForAUser(String characterName, String classID, String userID) 
-            => TransactionQueries.CreateCharacterForUser(characterName, classID, userID);
+        public static bool CreateCharacterForAUser(String characterName, String classID, String userID)
+        {
+            bool responseSaveCharacter;
+            String characterID;
+            responseSaveCharacter = TransactionQueries.CreateCharacterForUser(characterName, classID, userID);
+            if (responseSaveCharacter)
+            {
+                characterID = TransactionQueries.GetCharID(Convert.ToInt32(userID));
+                if(characterID.Length != 0)
+                {
+                    return TransactionQueries.SaveCharIDInUserManager(characterID, userID);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
