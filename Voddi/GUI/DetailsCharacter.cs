@@ -15,6 +15,10 @@ namespace GUI
         public DetailsCharacter()
         {
             InitializeComponent();
+            ExpValues.Text = " 10 / 1230";
+            ExpBar.Maximum = 100;
+            ExpBar.Value = 70;
+            // TODO Glow Animation löschen irgendwie
         }
     }
 }
