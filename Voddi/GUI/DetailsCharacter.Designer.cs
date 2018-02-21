@@ -152,7 +152,7 @@
             // 
             this.RExpLabelValue.AutoSize = true;
             this.RExpLabelValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.RExpLabelValue.Location = new System.Drawing.Point(160, 211);
+            this.RExpLabelValue.Location = new System.Drawing.Point(195, 211);
             this.RExpLabelValue.Name = "RExpLabelValue";
             this.RExpLabelValue.Size = new System.Drawing.Size(79, 29);
             this.RExpLabelValue.TabIndex = 15;
@@ -172,7 +172,7 @@
             // 
             this.SPDLabelValue.AutoSize = true;
             this.SPDLabelValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.SPDLabelValue.Location = new System.Drawing.Point(160, 509);
+            this.SPDLabelValue.Location = new System.Drawing.Point(195, 509);
             this.SPDLabelValue.Name = "SPDLabelValue";
             this.SPDLabelValue.Size = new System.Drawing.Size(79, 29);
             this.SPDLabelValue.TabIndex = 13;
@@ -192,7 +192,7 @@
             // 
             this.DefLabelValue.AutoSize = true;
             this.DefLabelValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.DefLabelValue.Location = new System.Drawing.Point(160, 452);
+            this.DefLabelValue.Location = new System.Drawing.Point(195, 452);
             this.DefLabelValue.Name = "DefLabelValue";
             this.DefLabelValue.Size = new System.Drawing.Size(79, 29);
             this.DefLabelValue.TabIndex = 11;
@@ -212,7 +212,7 @@
             // 
             this.ManaLabelValue.AutoSize = true;
             this.ManaLabelValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.ManaLabelValue.Location = new System.Drawing.Point(160, 390);
+            this.ManaLabelValue.Location = new System.Drawing.Point(195, 390);
             this.ManaLabelValue.Name = "ManaLabelValue";
             this.ManaLabelValue.Size = new System.Drawing.Size(79, 29);
             this.ManaLabelValue.TabIndex = 9;
@@ -232,7 +232,7 @@
             // 
             this.ATKLabelValue.AutoSize = true;
             this.ATKLabelValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.ATKLabelValue.Location = new System.Drawing.Point(160, 330);
+            this.ATKLabelValue.Location = new System.Drawing.Point(195, 330);
             this.ATKLabelValue.Name = "ATKLabelValue";
             this.ATKLabelValue.Size = new System.Drawing.Size(79, 29);
             this.ATKLabelValue.TabIndex = 7;
@@ -252,7 +252,7 @@
             // 
             this.EXPLabelValue.AutoSize = true;
             this.EXPLabelValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.EXPLabelValue.Location = new System.Drawing.Point(160, 152);
+            this.EXPLabelValue.Location = new System.Drawing.Point(195, 152);
             this.EXPLabelValue.Name = "EXPLabelValue";
             this.EXPLabelValue.Size = new System.Drawing.Size(79, 29);
             this.EXPLabelValue.TabIndex = 5;
@@ -272,7 +272,7 @@
             // 
             this.HPLabelValue.AutoSize = true;
             this.HPLabelValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.HPLabelValue.Location = new System.Drawing.Point(160, 93);
+            this.HPLabelValue.Location = new System.Drawing.Point(195, 93);
             this.HPLabelValue.Name = "HPLabelValue";
             this.HPLabelValue.Size = new System.Drawing.Size(79, 29);
             this.HPLabelValue.TabIndex = 3;
@@ -282,7 +282,7 @@
             // 
             this.LevelLabelValue.AutoSize = true;
             this.LevelLabelValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.LevelLabelValue.Location = new System.Drawing.Point(160, 32);
+            this.LevelLabelValue.Location = new System.Drawing.Point(195, 32);
             this.LevelLabelValue.Name = "LevelLabelValue";
             this.LevelLabelValue.Size = new System.Drawing.Size(79, 29);
             this.LevelLabelValue.TabIndex = 2;
