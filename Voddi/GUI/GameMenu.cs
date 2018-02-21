@@ -21,7 +21,8 @@ namespace GUI
 
         public void GetUserCharacterInformations(String username)
         {
-            if (!Handler.HasUserCharacters(username))
+            // TODO Richtige behandlung mit der Antwort und eventuell ist die Antwort von der DB falsch.
+            if (Handler.HasUserCharacters(username))
             {
                 Console.WriteLine();
             }
