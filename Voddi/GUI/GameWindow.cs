@@ -10,8 +10,13 @@ namespace GUI
         {
             this.name = characterName;
             InitializeComponent();
+            // TODO Character Object erstellen
         }
 
-
+        private void CharacterDetails_Click(object sender, EventArgs e)
+        {
+            // TODO Character Object übergeben
+            new DetailsCharacter().Show();
+        }
     }
 }
