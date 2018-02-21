@@ -29,6 +29,7 @@ namespace GUI
                 foreach (var item in characterList)
                 {
                     charOneBtn.Text = String.Format("{0} - {1}", item.Item1.ToUpper(), item.Item2);
+                    charOneBtn.Name = item.Item1;
                 }
                 charTwoBtn.Text = NoChar;
                 charThreeBtn.Text = NoChar;
@@ -44,7 +45,14 @@ namespace GUI
         private void charOneBtn_Click(object sender, EventArgs e)
         {
             if (charOneBtn.Text == NoChar)
+            {
                 new CreateCharacter(u).Show();
+            }
+            else
+            {
+                new GameWindow(charOneBtn.Name).Show();
+                this.Close();
+            }
         }
 
         private void charTwoBtn_Click(object sender, EventArgs e)
