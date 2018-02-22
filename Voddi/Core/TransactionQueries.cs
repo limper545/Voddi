@@ -274,12 +274,18 @@ namespace DBHandler
             using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
             {
 
+                try
+                {
+                    String quer = Queries.SaveCharIDFOrUser(userID.ToString(), charID);
+                    SQLiteCommand command = CreateCommandMeta(connection);
+                    command.CommandText = quer;
+                    return command.ExecuteNonQuery() == 1;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
 
-                String quer = Queries.SaveCharIDFOrUser(userID.ToString(), charID);
-                SQLiteCommand command = CreateCommandMeta(connection);
-                command.CommandText = quer;
-                object queryReader = command.ExecuteScalar();
-                return queryReader != null;
             }
         }
 

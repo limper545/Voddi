@@ -32,6 +32,7 @@ namespace Core
         public static String LoginQuery(String username, String password)
             => "SELECT username, id FROM userManager WHERE username = '" + username + "' AND password = '" + password + "'";
 
+        // TODO Einbauen der Funktion 
         public static String SaveUserTimestamp(String username)
             => "UPDATE userManager SET lastlogin = CURRENT_TIMESTAMP WHERE username = '" + username + "'";
 
