@@ -12,12 +12,21 @@ namespace Core
         #region DB Queries
 
         public static string dbName = "SaschaDB.sqlite";
+
         public static String queryCreateCharacters = "CREATE TABLE IF NOT EXISTS classes (id INTEGER PRIMARY KEY, name VARCHAR(20), life DOUBLE, mana DOUBLE, exp DOUBLE)";
+
         public static String queryCreateUsers = "CREATE TABLE IF NOT EXISTS userManager (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "vorname VARCHAR(30), nachname VARCHAR (30), email VARCHAR(50), username VARCHAR(20), created VARCHAR(30), lastlogin VARCHAR(30), charid INT, password VARCHAR(30))";
+
+        public static String queryCreateCharacterDetails = "CREATE TABLE IF NOT EXISTS characterDetails " +
+            "(id INTEGER PRIMARY KEY AUTOINCREMENT, userid int, atk int, leben int, def int, exp int, mana int, spd int, level int)";
+
         public static String queryAddMage = "INSERT INTO classes(id, name, life, mana, exp) VALUES(1, 'Magier', 8, 9, 1) ";
+
         public static String queryAddWarrior = "INSERT INTO classes(id, name, life, mana, exp) VALUES(2, 'Krieger', 10, 7, 1)";
+
         public static String queryAddRanger = "INSERT INTO classes(id, name, life, mana, exp) VALUES(3, 'Ranger', 9, 8, 1)";
+
         public static String queryUserCharacter = "CREATE TABLE IF NOT EXISTS charactersFromUser (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(20), userid int, charid int)";
 
         public static String LoginQuery(String username, String password)
@@ -40,13 +49,16 @@ namespace Core
 
         public static List<String> GetAllQuerysForInitProject()
         {
-            List<String> list = new List<String>();
-            list.Add(queryCreateCharacters);
-            list.Add(queryCreateUsers);
-            list.Add(queryAddMage);
-            list.Add(queryAddWarrior);
-            list.Add(queryAddRanger);
-            list.Add(queryUserCharacter);
+            List<String> list = new List<String>
+            {
+                queryCreateCharacters,
+                queryCreateUsers,
+                queryCreateCharacterDetails,
+                queryAddMage,
+                queryAddWarrior,
+                queryAddRanger,
+                queryUserCharacter
+            };
             return list;
         }
 
