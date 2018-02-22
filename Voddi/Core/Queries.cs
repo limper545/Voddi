@@ -66,11 +66,6 @@ namespace Core
 
         public static String GetUserID(String name) => "SELECT id FROM userManager WHERE username = '" + name + "' ";
 
-        public static String CreateCharacterForUser(String name, String klasse)
-        {
-            return "";
-        }
-
         public static String CreateUserCharacter(String name, int classID, int userID) => "INSERT INTO charactersFromUser(name, charid, userid) VALUES" +
                          "('" + name + "', " + classID + " ," + userID + ")";
 
@@ -80,5 +75,9 @@ namespace Core
 
         public static String GetAllCharactersForAUserFromTheDB(String charID)
             => "SELECT charactersFromUser.name, classes.name FROM charactersFromUser LEFT JOIN classes ON classes.id = charactersFromUser.charid WHERE charactersFromUser.id = " + charID;
+
+        public static String CreateCharacterDetail(int userid, int level, int leben, int exp, int atk, int mana, int def, int spd)
+            => "INSERT INTO characterDetails (userid, level, leben, exp, atk, mana, def, spd) VALUES (" + userid + ", " + level + ", " + leben + ", " + exp + ", " +
+            "" + atk + ", " + mana + ", " + def + ", " + spd + ")";
     }
 }

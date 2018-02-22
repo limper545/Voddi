@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassAttributes.cs" />
     <Compile Include="Classes.cs" />
     <Compile Include="DBHandler.cs" />
     <Compile Include="k.cs" />

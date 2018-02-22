@@ -36,11 +36,11 @@ namespace DBHandler
         public static bool CreateUser(String vorname, String nachname, String email, String username, String password)
         => TransactionQueries.RegisterNewUser(vorname, nachname, email, username, password);
 
-        public static List<Tuple<String, String>>HasUserCharacters(String username)
+        public static List<Tuple<String, String>> HasUserCharacters(String username)
         {
             String responseHasUserCharacter;
             responseHasUserCharacter = TransactionQueries.HasUserCharacters(username);
-            if(responseHasUserCharacter.Length != 0)
+            if (responseHasUserCharacter.Length != 0)
             {
                 return TransactionQueries.GetCharacterInformations(responseHasUserCharacter);
             }
@@ -62,7 +62,15 @@ namespace DBHandler
                 characterID = TransactionQueries.GetCharID(Convert.ToInt32(userID));
                 if (characterID.Length != 0)
                 {
-                    return TransactionQueries.SaveCharIDInUserManager(characterID, userID);
+                    if (TransactionQueries.SaveCharacterDetailsAtCreate(characterID, userID))
+                    {
+                        return TransactionQueries.SaveCharIDInUserManager(characterID, userID);
+
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
                 {
