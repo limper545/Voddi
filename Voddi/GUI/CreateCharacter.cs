@@ -19,16 +19,17 @@ namespace GUI
 
         private void FillClassField()
         {
+            classComboBox.DisplayMember = "Name";
+            classComboBox.ValueMember = "Value";
             foreach (var item in Handler.GetAllClasses()) {
-                classComboBox.ValueMember = item.ID.ToString();
-                classComboBox.Items.Add(item: item.Name); 
+                classComboBox.Items.Add(item.Name);
             }
-                
+
         }
 
         private void CreateCharBtn_Click_1(object sender, EventArgs e)
         {
-            if(Handler.CreateCharacterForAUser(charNameBox.Text, classComboBox.ValueMember, u.ID.ToString()))
+            if(Handler.CreateCharacterForAUser(charNameBox.Text, (classComboBox.SelectedIndex + 1).ToString(), u.ID.ToString()))
             {
                 MessageBox.Show("Character " + charNameBox.Text + " erfolgreich erstellt." , "Erfolgreich", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();

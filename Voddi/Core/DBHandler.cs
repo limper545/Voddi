@@ -62,7 +62,7 @@ namespace DBHandler
                 characterID = TransactionQueries.GetCharID(Convert.ToInt32(userID));
                 if (characterID.Length != 0)
                 {
-                    if (TransactionQueries.SaveCharacterDetailsAtCreate(characterID, userID))
+                    if (TransactionQueries.SaveCharacterDetailsAtCreate(characterID, userID, Convert.ToInt32(classID)))
                     {
                         return TransactionQueries.SaveCharIDInUserManager(characterID, userID);
 

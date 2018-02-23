@@ -289,12 +289,12 @@ namespace DBHandler
             }
         }
 
-        public static bool SaveCharacterDetailsAtCreate(String classID, String userID)
+        public static bool SaveCharacterDetailsAtCreate(String characterID, String userID, int classID)
         {
             ClassAttributes.GetClassAttributes(Convert.ToByte(classID), out int level, out int leben, out int exp, out int atk, 
                 out int mana, out int def, out int spd);
 
-            String query = Queries.CreateCharacterDetail(Convert.ToInt32(classID), level, leben, exp, atk, mana, def, spd);
+            String query = Queries.CreateCharacterDetail(Convert.ToInt32(characterID), level, leben, exp, atk, mana, def, spd);
             using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
             {
                 SQLiteCommand command = CreateCommandMeta(connection);

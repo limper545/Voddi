@@ -23,18 +23,18 @@ namespace Core
                     level = 1;
                     leben = 10;
                     exp = 0;
-                    atk = 10;
-                    mana = 10;
-                    def = 6;
+                    atk = 8;
+                    mana = 5;
+                    def = 10;
                     spd = 10;
                     break;
                 case 3:
                     level = 1;
                     leben = 10;
                     exp = 0;
-                    atk = 8;
-                    mana = 5;
-                    def = 10;
+                    atk = 10;
+                    mana = 10;
+                    def = 6;
                     spd = 10;
                     break;
                 default:
