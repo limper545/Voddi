@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    class GameCharacter
+    public class GameCharacter
     {
         #region Variablen für Character
         public String Name { get; set; }
@@ -19,6 +19,11 @@ namespace Core
         public String Def { get; set; }
         public String Spd { get; set; }
         #endregion
+
+        public GameCharacter()
+        {
+
+        }
 
         public GameCharacter(String name, String klasse, String level, String leben, String exp, String atk, String mana, String def, String spd)
         {

@@ -82,5 +82,31 @@ namespace DBHandler
                 return false;
             }
         }
+
+        public static GameCharacter GetGameCharacterInformations(String characterName)
+        {
+            String name;
+            String klasse;
+            String level;
+            String leben;
+            String exp;
+            String atk;
+            String mana;
+            String def;
+            String spd;
+
+            List<String> gameCharacterList = TransactionQueries.GetGameCharacter(characterName);
+            name = gameCharacterList[0];
+            klasse = gameCharacterList[1];
+            level = gameCharacterList[2];
+            leben = gameCharacterList[3];
+            exp = gameCharacterList[4];
+            atk = gameCharacterList[5];
+            mana = gameCharacterList[6];
+            def = gameCharacterList[7];
+            spd = gameCharacterList[8];
+
+            return new GameCharacter(name, klasse, level, leben, exp, atk, mana, def, spd);
+        }
     }
 }

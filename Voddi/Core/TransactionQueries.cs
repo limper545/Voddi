@@ -291,7 +291,7 @@ namespace DBHandler
 
         public static bool SaveCharacterDetailsAtCreate(String characterID, String userID, int classID)
         {
-            ClassAttributes.GetClassAttributes(Convert.ToByte(classID), out int level, out int leben, out int exp, out int atk, 
+            ClassAttributes.GetClassAttributes(Convert.ToByte(classID), out int level, out int leben, out int exp, out int atk,
                 out int mana, out int def, out int spd);
 
             String query = Queries.CreateCharacterDetail(Convert.ToInt32(characterID), level, leben, exp, atk, mana, def, spd);
@@ -320,6 +320,27 @@ namespace DBHandler
                     return false;
                 }
 
+            }
+        }
+
+        public static List<String> GetGameCharacter(String name)
+        {
+            List<String> list = new List<String>();
+            String query = Queries.GameCharacterInformations(name);
+            using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
+            {
+
+                SQLiteCommand command = CreateCommandMeta(connection);
+                command.CommandText = query;
+                SQLiteDataReader queryResponse = command.ExecuteReader();
+                while (queryResponse.Read())
+                {
+                    for (int i = 0; i < queryResponse.FieldCount; i++)
+                    {
+                        list.Add(queryResponse.GetValue(i).ToString());
+                    }
+                }
+                return list;
             }
         }
 

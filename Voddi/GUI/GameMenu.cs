@@ -1,5 +1,4 @@
 ﻿using Core;
-using GUI;
 using System;
 using System.Windows.Forms;
 using DBHandler;
@@ -50,7 +49,8 @@ namespace GUI
             }
             else
             {
-                new GameWindow(charOneBtn.Name).Show();
+                GameCharacter gameChar = Handler.GetGameCharacterInformations(charOneBtn.Name);
+                new GameWindow(gameChar).Show();
                 this.Close();
             }
         }
@@ -63,8 +63,8 @@ namespace GUI
             }
             else
             {
-                new GameWindow(charTwoBtn.Name).Show();
-                this.Close();
+                //    new GameWindow(charTwoBtn.Name).Show();
+                //    this.Close();
             }
         }
 
@@ -76,8 +76,8 @@ namespace GUI
             }
             else
             {
-                new GameWindow(charThreeBtn.Name).Show();
-                this.Close();
+                //new GameWindow(charThreeBtn.Name).Show();
+                //this.Close();
             }
         }
     }
