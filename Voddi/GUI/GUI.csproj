@@ -170,6 +170,10 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Patch\patch.txt" />
+    <None Include="Resources\image-2018-02-23 %283%29.jpg" />
+    <None Include="Resources\image-2018-02-23 %282%29.jpg" />
+    <None Include="Resources\image-2018-02-23 %281%29.jpg" />
+    <None Include="Resources\image-2018-02-23.jpg" />
     <None Include="Resources\Background-orange-ganz-neu.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

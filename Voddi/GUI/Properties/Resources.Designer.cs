@@ -73,6 +73,46 @@ namespace GUI.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap image_2018_02_23 {
+            get {
+                object obj = ResourceManager.GetObject("image-2018-02-23", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap image_2018_02_23__1_ {
+            get {
+                object obj = ResourceManager.GetObject("image-2018-02-23 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap image_2018_02_23__2_ {
+            get {
+                object obj = ResourceManager.GetObject("image-2018-02-23 (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap image_2018_02_23__3_ {
+            get {
+                object obj = ResourceManager.GetObject("image-2018-02-23 (3)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pirates_rock_castle_bird_mountain {
             get {
                 object obj = ResourceManager.GetObject("pirates-rock-castle-bird-mountain", resourceCulture);

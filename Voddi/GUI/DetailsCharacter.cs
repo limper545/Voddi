@@ -13,21 +13,39 @@ namespace GUI
             InitializeComponent();
             InitProgressBarProperties();
             SetTextForLabels();
-            SetAttributesForDetails(c);
+            SetAttributesForDetails();
+            SetCharacterImage();
+            //C
             // TODO Glow Animation löschen irgendwie
         }
 
-        private void SetAttributesForDetails(GameCharacter c)
+        private void SetCharacterImage()
         {
-            HPLabelValue.Text = c.Leben;
-            LevelLabelValue.Text = c.Level;
-            EXPLabelValue.Text = c.Exp;
-            ExpValues.Text = c.Exp;
+            switch (character.Klasse)
+            {
+                case "Magier":
+                    CharacterImagePanel.BackgroundImage = Properties.Resources.image_2018_02_23__1_;
+                    break;
+                case "Ranger":
+                    CharacterImagePanel.BackgroundImage = Properties.Resources.image_2018_02_23__2_;
+                    break;
+                case "Krieger":
+                    CharacterImagePanel.BackgroundImage = Properties.Resources.image_2018_02_23__3_;
+                    break;
+            }
+        }
+
+        private void SetAttributesForDetails()
+        {
+            HPLabelValue.Text = character.Leben;
+            LevelLabelValue.Text = character.Level;
+            EXPLabelValue.Text = character.Exp;
+            ExpValues.Text = character.Exp;
             RExpLabelValue.Text = "0";
-            ATKLabelValue.Text = c.Atk;
-            ManaLabelValue.Text = c.Mana;
-            DefLabelValue.Text = c.Def;
-            SPDLabelValue.Text = c.Spd;
+            ATKLabelValue.Text = character.Atk;
+            ManaLabelValue.Text = character.Mana;
+            DefLabelValue.Text = character.Def;
+            SPDLabelValue.Text = character.Spd;
         }
 
         private void SetTextForLabels()

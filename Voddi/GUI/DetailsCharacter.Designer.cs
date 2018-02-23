@@ -34,7 +34,6 @@
             this.ExpValues = new System.Windows.Forms.Label();
             this.LabelEXPName = new System.Windows.Forms.Label();
             this.ExpBar = new System.Windows.Forms.ProgressBar();
-            this.CharacterStatusInventory = new System.Windows.Forms.Panel();
             this.CharacterStatus = new System.Windows.Forms.Panel();
             this.RExpLabelValue = new System.Windows.Forms.Label();
             this.RExpLabelName = new System.Windows.Forms.Label();
@@ -53,6 +52,7 @@
             this.HPLabelName = new System.Windows.Forms.Label();
             this.LevelLabelName = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.CharacterStatusInventory = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.CharacterStatus.SuspendLayout();
@@ -116,13 +116,6 @@
             this.ExpBar.Name = "ExpBar";
             this.ExpBar.Size = new System.Drawing.Size(982, 19);
             this.ExpBar.TabIndex = 2;
-            // 
-            // CharacterStatusInventory
-            // 
-            this.CharacterStatusInventory.Location = new System.Drawing.Point(6, 6);
-            this.CharacterStatusInventory.Name = "CharacterStatusInventory";
-            this.CharacterStatusInventory.Size = new System.Drawing.Size(310, 607);
-            this.CharacterStatusInventory.TabIndex = 1;
             // 
             // CharacterStatus
             // 
@@ -318,6 +311,13 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Inventar";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // CharacterStatusInventory
+            // 
+            this.CharacterStatusInventory.Location = new System.Drawing.Point(6, 6);
+            this.CharacterStatusInventory.Name = "CharacterStatusInventory";
+            this.CharacterStatusInventory.Size = new System.Drawing.Size(310, 607);
+            this.CharacterStatusInventory.TabIndex = 1;
             // 
             // DetailsCharacter
             // 

@@ -121,7 +121,19 @@
   <data name="pirates-rock-castle-bird-mountain" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pirates-rock-castle-bird-mountain.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="image-2018-02-23" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image-2018-02-23.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Background-orange-ganz-neu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Background-orange-ganz-neu.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="image-2018-02-23 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image-2018-02-23 (1).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="image-2018-02-23 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image-2018-02-23 (2).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="image-2018-02-23 (3)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image-2018-02-23 (3).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
