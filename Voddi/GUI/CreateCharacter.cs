@@ -28,7 +28,7 @@ namespace GUI
 
         private void CreateCharBtn_Click_1(object sender, EventArgs e)
         {
-            if(!Handler.CreateCharacterForAUser(charNameBox.Text, classComboBox.ValueMember, u.ID.ToString()))
+            if(Handler.CreateCharacterForAUser(charNameBox.Text, classComboBox.ValueMember, u.ID.ToString()))
             {
                 MessageBox.Show("Character " + charNameBox.Text + " erfolgreich erstellt." , "Erfolgreich", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();

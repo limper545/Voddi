@@ -304,6 +304,7 @@ namespace DBHandler
                 try
                 {
                     command.CommandText = query;
+                    transaction.Commit();
                     return command.ExecuteNonQuery() == 1;
                 }
                 catch (Exception)
