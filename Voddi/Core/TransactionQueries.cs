@@ -1,11 +1,8 @@
-﻿using System;
+﻿using Core;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DBHandler;
-using Core;
+
 namespace DBHandler
 {
     public class TransactionQueries
@@ -61,18 +58,16 @@ namespace DBHandler
                             user.Add(new Tuple<String, String>(queryReader.GetValue(0).ToString(), queryReader.GetValue(1).ToString()));
                         }
                         return user;
-                    } 
+                    }
                     else
                     {
                         return null;
                     }
-             
                 }
                 catch (Exception ex)
                 {
                     throw new Exception(ex.Message);
                 }
-
             }
         }
 
@@ -88,13 +83,11 @@ namespace DBHandler
                     command.CommandText = query;
                     object queryReader = command.ExecuteScalar();
                     return queryReader != null;
-
                 }
                 catch (Exception ex)
                 {
                     throw new Exception(ex.Message);
                 }
-
             }
         }
 
@@ -127,7 +120,6 @@ namespace DBHandler
                     }
                     return false;
                 }
-
             }
         }
 
@@ -148,7 +140,6 @@ namespace DBHandler
                 {
                     throw new Exception(ex.Message);
                 }
-
             }
         }
 
@@ -175,7 +166,6 @@ namespace DBHandler
                 {
                     throw new Exception(ex.Message);
                 }
-
             }
         }
 
@@ -208,7 +198,6 @@ namespace DBHandler
                     }
                     return false;
                 }
-
             }
         }
 
