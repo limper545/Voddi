@@ -1,11 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DBHandler;
-using System.Data.SQLite;
 using System.Collections.Generic;
-using System.Linq;
+using Core;
 
-// TODO Tests Anpassen
 namespace SQL_Statements_Tests
 {
     [TestClass]
@@ -40,10 +38,11 @@ namespace SQL_Statements_Tests
         [TestMethod]
         public void Can_A_RegisteredUserLogin_And_Not_Registered_User_Not()
         {
-            bool responseOne = Handler.CheckLogin(username, password);
-            bool responseTwo = Handler.CheckLogin(fakeUsername, fakePassword);
-            Assert.AreEqual(responseOne, true);
-            Assert.AreEqual(responseTwo, false);
+            
+            User u1 = Handler.CheckLogin(username, password);
+            User u2= Handler.CheckLogin(fakeUsername, fakePassword);
+            Assert.IsNotNull(u1);
+            Assert.IsNull(u2);
         }
 
         [TestMethod]
@@ -58,13 +57,18 @@ namespace SQL_Statements_Tests
         [TestMethod]
         public void Check_If_All_Classes_Are_Correct()
         {
-            List<String> testClass = new List<string>();
+            List<Classes> testClass = new List<Classes>();
+            List<String> classNames = new List<String>();
             testClass = Handler.GetAllClasses();
             Assert.AreEqual(testClass.Count, 3);
-            Assert.AreEqual(testClass.Contains("Magier"), true);
-            Assert.AreEqual(testClass.Contains("Krieger"), true);
-            Assert.AreEqual(testClass.Contains("Ranger"), true);
-            Assert.AreEqual(testClass.Contains("Sascha"), false);
+            testClass.ForEach(item =>
+            {
+                classNames.Add(item.Name);
+            });
+            Assert.AreEqual(classNames.Contains("Magier"), true);
+            Assert.AreEqual(classNames.Contains("Krieger"), true);
+            Assert.AreEqual(classNames.Contains("Ranger"), true);
+            Assert.AreEqual(classNames.Contains("Sascha"), false);
         }
     }
 }

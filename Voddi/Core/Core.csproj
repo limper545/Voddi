@@ -64,8 +64,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassAttributes.cs" />
     <Compile Include="Classes.cs" />
     <Compile Include="DBHandler.cs" />
+    <Compile Include="GameCharacter.cs" />
     <Compile Include="k.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries.cs" />

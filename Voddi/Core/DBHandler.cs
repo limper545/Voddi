@@ -6,10 +6,9 @@ using System.Data.SQLite;
 using System.Collections.Generic;
 using Core;
 
-// TODO Es ist möglich mehrere USer zu erstellen, beheben!!
 namespace DBHandler
 {
-   
+
     public class Handler
     {
         public static SQLiteConnection dbConnection = new SQLiteConnection("Data Source=" + Queries.dbName + "; Version=3;");
@@ -37,11 +36,77 @@ namespace DBHandler
         public static bool CreateUser(String vorname, String nachname, String email, String username, String password)
         => TransactionQueries.RegisterNewUser(vorname, nachname, email, username, password);
 
-        public static bool HasUserCharacters(String username) => TransactionQueries.HasUserCharacters(username);
+        public static List<Tuple<String, String>> HasUserCharacters(String username)
+        {
+            String responseHasUserCharacter;
+            responseHasUserCharacter = TransactionQueries.HasUserCharacters(username);
+            if (responseHasUserCharacter.Length != 0)
+            {
+                return TransactionQueries.GetCharacterInformations(responseHasUserCharacter);
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public static List<Classes> GetAllClasses() => Classes.FillListWithClasses(TransactionQueries.GetAllClasses());
 
-        public static bool CreateCharacterForAUser(String characterName, String classID, String userID) 
-            => TransactionQueries.CreateCharacterForUser(characterName, classID, userID);
+        public static bool CreateCharacterForAUser(String characterName, String classID, String userID)
+        {
+            bool responseSaveCharacter;
+            String characterID;
+            responseSaveCharacter = TransactionQueries.CreateCharacterForUser(characterName, classID, userID);
+            if (responseSaveCharacter)
+            {
+                characterID = TransactionQueries.GetCharID(Convert.ToInt32(userID));
+                if (characterID.Length != 0)
+                {
+                    if (TransactionQueries.SaveCharacterDetailsAtCreate(characterID, userID, Convert.ToInt32(classID)))
+                    {
+                        return TransactionQueries.SaveCharIDInUserManager(characterID, userID);
+
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static GameCharacter GetGameCharacterInformations(String characterName)
+        {
+            String name;
+            String klasse;
+            String level;
+            String leben;
+            String exp;
+            String atk;
+            String mana;
+            String def;
+            String spd;
+
+            List<String> gameCharacterList = TransactionQueries.GetGameCharacter(characterName);
+            name = gameCharacterList[0];
+            klasse = gameCharacterList[1];
+            level = gameCharacterList[2];
+            leben = gameCharacterList[3];
+            exp = gameCharacterList[4];
+            atk = gameCharacterList[5];
+            mana = gameCharacterList[6];
+            def = gameCharacterList[7];
+            spd = gameCharacterList[8];
+
+            return new GameCharacter(name, klasse, level, leben, exp, atk, mana, def, spd);
+        }
     }
 }

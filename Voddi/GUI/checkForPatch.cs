@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Core;
 using System.Windows.Forms;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace GUI
 {
@@ -14,18 +16,28 @@ namespace GUI
             this.u = username;
             InitializeComponent();
         }
-        private void checkForPatch_Load(object sender, EventArgs e)
+        private async void checkForPatch_Load(object sender, EventArgs e)
         {
             patchBar.Maximum = 100;
-            patchBar.Step = 10;
-            patchBar.Value = 0;
-            for (int i = 0; i < 10; i++) { patchBar.Value += 10; }
+            patchBar.Value = 50;
+            testBtn_Start.Enabled = false;
+            await CheckIfPatchIsThereAsync();
 
-            /* if (patchBar.Value == 100)
-             {
-                 MessageBox.Show("Es wurden keine neuen Updates gefunden", "Patcher", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                 this.Close();
-             }*/
+        }
+
+        private async Task CheckIfPatchIsThereAsync()
+        {
+            await Task.Delay(TimeSpan.FromSeconds(1));
+            patchBar.Value = 100;
+            if (File.Exists(@"Patch\patch.txt"))
+            {
+                MessageBox.Show("Patch verfügbar", "Patch", MessageBoxButtons.OK);
+            }
+            else
+            {
+                MessageBox.Show("Kein Patch verfügbar", "Patch", MessageBoxButtons.OK);
+                testBtn_Start.Enabled = true;
+            }
         }
 
         private void testBtn_Start_Click(object sender, EventArgs e)

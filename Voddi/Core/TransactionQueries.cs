@@ -25,7 +25,7 @@ namespace DBHandler
                     });
                     transaction.Commit();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     try
                     {
@@ -63,6 +63,7 @@ namespace DBHandler
                     {
                         return null;
                     }
+
                 }
                 catch (Exception ex)
                 {
@@ -108,7 +109,7 @@ namespace DBHandler
                     transaction.Commit();
                     return true;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     try
                     {
@@ -123,7 +124,7 @@ namespace DBHandler
             }
         }
 
-        public static bool HasUserCharacters(String username)
+        public static String HasUserCharacters(String username)
         {
             String query = Queries.UsersCharacters(username);
 
@@ -134,7 +135,39 @@ namespace DBHandler
                 {
                     command.CommandText = query;
                     object queryReader = command.ExecuteScalar();
-                    return queryReader != null;
+                    if (!queryReader.Equals(0))
+                    {
+                        return queryReader.ToString();
+                    }
+                    else
+                    {
+                        return String.Empty;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
+
+        public static List<Tuple<String, String>> GetCharacterInformations(String charID)
+        {
+            String query = Queries.GetAllCharactersForAUserFromTheDB(charID);
+
+            using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
+            {
+                SQLiteCommand command = CreateCommandMeta(connection);
+                try
+                {
+                    var list = new List<Tuple<String, String>>();
+                    command.CommandText = query;
+                    SQLiteDataReader queryReader = command.ExecuteReader();
+                    while (queryReader.Read())
+                    {
+                        list.Add(new Tuple<String, String>(queryReader.GetValue(0).ToString(), queryReader.GetValue(1).ToString()));
+                    }
+                    return list;
                 }
                 catch (Exception ex)
                 {
@@ -171,7 +204,7 @@ namespace DBHandler
 
         public static bool CreateCharacterForUser(String name, String classID, String userID)
         {
-            String query = Queries.CreateUserCharacter(name, Convert.ToInt32(classID), Convert.ToInt32(classID));
+            String query = Queries.CreateUserCharacter(name, Convert.ToInt32(classID), Convert.ToInt32(userID));
             using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
             {
                 SQLiteCommand command = CreateCommandMeta(connection);
@@ -181,12 +214,19 @@ namespace DBHandler
                 try
                 {
                     command.CommandText = query;
-                    command.ExecuteNonQuery();
-                    transaction.Commit();
-                    // TODO Speichern der CHARID bei User
-                    return true;
+                    if (command.ExecuteNonQuery() == 1)
+                    {
+                        GetCharID(Convert.ToInt32(userID));
+                        transaction.Commit();
+                        return true;
+                    }
+                    else
+                    {
+                        throw new Exception("Transaction failed");
+                    }
+                    //
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     try
                     {
@@ -198,6 +238,99 @@ namespace DBHandler
                     }
                     return false;
                 }
+
+            }
+        }
+
+        public static String GetCharID(int userID)
+        {
+            String query = Queries.GetCharIDForUserManager(userID);
+            using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
+            {
+                SQLiteCommand command = CreateCommandMeta(connection);
+                command.CommandText = query;
+                SQLiteDataReader queryReader = command.ExecuteReader();
+                String charID = String.Empty;
+                while (queryReader.Read())
+                {
+                    charID = queryReader.GetValue(0).ToString();
+                }
+                return charID;
+            }
+        }
+
+        public static bool SaveCharIDInUserManager(String charID, String userID)
+        {
+            String query = Queries.SaveCharIDFOrUser(userID, charID);
+            using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
+            {
+
+                try
+                {
+                    String quer = Queries.SaveCharIDFOrUser(userID.ToString(), charID);
+                    SQLiteCommand command = CreateCommandMeta(connection);
+                    command.CommandText = quer;
+                    return command.ExecuteNonQuery() == 1;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+
+            }
+        }
+
+        public static bool SaveCharacterDetailsAtCreate(String characterID, String userID, int classID)
+        {
+            ClassAttributes.GetClassAttributes(Convert.ToByte(classID), out int level, out int leben, out int exp, out int atk,
+                out int mana, out int def, out int spd);
+
+            String query = Queries.CreateCharacterDetail(Convert.ToInt32(characterID), level, leben, exp, atk, mana, def, spd);
+            using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
+            {
+                SQLiteCommand command = CreateCommandMeta(connection);
+                SQLiteTransaction transaction;
+                transaction = connection.BeginTransaction();
+                command.Transaction = transaction;
+                try
+                {
+                    command.CommandText = query;
+                    transaction.Commit();
+                    return command.ExecuteNonQuery() == 1;
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        throw new Exception(ex2.Message);
+                    }
+                    return false;
+                }
+            }
+        }
+
+        public static List<String> GetGameCharacter(String name)
+        {
+            List<String> list = new List<String>();
+            String query = Queries.GameCharacterInformations(name);
+            using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
+            {
+
+                SQLiteCommand command = CreateCommandMeta(connection);
+                command.CommandText = query;
+                SQLiteDataReader queryResponse = command.ExecuteReader();
+                while (queryResponse.Read())
+                {
+                    for (int i = 0; i < queryResponse.FieldCount; i++)
+                    {
+                        list.Add(queryResponse.GetValue(i).ToString());
+                    }
+                }
+                return list;
             }
         }
 

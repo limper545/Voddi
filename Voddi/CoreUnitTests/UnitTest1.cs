@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Core;
-// TODO Tests Anpassen
+
 namespace CoreUnitTests
 {
     [TestClass]
