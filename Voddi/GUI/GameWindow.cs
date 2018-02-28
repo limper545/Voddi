@@ -12,7 +12,6 @@ namespace GUI
         {
             Character = cha;
             InitializeComponent();
-            // TODO Character Object erstellen
         }
 
         public GameCharacter Character { get => character; set => character = value; }

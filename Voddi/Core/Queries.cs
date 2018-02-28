@@ -35,7 +35,6 @@ namespace Core
             return $"SELECT username, id FROM userManager WHERE username = '{username}' AND password = '{password}'";
         }
 
-        // TODO Einbauen der Funktion
         public static String SaveUserTimestamp(String username)
         {
             Contract.Ensures(Contract.Result<string>() != null);

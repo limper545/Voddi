@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Core;
+using System;
 
 namespace CoreUnitTests
 {
@@ -8,6 +8,7 @@ namespace CoreUnitTests
     public class UnitTest1
     {
         public String vorname, nachname, email, user, passwordOne, passwordTwo;
+
         [TestInitialize]
         public void Initialize()
         {
@@ -18,11 +19,12 @@ namespace CoreUnitTests
             passwordOne = "a";
             passwordTwo = "a";
         }
+
         [TestMethod]
         public void Check_If_String_Is_Empty_Or_Not()
         {
-            String result = Validations.CheckRegistrationValidation(vorname, nachname, email, user, passwordOne, passwordTwo);
-            Assert.AreEqual(result, "OK");
+            var result = Validations.CheckRegistrationValidation(vorname, nachname, email, user, passwordOne, passwordTwo);
+            Assert.AreEqual("OK", result);
         }
 
         [TestMethod]
@@ -30,41 +32,41 @@ namespace CoreUnitTests
         {
             String result;
             result = Validations.CheckRegistrationValidation(vorname, nachname, email, user, passwordOne, "");
-            Assert.AreEqual(result, "Passwort");
+            Assert.AreEqual("Passwort", result);
 
             result = Validations.CheckRegistrationValidation(vorname, nachname, email, user, "", "");
-            Assert.AreEqual(result, "Passwort");
+            Assert.AreEqual("Passwort", result);
 
             result = Validations.CheckRegistrationValidation(vorname, nachname, email, user, "", passwordTwo);
-            Assert.AreEqual(result, "Passwort");
+            Assert.AreEqual("Passwort", result);
         }
 
         [TestMethod]
         public void Check_If_Username_Is_Empty()
         {
-            String result = Validations.CheckRegistrationValidation(vorname, nachname, email, "", passwordOne, passwordTwo);
-            Assert.AreEqual(result, "Username");
+            var result = Validations.CheckRegistrationValidation(vorname, nachname, email, "", passwordOne, passwordTwo);
+            Assert.AreEqual("Username", result);
         }
 
         [TestMethod]
         public void Check_If_Email_Is_Empty()
         {
-            String result = Validations.CheckRegistrationValidation(vorname, nachname, "", user, passwordOne, passwordTwo);
-            Assert.AreEqual(result, "E-Mail Adresse");
+            var result = Validations.CheckRegistrationValidation(vorname, nachname, "", user, passwordOne, passwordTwo);
+            Assert.AreEqual("E-Mail Adresse", result);
         }
 
         [TestMethod]
         public void Check_If_Nachname_Is_Empty()
         {
-            String result = Validations.CheckRegistrationValidation(vorname, "", email, user, passwordOne, passwordTwo);
-            Assert.AreEqual(result, "Nachname");
+            var result = Validations.CheckRegistrationValidation(vorname, "", email, user, passwordOne, passwordTwo);
+            Assert.AreEqual("Nachname", result);
         }
 
         [TestMethod]
         public void Check_If_Vorname_Is_Empty()
         {
-            String result = Validations.CheckRegistrationValidation("", nachname, email, user, passwordOne, passwordTwo);
-            Assert.AreEqual(result, "Vorname");
+            var result = Validations.CheckRegistrationValidation("", nachname, email, user, passwordOne, passwordTwo);
+            Assert.AreEqual("Vorname", result);
         }
 
         [TestMethod]
@@ -72,22 +74,22 @@ namespace CoreUnitTests
         {
             bool response;
             response = Validations.CorrectEmailFormat(email);
-            Assert.AreEqual(response, true);
+            Assert.AreEqual(true, response);
 
             response = Validations.CorrectEmailFormat("test@test.t");
-            Assert.AreEqual(response, false);
+            Assert.AreEqual(false, response);
 
             response = Validations.CorrectEmailFormat("test@test.");
-            Assert.AreEqual(response, false);
+            Assert.AreEqual(false, response);
 
             response = Validations.CorrectEmailFormat("test@test");
-            Assert.AreEqual(response, false);
+            Assert.AreEqual(false, response);
 
             response = Validations.CorrectEmailFormat("test@");
-            Assert.AreEqual(response, false);
+            Assert.AreEqual(false, response);
 
             response = Validations.CorrectEmailFormat("tes");
-            Assert.AreEqual(response, false);
+            Assert.AreEqual(false, response);
         }
     }
 }
