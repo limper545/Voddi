@@ -4,29 +4,38 @@ using Core;
 using System.Windows.Forms;
 using System.IO;
 using System.Threading.Tasks;
+using System.Diagnostics.Contracts;
 
 namespace GUI
 {
     public partial class checkForPatch : Form
     {
-        public string username;
-        public User u;
+        string username;
+
+        User u;
+
+        public User U => u;
+
+        public string Username { get => username; set => username = value; }
+
         public checkForPatch(User username)
         {
-            this.u = username;
+            Contract.Requires(username != null);
+            u = username ?? throw new ArgumentNullException(nameof(username));
             InitializeComponent();
         }
-        private async void checkForPatch_Load(object sender, EventArgs e)
+        async void checkForPatch_Load(object sender, EventArgs e)
         {
             patchBar.Maximum = 100;
             patchBar.Value = 50;
             testBtn_Start.Enabled = false;
-            await CheckIfPatchIsThereAsync();
+            await CheckIfPatchIsThereAsync().ConfigureAwait(false);
 
         }
 
-        private async Task CheckIfPatchIsThereAsync()
+        async Task CheckIfPatchIsThereAsync()
         {
+            Contract.Ensures(Contract.Result<Task>() != null);
             await Task.Delay(TimeSpan.FromSeconds(1));
             patchBar.Value = 100;
             if (File.Exists(@"Patch\patch.txt"))
@@ -42,22 +51,24 @@ namespace GUI
 
         private void testBtn_Start_Click(object sender, EventArgs e)
         {
-            List<Form> openForms = new List<Form>();
-
-            new LoadingScreen(u).Show();
-            foreach (Form f in Application.OpenForms) { openForms.Add(f); }
-
-            openForms.ForEach(f =>
+            var openForms = new List<Form>();
+            using (var loadingScreen = new LoadingScreen(u))
             {
-                if (f.Name != "LoadingScreen" && f.Name != "StartMenu")
+                loadingScreen.Show();
+                foreach (Form f in Application.OpenForms) { openForms.Add(f); }
+
+                openForms.ForEach(f =>
                 {
-                    f.Close();
-                }
-                else if (f.Name == "StartMenu")
-                {
-                    f.Hide();
-                }
-            });
+                    if (f.Name != nameof(LoadingScreen) && f.Name != nameof(StartMenu))
+                    {
+                        f.Close();
+                    }
+                    else if (f.Name == nameof(StartMenu))
+                    {
+                        f.Hide();
+                    }
+                });
+            }
         }
     }
 }

@@ -56,7 +56,7 @@
             this.reg_Btn.TabIndex = 1;
             this.reg_Btn.Text = "Registrieren";
             this.reg_Btn.UseVisualStyleBackColor = true;
-            this.reg_Btn.Click += new System.EventHandler(this.reg_Btn_Click);
+            this.reg_Btn.Click += new System.EventHandler(StartMenu.reg_Btn_Click);
             // 
             // close_Btn
             // 

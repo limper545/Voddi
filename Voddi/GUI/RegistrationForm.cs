@@ -15,27 +15,27 @@ namespace GUI
     {
         public RegistrationForm() => InitializeComponent();
 
-        private void cancelRegiBtn_Click(object sender, EventArgs e)
+        void cancelRegiBtn_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Wollen Sie wirklich die Registrierung beenden?", "Achtung", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            var result = MessageBox.Show("Wollen Sie wirklich die Registrierung beenden?", "Achtung", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
                 this.Close();
             }
         }
 
-        private void regiOkBtn_Click(object sender, EventArgs e)
+        void regiOkBtn_Click(object sender, EventArgs e)
         {
-            string vorname = txtVorname.Text;
-            string nachname = txtNachname.Text;
-            string email = txtMail.Text;
-            string username = txtUsername.Text;
-            string passwordOne = txtPasswordOne.Text;
-            string passwordTwo = txtPasswordTwo.Text;
+            var vorname = txtVorname.Text;
+            var nachname = txtNachname.Text;
+            var email = txtMail.Text;
+            var username = txtUsername.Text;
+            var passwordOne = txtPasswordOne.Text;
+            var passwordTwo = txtPasswordTwo.Text;
 
             if (passwordOne == passwordTwo)
             {
-                string responseValidation = Validations.CheckRegistrationValidation(vorname, nachname, email, username, passwordOne, passwordTwo);
+                var responseValidation = Validations.CheckRegistrationValidation(vorname, nachname, email, username, passwordOne, passwordTwo);
                 if (responseValidation == "OK")
                 {
                     if (Validations.CorrectEmailFormat(email))

@@ -6,10 +6,13 @@ namespace GUI
 {
     public partial class DetailsCharacter : Form
     {
-        public GameCharacter character;
+        GameCharacter character;
+
+        public GameCharacter Character { get => character; set => character = value; }
+
         public DetailsCharacter(GameCharacter c)
         {
-            this.character = c;
+            Character = c;
             InitializeComponent();
             InitProgressBarProperties();
             SetTextForLabels();
@@ -19,36 +22,46 @@ namespace GUI
             // TODO Glow Animation löschen irgendwie
         }
 
-        private void SetCharacterImage()
+        void SetCharacterImage()
         {
-            switch (character.Klasse)
+            switch (Character.Klasse)
             {
                 case "Magier":
-                    CharacterImagePanel.BackgroundImage = Properties.Resources.image_2018_02_23__1_;
-                    break;
+                    {
+                        CharacterImagePanel.BackgroundImage = Properties.Resources.image_2018_02_23__1_;
+                        break;
+                    }
                 case "Ranger":
-                    CharacterImagePanel.BackgroundImage = Properties.Resources.image_2018_02_23__2_;
-                    break;
+                    {
+                        CharacterImagePanel.BackgroundImage = Properties.Resources.image_2018_02_23__2_;
+                        break;
+                    }
                 case "Krieger":
-                    CharacterImagePanel.BackgroundImage = Properties.Resources.image_2018_02_23__3_;
-                    break;
+                    {
+                        CharacterImagePanel.BackgroundImage = Properties.Resources.image_2018_02_23__3_;
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
             }
         }
 
-        private void SetAttributesForDetails()
+        void SetAttributesForDetails()
         {
-            HPLabelValue.Text = character.Leben;
-            LevelLabelValue.Text = character.Level;
-            EXPLabelValue.Text = character.Exp;
-            ExpValues.Text = character.Exp;
+            HPLabelValue.Text = Character.Leben;
+            LevelLabelValue.Text = Character.Level;
+            EXPLabelValue.Text = Character.Exp;
+            ExpValues.Text = Character.Exp;
             RExpLabelValue.Text = "0";
-            ATKLabelValue.Text = character.Atk;
-            ManaLabelValue.Text = character.Mana;
-            DefLabelValue.Text = character.Def;
-            SPDLabelValue.Text = character.Spd;
+            ATKLabelValue.Text = Character.Atk;
+            ManaLabelValue.Text = Character.Mana;
+            DefLabelValue.Text = Character.Def;
+            SPDLabelValue.Text = Character.Spd;
         }
 
-        private void SetTextForLabels()
+        void SetTextForLabels()
         {
             HPLabelName.Text = "HP: ";
             LevelLabelName.Text = "Level: ";
@@ -69,9 +82,9 @@ namespace GUI
             ExpBar.Value = 70;
         }
 
-        private void CharacterStatus_Paint(object sender, PaintEventArgs e)
+        static void CharacterStatus_Paint(object sender, PaintEventArgs e)
         {
-
+            throw new NotSupportedException();
         }
     }
 }

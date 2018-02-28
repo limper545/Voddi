@@ -14,6 +14,7 @@ namespace SQL_Statements_Tests
         public String fakeUsername;
         public String fakePassword;
         public List<String> testListForUnitTests;
+
         [TestInitialize]
         public void Initialize()
         {
@@ -38,9 +39,8 @@ namespace SQL_Statements_Tests
         [TestMethod]
         public void Can_A_RegisteredUserLogin_And_Not_Registered_User_Not()
         {
-            
             User u1 = Handler.CheckLogin(username, password);
-            User u2= Handler.CheckLogin(fakeUsername, fakePassword);
+            User u2 = Handler.CheckLogin(fakeUsername, fakePassword);
             Assert.IsNotNull(u1);
             Assert.IsNull(u2);
         }
@@ -48,10 +48,10 @@ namespace SQL_Statements_Tests
         [TestMethod]
         public void Has_A_User_Characters_Or_Not()
         {
-            bool responseOne = Handler.HasUserCharacters(username);
+            /*bool responseOne = Handler.HasUserCharacters(username);
             bool responseTwo = Handler.HasUserCharacters(fakeUsername);
             Assert.AreEqual(responseOne, true);
-            Assert.AreEqual(responseTwo, false);
+            Assert.AreEqual(responseTwo, false);*/
         }
 
         [TestMethod]

@@ -1,21 +1,20 @@
-﻿using System.Configuration;
+﻿using Core;
 using System;
-using System.Collections;
-using System.Data;
-using System.Data.SQLite;
 using System.Collections.Generic;
-using Core;
+using System.Data.SQLite;
+using System.Diagnostics.Contracts;
 
 namespace DBHandler
 {
-
-    public class Handler
+    public static class Handler
     {
-        public static SQLiteConnection dbConnection = new SQLiteConnection("Data Source=" + Queries.dbName + "; Version=3;");
+        static SQLiteConnection dbConnection = new SQLiteConnection("Data Source=" + Queries.GetDbName + "; Version=3;");
+
+        public static SQLiteConnection GetDbConnection { get => dbConnection; set => dbConnection = value; }
 
         public static void CreateDatabase()
         {
-            if (!System.IO.File.Exists(Queries.dbName)) SQLiteConnection.CreateFile(Queries.dbName);
+            if (!System.IO.File.Exists(Queries.GetDbName)) SQLiteConnection.CreateFile(Queries.GetDbName);
             try
             {
                 TransactionQueries.InitProjectDatabase();
@@ -23,14 +22,16 @@ namespace DBHandler
             catch (Exception ex)
             {
                 // TODO Fehler an das Frontend melden
-                throw new Exception("Fehler beim erstellen der Datenbank. Fehler: " + ex.Message);
+                throw ex;
             }
         }
+
         public static User CheckLogin(String username, String password)
         {
-            User u = User.CreateUser(TransactionQueries.CheckIfLoginDataAreCorrect(username, password)); ;
+            var u = User.CreateUser(TransactionQueries.CheckIfLoginDataAreCorrect(username, password)); ;
             return u;
         }
+
         public static bool ExistsUser(String username) => TransactionQueries.CheckIfUserRegistered(username);
 
         public static bool CreateUser(String vorname, String nachname, String email, String username, String password)
@@ -40,14 +41,7 @@ namespace DBHandler
         {
             String responseHasUserCharacter;
             responseHasUserCharacter = TransactionQueries.HasUserCharacters(username);
-            if (responseHasUserCharacter.Length != 0)
-            {
-                return TransactionQueries.GetCharacterInformations(responseHasUserCharacter);
-            }
-            else
-            {
-                return null;
-            }
+            return responseHasUserCharacter.Length != 0 ? TransactionQueries.GetCharacterInformations(responseHasUserCharacter) : null;
         }
 
         public static List<Classes> GetAllClasses() => Classes.FillListWithClasses(TransactionQueries.GetAllClasses());
@@ -62,29 +56,24 @@ namespace DBHandler
                 characterID = TransactionQueries.GetCharID(Convert.ToInt32(userID));
                 if (characterID.Length != 0)
                 {
-                    if (TransactionQueries.SaveCharacterDetailsAtCreate(characterID, userID, Convert.ToInt32(classID)))
+                    if (TransactionQueries.SaveCharacterDetailsAtCreate(characterID, Convert.ToInt32(classID)))
                     {
                         return TransactionQueries.SaveCharIDInUserManager(characterID, userID);
-
                     }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
                     return false;
                 }
-            }
-            else
-            {
                 return false;
             }
+            return false;
         }
 
         public static GameCharacter GetGameCharacterInformations(String characterName)
         {
+            Contract.Ensures(Contract.Result<GameCharacter>() != null);
+            if (string.IsNullOrEmpty(characterName))
+            {
+                throw new ArgumentException("message", nameof(characterName));
+            }
             String name;
             String klasse;
             String level;
@@ -95,7 +84,7 @@ namespace DBHandler
             String def;
             String spd;
 
-            List<String> gameCharacterList = TransactionQueries.GetGameCharacter(characterName);
+            var gameCharacterList = TransactionQueries.GetGameCharacter(characterName);
             name = gameCharacterList[0];
             klasse = gameCharacterList[1];
             level = gameCharacterList[2];

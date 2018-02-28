@@ -15,22 +15,26 @@ namespace GUI
 {
     public partial class LoadingScreen : Form
     {
-        private User u;
+        User u;
         public LoadingScreen(User username)
         {
-            this.u = username;
+            u = username;
             InitializeComponent();
         }
 
-        private void GameMenu_FormClosing(object sender, FormClosingEventArgs e)
+        static void GameMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
+            throw new NotSupportedException();
         }
 
-        private async Task StartgameMenuAsync()
+        async Task StartgameMenuAsync()
         {
-            await Task.Delay(TimeSpan.FromSeconds(1));
-            this.Close();
-            new GameMenu(u).Show();
+            await Task.Delay(TimeSpan.FromSeconds(1)).ConfigureAwait(false);
+            Close();
+            using (var gameMenu = new GameMenu(u))
+            {
+                gameMenu.Show();
+            }
         }
 
         private async void LoadingScreen_LoadAsync(object sender, EventArgs e)

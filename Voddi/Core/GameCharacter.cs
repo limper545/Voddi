@@ -20,22 +20,22 @@ namespace Core
         public String Spd { get; set; }
         #endregion
 
-        public GameCharacter()
+        GameCharacter()
         {
 
         }
 
         public GameCharacter(String name, String klasse, String level, String leben, String exp, String atk, String mana, String def, String spd)
         {
-            this.Name = name;
-            this.Klasse = klasse;
-            this.Leben = leben;
-            this.Level = level;
-            this.Exp = exp;
-            this.Atk = atk;
-            this.Mana = mana;
-            this.Def = def;
-            this.Spd = spd;
+            Name = name;
+            Klasse = klasse;
+            Leben = leben;
+            Level = level;
+            Exp = exp;
+            Atk = atk;
+            Mana = mana;
+            Def = def;
+            Spd = spd;
         }
     }
 }

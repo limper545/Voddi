@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics.Contracts;
 
 namespace Core
 {
@@ -10,28 +8,31 @@ namespace Core
     {
         public String Name { get; set; }
         public byte ID { get; set; }
+
         public User()
         {
-
         }
 
         public User(String user, byte id)
         {
-            this.Name = user;
-            this.ID = id;
+            if (string.IsNullOrEmpty(user))
+            {
+                throw new ArgumentException("message", nameof(user));
+            }
+
+            Name = user;
+            ID = id;
         }
 
         public static User CreateUser(List<Tuple<String, String>> list)
         {
-            if (list != null)
+            Contract.Ensures(Contract.Result<User>() != null);
+            if (list == null)
             {
-                return new User(list[0].Item1, Convert.ToByte(list[0].Item2));
-            } 
-            else
-            {
-                return null;
+                throw new ArgumentNullException(nameof(list));
             }
 
+            return list != null ? new User(list[0x0].Item1, Convert.ToByte(list[0].Item2)) : null;
         }
     }
 }

@@ -139,7 +139,7 @@
             this.CharacterStatus.Name = "CharacterStatus";
             this.CharacterStatus.Size = new System.Drawing.Size(319, 607);
             this.CharacterStatus.TabIndex = 0;
-            this.CharacterStatus.Paint += new System.Windows.Forms.PaintEventHandler(this.CharacterStatus_Paint);
+            this.CharacterStatus.Paint += new System.Windows.Forms.PaintEventHandler(DetailsCharacter.CharacterStatus_Paint);
             // 
             // RExpLabelValue
             // 

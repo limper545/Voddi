@@ -8,21 +8,30 @@ namespace GUI
 {
     public partial class GameMenu : Form
     {
-        public User u;
-        public string NoChar = "-- Leer --";
-        public string name;
+        User u;
+        String noChar = "-- Leer --";
+        String name1;
+
+        public User U { get => u; set => u = value; }
+        public string Name1 { get => name1; set => name1 = value; }
+        public string NoChar { get => noChar; set => noChar = value; }
+
         public GameMenu(User username)
         {
-            this.u = username;
+            U = username;
             InitializeComponent();
-            labelWelcome.Text = "Willkommen " + u.Name;
-            GetUserCharacterInformations(u.Name);
+            labelWelcome.Text = "Willkommen " + U.Name;
+            GetUserCharacterInformations(U.Name);
         }
 
         public void GetUserCharacterInformations(String username)
         {
+            if (string.IsNullOrEmpty(username))
+            {
+                throw new ArgumentException("message", nameof(username));
+            }
             // TODO Später mit mehrer Character umbauen
-            List<Tuple<String, String>> characterList = Handler.HasUserCharacters(username);
+            var characterList = Handler.HasUserCharacters(username);
             if (characterList != null)
             {
                 foreach (var item in characterList)
@@ -41,30 +50,34 @@ namespace GUI
             }
         }
 
-        private void charOneBtn_Click(object sender, EventArgs e)
+        void charOneBtn_Click(object sender, EventArgs e)
         {
             if (charOneBtn.Text == NoChar)
             {
-                new CreateCharacter(u).Show();
+                using (var createCharacter = new CreateCharacter(U))
+                {
+                    createCharacter.Show();
+                }
             }
             else
             {
-                GameCharacter gameChar = Handler.GetGameCharacterInformations(charOneBtn.Name);
-                new GameWindow(gameChar).Show();
-                this.Close();
+                var gameChar = Handler.GetGameCharacterInformations(charOneBtn.Name);
+                using (var gameWindow = new GameWindow(gameChar))
+                {
+                    gameWindow.Show();
+                    this.Close();
+                }
             }
         }
 
-        private void charTwoBtn_Click(object sender, EventArgs e)
+        void charTwoBtn_Click(object sender, EventArgs e)
         {
             if (charTwoBtn.Text == NoChar)
             {
-                new CreateCharacter(u).Show();
-            }
-            else
-            {
-                //    new GameWindow(charTwoBtn.Name).Show();
-                //    this.Close();
+                using (var createCharacter = new CreateCharacter(U))
+                {
+                    createCharacter.Show();
+                }
             }
         }
 
@@ -72,12 +85,10 @@ namespace GUI
         {
             if (charThreeBtn.Text == NoChar)
             {
-                new CreateCharacter(u).Show();
-            }
-            else
-            {
-                //new GameWindow(charThreeBtn.Name).Show();
-                //this.Close();
+                using (var createCharacter = new CreateCharacter(U))
+                {
+                    createCharacter.Show();
+                }
             }
         }
     }

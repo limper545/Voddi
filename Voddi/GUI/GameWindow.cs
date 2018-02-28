@@ -6,19 +6,26 @@ namespace GUI
 {
     public partial class GameWindow : Form
     {
-        public String name = String.Empty;
-        public GameCharacter character = new GameCharacter(); 
+        String name = "";
+        GameCharacter character;
         public GameWindow(GameCharacter cha)
         {
-            this.character = cha;
+            Character = cha;
             InitializeComponent();
             // TODO Character Object erstellen
         }
 
+        public GameCharacter Character { get => character; set => character = value; }
+        public new string Name { get => name; set => name = value; }
+
         private void CharacterDetails_Click(object sender, EventArgs e)
         {
-            // TODO Character Object übergeben
-            new DetailsCharacter(character).Show();
+            using (var detailsCharacter =
+                        // TODO Character Object übergeben
+                        new DetailsCharacter(Character))
+            {
+                detailsCharacter.Show();
+            }
         }
     }
 }

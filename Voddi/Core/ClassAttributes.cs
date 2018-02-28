@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Core
+﻿namespace Core
 {
-    class ClassAttributes
+    static class ClassAttributes
     {
         //out int level, out int leben, out int exp, out int atk, out int mana, out int def, out int spd
         public static void GetClassAttributes(byte classID, out int level, out int leben, out int exp, out int atk, out int mana, out int def, out int spd)
@@ -19,6 +16,7 @@ namespace Core
                     def = 7;
                     spd = 10;
                     break;
+
                 case 2:
                     level = 1;
                     leben = 10;
@@ -28,6 +26,7 @@ namespace Core
                     def = 10;
                     spd = 10;
                     break;
+
                 case 3:
                     level = 1;
                     leben = 10;
@@ -37,6 +36,7 @@ namespace Core
                     def = 6;
                     spd = 10;
                     break;
+
                 default:
                     level = 0;
                     leben = 0;

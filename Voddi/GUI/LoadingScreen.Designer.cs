@@ -54,7 +54,7 @@
             this.Name = "LoadingScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoadingScreen";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GameMenu_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(LoadingScreen.GameMenu_FormClosing);
             this.Load += new System.EventHandler(this.LoadingScreen_LoadAsync);
             this.ResumeLayout(false);
             this.PerformLayout();

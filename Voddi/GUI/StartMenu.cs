@@ -15,15 +15,17 @@ namespace GUI
             gameTitleLabel.BackColor = Color.Transparent;
         }
 
-        private void close_Btn_Click(object sender, EventArgs e) => this.Close();
+        void close_Btn_Click(object sender, EventArgs e) => this.Close();
 
-        private void Login_Btn_Click_1(object sender, EventArgs e)
+        void Login_Btn_Click_1(object sender, EventArgs e)
         {
-            LoginDataForm loginForm = new LoginDataForm();
-            loginForm.StartPosition = FormStartPosition.CenterParent;
-            loginForm.Show(this);
+            using (var loginForm = new LoginDataForm())
+            {
+                loginForm.StartPosition = FormStartPosition.CenterParent;
+                loginForm.Show(this);
+            }
         }
 
-        private void reg_Btn_Click(object sender, EventArgs e) => new RegistrationForm().Show();
+        static void reg_Btn_Click(object sender, EventArgs e) => new RegistrationForm().Show();
     }
 }

@@ -11,15 +11,17 @@ namespace GUI
         public LoginDataForm() => InitializeComponent();
         private void loginDataBtn_Click(object sender, EventArgs e)
         {
-            string username = loginUsernameField.Text;
-             string password = loginPasswordField.Text;
-            User user = Handler.CheckLogin(username, password);
-            Console.WriteLine();
+            var username = loginUsernameField.Text;
+            var password = loginPasswordField.Text;
+            var user = Handler.CheckLogin(username, password);
            if (user != null)
             {
                 MessageBox.Show("Erfolgreich", "Anmeldung", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                new checkForPatch(user).Show();
-                this.Close();
+                using (var checkForPatch1 = new checkForPatch(user))
+                {
+                    checkForPatch1.Show();
+                    Close();
+                }
             }
             else
             {
@@ -27,6 +29,6 @@ namespace GUI
             }
         }
 
-        private void cancelBtn_Click(object sender, EventArgs e) => this.Close();
+        void cancelBtn_Click(object sender, EventArgs e) => this.Close();
     }
 }
