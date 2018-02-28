@@ -24,6 +24,11 @@ namespace GUI
             u = username ?? throw new ArgumentNullException(nameof(username));
             InitializeComponent();
         }
+        /// <summary>
+        /// Startet die Progressbar für Patches suche
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         async void checkForPatch_Load(object sender, EventArgs e)
         {
             patchBar.Maximum = 100;
@@ -33,6 +38,10 @@ namespace GUI
 
         }
 
+        /// <summary>
+        /// Schaut, ob es ein neuen Patch gibt
+        /// </summary>
+        /// <returns></returns>
         async Task CheckIfPatchIsThereAsync()
         {
             Contract.Ensures(Contract.Result<Task>() != null);
@@ -49,7 +58,12 @@ namespace GUI
             }
         }
 
-        private void testBtn_Start_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Leitet weiter, wenn der Patch vorgang abgeschloßen ist
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void testBtn_Start_Click(object sender, EventArgs e)
         {
             var openForms = new List<Form>();
 

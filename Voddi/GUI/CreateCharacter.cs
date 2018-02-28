@@ -25,6 +25,9 @@ namespace GUI
             FillClassField();
         }
 
+        /// <summary>
+        /// Füllt das Dropdown Feld mit dem Klassen aus der DB
+        /// </summary>
         void FillClassField()
         {
             classComboBox.DisplayMember = "Name";
@@ -36,6 +39,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Startet den CreateCharacter for User im Backend
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void CreateCharBtn_Click_1(object sender, EventArgs e)
         {
             if(Handler.CreateCharacterForAUser(charNameBox.Text, (classComboBox.SelectedIndex + 1).ToString(), u.ID.ToString()))

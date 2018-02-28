@@ -2,7 +2,17 @@
 {
     static class ClassAttributes
     {
-        //out int level, out int leben, out int exp, out int atk, out int mana, out int def, out int spd
+        /// <summary>
+        /// Setzt die Attribute eines Character, anhand seiner Klasse
+        /// </summary>
+        /// <param name="classID"></param>
+        /// <param name="level"></param>
+        /// <param name="leben"></param>
+        /// <param name="exp"></param>
+        /// <param name="atk"></param>
+        /// <param name="mana"></param>
+        /// <param name="def"></param>
+        /// <param name="spd"></param>
         public static void GetClassAttributes(byte classID, out int level, out int leben, out int exp, out int atk, out int mana, out int def, out int spd)
         {
             switch (classID)

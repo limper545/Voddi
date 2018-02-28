@@ -25,6 +25,18 @@ namespace Core
 
         }
 
+        /// <summary>
+        /// Constructor für einen Character
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="klasse"></param>
+        /// <param name="level"></param>
+        /// <param name="leben"></param>
+        /// <param name="exp"></param>
+        /// <param name="atk"></param>
+        /// <param name="mana"></param>
+        /// <param name="def"></param>
+        /// <param name="spd"></param>
         public GameCharacter(String name, String klasse, String level, String leben, String exp, String atk, String mana, String def, String spd)
         {
             Name = name;

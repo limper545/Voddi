@@ -14,6 +14,11 @@ namespace Core
             ID = id;
         }
 
+        /// <summary>
+        /// Holt sich alle Klassen aus der DB für das Dropdownfeld im CreateCharacter Form
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public static List<Classes> FillListWithClasses(List<Tuple<String, String>> list)
         {
             var classesList = new List<Classes>();

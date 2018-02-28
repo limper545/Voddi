@@ -23,6 +23,10 @@ namespace GUI
             GetUserCharacterInformations(U.Name);
         }
 
+        /// <summary>
+        /// Schaut ob der User schon erstellte Characters hat
+        /// </summary>
+        /// <param name="username"></param>
         public void GetUserCharacterInformations(String username)
         {
             if (string.IsNullOrEmpty(username))
@@ -49,6 +53,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Öffnet das CreateCharacter Fenster oder leitet weiter, wenn der User schon ein Char hat
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void charOneBtn_Click(object sender, EventArgs e)
         {
             if (charOneBtn.Text == NoChar)
@@ -63,6 +72,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Öffnet das CreateCharacter Fenster oder leitet weiter, wenn der User schon ein Char hat
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void charTwoBtn_Click(object sender, EventArgs e)
         {
             if (charTwoBtn.Text == NoChar)
@@ -71,6 +85,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Öffnet das CreateCharacter Fenster oder leitet weiter, wenn der User schon ein Char hat
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void charThreeBtn_Click(object sender, EventArgs e)
         {
             if (charThreeBtn.Text == NoChar)

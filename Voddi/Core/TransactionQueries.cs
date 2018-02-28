@@ -7,6 +7,9 @@ namespace DBHandler
 {
     public static class TransactionQueries
     {
+        /// <summary>
+        /// Erstellt die DB und alle benötigten Tabellen
+        /// </summary>
         public static void InitProjectDatabase()
         {
             var queriesList = Queries.GetAllQuerysForInitProject();
@@ -40,6 +43,12 @@ namespace DBHandler
             }
         }
 
+        /// <summary>
+        /// Checkt, ob die Daten des Users Correct sind und so mit in der DB existieren
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static List<Tuple<String, String>> CheckIfLoginDataAreCorrect(string username, string password)
         {
             var query = Queries.LoginQuery(username, password);
@@ -73,6 +82,11 @@ namespace DBHandler
             }
         }
 
+        /// <summary>
+        /// Checkt, ob ein User schon in der DB registriert ist
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public static bool CheckIfUserRegistered(String username)
         {
             var query = Queries.ExistUser(username);
@@ -93,6 +107,15 @@ namespace DBHandler
             }
         }
 
+        /// <summary>
+        /// Registriert einen neuen User in der DB
+        /// </summary>
+        /// <param name="vorname"></param>
+        /// <param name="nachname"></param>
+        /// <param name="email"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static bool RegisterNewUser(String vorname, String nachname, String email, String username, String password)
         {
             var query = Queries.RegisterUser(vorname, nachname, email, username, password);
@@ -125,6 +148,11 @@ namespace DBHandler
             }
         }
 
+        /// <summary>
+        /// Schaut, ob der User schon Characters erstellt hat
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public static String HasUserCharacters(String username)
         {
             var query = Queries.UsersCharacters(username);
@@ -145,6 +173,11 @@ namespace DBHandler
             }
         }
 
+        /// <summary>
+        /// Holt sich die Informationen für einen Character
+        /// </summary>
+        /// <param name="charID"></param>
+        /// <returns></returns>
         public static List<Tuple<String, String>> GetCharacterInformations(String charID)
         {
             var query = Queries.GetAllCharactersForAUserFromTheDB(charID);
@@ -170,6 +203,33 @@ namespace DBHandler
             }
         }
 
+        /// <summary>
+        /// Setzt den Timestamp beim Login für ein User in der DB
+        /// </summary>
+        /// <param name="username"></param>
+        public static void CreateTimestampLogin(String username)
+        {
+            var query = Queries.SaveUserTimestamp(username);
+            using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
+            {
+                var command = CreateCommandMeta(connection);
+                try
+                {
+                    var listClasses = new List<Tuple<String, String>>();
+                    command.CommandText = query;
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Holt sich alle Klassen aus der DB
+        /// </summary>
+        /// <returns></returns>
         public static List<Tuple<String, String>> GetAllClasses()
         {
             var query = Queries.GetAllClassesFromDB;
@@ -195,6 +255,13 @@ namespace DBHandler
             }
         }
 
+        /// <summary>
+        /// Erstellt ein neuen Character für einen User in der DB
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="classID"></param>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public static bool CreateCharacterForUser(String name, String classID, String userID)
         {
             var query = Queries.CreateUserCharacter(name, Convert.ToInt32(classID), Convert.ToInt32(userID));
@@ -232,6 +299,11 @@ namespace DBHandler
             }
         }
 
+        /// <summary>
+        /// Holt sich die ID eines Characters aus der DB
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public static String GetCharID(int userID)
         {
             var query = Queries.GetCharIDForUserManager(userID);
@@ -249,6 +321,12 @@ namespace DBHandler
             }
         }
 
+        /// <summary>
+        /// Speichert die Character ID in die User Tabelle
+        /// </summary>
+        /// <param name="charID"></param>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public static bool SaveCharIDInUserManager(String charID, String userID)
         {
             using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
@@ -269,6 +347,12 @@ namespace DBHandler
             }
         }
 
+        /// <summary>
+        /// Speichert die Standart einstellungen für einen Character bei der Eerstellung in der DB
+        /// </summary>
+        /// <param name="characterID"></param>
+        /// <param name="classID"></param>
+        /// <returns></returns>
         public static bool SaveCharacterDetailsAtCreate(String characterID, int classID)
         {
             ClassAttributes.GetClassAttributes(Convert.ToByte(classID), out int level, out int leben, out int exp, out int atk,
@@ -302,6 +386,11 @@ namespace DBHandler
             }
         }
 
+        /// <summary>
+        /// Hollt sich den Character eines User aus der DB
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static List<String> GetGameCharacter(String name)
         {
             var list = new List<String>();
@@ -323,11 +412,20 @@ namespace DBHandler
             }
         }
 
+        /// <summary>
+        /// Verteilt den ConnectionString der DB an andere Methoden
+        /// </summary>
+        /// <returns></returns>
         public static SQLiteConnection GetConnectionString()
         {
-           return Handler.GetDbConnection;
+            return Handler.GetDbConnection;
         }
 
+        /// <summary>
+        /// Erstellt Commandos für SQL für andere Methoden zum verteilen
+        /// </summary>
+        /// <param name="connection"></param>
+        /// <returns></returns>
         public static SQLiteCommand CreateCommandMeta(SQLiteConnection connection)
         {
             connection.Open();

@@ -15,6 +15,11 @@ namespace GUI
     {
         public RegistrationForm() => InitializeComponent();
 
+        /// <summary>
+        /// Bricht die Registrierung ab
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void cancelRegiBtn_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show("Wollen Sie wirklich die Registrierung beenden?", "Achtung", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -24,6 +29,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Startet die Registrierung und die Validierung im Backend
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void regiOkBtn_Click(object sender, EventArgs e)
         {
             var vorname = txtVorname.Text;

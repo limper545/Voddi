@@ -26,11 +26,20 @@ namespace GUI
         {
         }
 
+        /// <summary>
+        /// Startet ein Timeout for den Loadingscreen
+        /// </summary>
+        /// <returns></returns>
         public async static Task StartgameMenuAsync()
         {
             await Task.Delay(TimeSpan.FromSeconds(1));
         }
 
+        /// <summary>
+        /// Startet den Loginscreen mit Timeout
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void LoadingScreen_LoadAsync(object sender, EventArgs e)
         {
             await StartgameMenuAsync();

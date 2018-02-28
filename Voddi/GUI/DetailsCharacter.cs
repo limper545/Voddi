@@ -22,6 +22,9 @@ namespace GUI
             // TODO Glow Animation löschen irgendwie
         }
 
+        /// <summary>
+        /// Setzt das Character Image anhand der Klasse des Users
+        /// </summary>
         void SetCharacterImage()
         {
             switch (Character.Klasse)
@@ -48,6 +51,9 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Setzt die Attribute in der Form für den Character
+        /// </summary>
         void SetAttributesForDetails()
         {
             HPLabelValue.Text = Character.Leben;
@@ -61,6 +67,9 @@ namespace GUI
             SPDLabelValue.Text = Character.Spd;
         }
 
+        /// <summary>
+        /// Setzt den Text in der Form für die Attribute
+        /// </summary>
         void SetTextForLabels()
         {
             HPLabelName.Text = "HP: ";
@@ -74,7 +83,10 @@ namespace GUI
             SPDLabelName.Text = "SPD: ";
         }
 
-        private void InitProgressBarProperties()
+        /// <summary>
+        /// Zeigt die EXP in einer Bar an 
+        /// </summary>
+        void InitProgressBarProperties()
         {
             LabelEXPName.Text = "EXP: ";
             ExpValues.Text = " 10 / 1230";

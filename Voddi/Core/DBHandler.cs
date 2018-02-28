@@ -10,8 +10,14 @@ namespace DBHandler
     {
         static SQLiteConnection dbConnection = new SQLiteConnection("Data Source=" + Queries.GetDbName + "; Version=3;");
 
+        /// <summary>
+        /// Leitet die DBConnection an andere Methoden weiter
+        /// </summary>
         public static SQLiteConnection GetDbConnection { get => dbConnection; set => dbConnection = value; }
 
+        /// <summary>
+        /// Erstellt die DB und alle Felder/Tabellen, wenn diese noch nicht exestieren
+        /// </summary>
         public static void CreateDatabase()
         {
             if (!System.IO.File.Exists(Queries.GetDbName)) SQLiteConnection.CreateFile(Queries.GetDbName);
@@ -26,17 +32,43 @@ namespace DBHandler
             }
         }
 
+        /// <summary>
+        /// Logt den User in das Spiel ein und erstellt ein Timestamp 
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static User CheckLogin(String username, String password)
         {
             var u = User.CreateUser(TransactionQueries.CheckIfLoginDataAreCorrect(username, password));
+            TransactionQueries.CreateTimestampLogin(username);
             return u;
         }
 
+        /// <summary>
+        /// Checkt, ob es den User schon in der DB gibt 
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public static bool ExistsUser(String username) => TransactionQueries.CheckIfUserRegistered(username);
 
+        /// <summary>
+        /// Erstellt einen neuen User in der DB 
+        /// </summary>
+        /// <param name="vorname"></param>
+        /// <param name="nachname"></param>
+        /// <param name="email"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static bool CreateUser(String vorname, String nachname, String email, String username, String password)
         => TransactionQueries.RegisterNewUser(vorname, nachname, email, username, password);
 
+        /// <summary>
+        /// Schaut, ob der User schon Characters erstellt hat
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public static List<Tuple<String, String>> HasUserCharacters(String username)
         {
             String responseHasUserCharacter;
@@ -44,8 +76,19 @@ namespace DBHandler
             return responseHasUserCharacter.Length != 0 ? TransactionQueries.GetCharacterInformations(responseHasUserCharacter) : null;
         }
 
+        /// <summary>
+        /// Holt sich alle Klassen aus der DB
+        /// </summary>
+        /// <returns></returns>
         public static List<Classes> GetAllClasses() => Classes.FillListWithClasses(TransactionQueries.GetAllClasses());
 
+        /// <summary>
+        /// Erstellt einen neuen Character für einen User
+        /// </summary>
+        /// <param name="characterName"></param>
+        /// <param name="classID"></param>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public static bool CreateCharacterForAUser(String characterName, String classID, String userID)
         {
             bool responseSaveCharacter;
@@ -67,6 +110,11 @@ namespace DBHandler
             return false;
         }
 
+        /// <summary>
+        /// Holt sich die CharacterDetails für einen Character von einem User
+        /// </summary>
+        /// <param name="characterName"></param>
+        /// <returns></returns>
         public static GameCharacter GetGameCharacterInformations(String characterName)
         {
             Contract.Ensures(Contract.Result<GameCharacter>() != null);
