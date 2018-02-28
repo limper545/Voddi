@@ -22,10 +22,11 @@ namespace DBHandler
                     {
                         command.CommandText = query;
                         command.ExecuteNonQuery();
+                        Console.WriteLine();
                     });
                     transaction.Commit();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     try
                     {

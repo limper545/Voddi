@@ -18,13 +18,13 @@ namespace Core
         static readonly String queryCreateCharacterDetails = "CREATE TABLE IF NOT EXISTS characterDetails " +
             "(id INTEGER PRIMARY KEY AUTOINCREMENT, userid int, atk int, leben int, def int, exp int, mana int, spd int, level int)";
 
-        static readonly String queryAddMage = "INSERT INTO classes(id, name, life, mana, exp) VALUES(1, 'Magier') ";
+        static readonly String queryUserCharacter = @"CREATE TABLE IF NOT EXISTS charactersFromUser (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(20), userid int, charid int)";
 
-        static readonly String queryAddWarrior = "INSERT INTO classes(id, name, life, mana, exp) VALUES(2, 'Krieger')";
+        static readonly String queryAddMage = @"INSERT INTO classes(id, name) VALUES(1, 'Magier') ";
 
-        static readonly String queryAddRanger = "INSERT INTO classes(id, name, life, mana, exp) VALUES(3, 'Ranger')";
+        static readonly String queryAddWarrior = @"INSERT INTO classes(id, name) VALUES(2, 'Krieger') ";
 
-        static readonly String queryUserCharacter = "CREATE TABLE IF NOT EXISTS charactersFromUser (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(20), userid int, charid int)";
+        static readonly String queryAddRanger = @"INSERT INTO classes(id, name) VALUES(3, 'Ranger')";
 
         public static String LoginQuery(String username, String password)
         {
@@ -105,10 +105,10 @@ namespace Core
                 GetQueryCreateCharacters,
                 GetQueryCreateUsers,
                 GetQueryCreateCharacterDetails,
+                GetQueryUserCharacter,
                 GetQueryAddMage,
-                GetQueryAddRanger,
-                GetQueryAddRanger,
-                GetQueryUserCharacter
+                GetQueryAddWarrior,
+                GetQueryAddRanger
             };
             return list;
         }
