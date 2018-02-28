@@ -31,12 +31,10 @@ namespace GUI
         void fightBtn_Click(object sender, EventArgs e)
         {
             var newExp = Convert.ToInt64(Character.Exp);
-            int newLevel;
             newExp += 50;
             if (newExp ==  ClassStatsCalculater.CalculateExp(Character.Level))
             {
-                newLevel = Convert.ToInt32(Character.Level) + 1;
-                Character.Level = newLevel.ToString();
+                ClassStatsCalculater.CharacterLevelUp(Character)
             }
             Character.Exp = newExp.ToString();
         }
