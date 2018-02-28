@@ -31,6 +31,12 @@ namespace Core
         /// <param name="character"></param>
         public static void CharacterLevelUp(GameCharacter character)
         {
+            Contract.Requires(character != null);
+            if (character == null)
+            {
+                throw new ArgumentNullException(nameof(character));
+            }
+
             var newLevel = Convert.ToInt32(character.Level);
             var newExp = Convert.ToInt32(character.Exp);
             var newLife = Convert.ToInt32(character.Leben);
@@ -40,7 +46,6 @@ namespace Core
             var newSpd = Convert.ToInt32(character.Spd);
 
             character.Level = (newLevel + 1).ToString();
-
         }
     }
 }
