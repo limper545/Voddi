@@ -102,13 +102,13 @@ namespace Core
         {
             var list = new List<String>
             {
-                queryCreateCharacters,
-                queryCreateUsers,
-                queryCreateCharacterDetails,
-                queryAddMage,
-                queryAddWarrior,
-                queryAddRanger,
-                queryUserCharacter
+                GetQueryCreateCharacters,
+                GetQueryCreateUsers,
+                GetQueryCreateCharacterDetails,
+                GetQueryAddMage,
+                GetQueryAddRanger,
+                GetQueryAddRanger,
+                GetQueryUserCharacter
             };
             return list;
         }

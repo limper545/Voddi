@@ -82,7 +82,7 @@ namespace DBHandler
                 try
                 {
                     command.CommandText = query;
-                    object queryReader = command.ExecuteScalar();
+                    var queryReader = command.ExecuteScalar();
                     return queryReader != null;
                 }
                 catch (Exception ex)
@@ -135,14 +135,7 @@ namespace DBHandler
                 {
                     command.CommandText = query;
                     var queryReader = command.ExecuteScalar();
-                    if (!queryReader.Equals(0))
-                    {
-                        return queryReader.ToString();
-                    }
-                    else
-                    {
-                        return String.Empty;
-                    }
+                    return !queryReader.Equals(0) ? queryReader.ToString() : String.Empty;
                 }
                 catch (Exception ex)
                 {
@@ -257,7 +250,6 @@ namespace DBHandler
 
         public static bool SaveCharIDInUserManager(String charID, String userID)
         {
-            var query = Queries.SaveCharIDFOrUser(userID, charID);
             using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
             {
 

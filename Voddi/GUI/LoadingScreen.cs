@@ -37,7 +37,7 @@ namespace GUI
             }
         }
 
-        private async void LoadingScreen_LoadAsync(object sender, EventArgs e)
+        async void LoadingScreen_LoadAsync(object sender, EventArgs e)
         {
             await StartgameMenuAsync();
         }
