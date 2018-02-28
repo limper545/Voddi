@@ -4,6 +4,7 @@ using DBHandler;
 using System.Collections.Generic;
 using Core;
 
+// TDODO mehr tests aufbauen
 namespace SQL_Statements_Tests
 {
     [TestClass]
@@ -46,7 +47,7 @@ namespace SQL_Statements_Tests
         [TestMethod]
         public void Has_A_User_Characters_Or_Not()
         {
-            /*bool responseOne = Handler.HasUserCharacters(username);
+           /* bool responseOne = Handler.HasUserCharacters(username);
             bool responseTwo = Handler.HasUserCharacters(fakeUsername);
             Assert.AreEqual(responseOne, true);
             Assert.AreEqual(responseTwo, false);*/

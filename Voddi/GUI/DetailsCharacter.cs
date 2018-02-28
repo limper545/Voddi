@@ -7,11 +7,14 @@ namespace GUI
     public partial class DetailsCharacter : Form
     {
         GameCharacter character;
-
+        static Timer myTimer = new Timer();
         public GameCharacter Character { get => character; set => character = value; }
 
         public DetailsCharacter(GameCharacter c)
         {
+            myTimer.Interval = 100;
+            myTimer.Tick += new EventHandler(InterValFunction);
+            myTimer.Enabled = true;
             Character = c;
             InitializeComponent();
             InitProgressBarProperties();
@@ -57,7 +60,6 @@ namespace GUI
         void SetAttributesForDetails()
         {
             HPLabelValue.Text = Character.Leben;
-            LevelLabelValue.Text = Character.Level;
             EXPLabelValue.Text = Character.Exp;
             ExpValues.Text = Character.Exp;
             RExpLabelValue.Text = "0";
@@ -89,14 +91,32 @@ namespace GUI
         void InitProgressBarProperties()
         {
             LabelEXPName.Text = "EXP: ";
-            ExpValues.Text = " 10 / 1230";
-            ExpBar.Maximum = 100;
-            ExpBar.Value = 70;
         }
 
         static void CharacterStatus_Paint(object sender, PaintEventArgs e)
         {
             //throw new NotSupportedException();
         }
+
+        void InterValFunction(object sender, EventArgs e)
+        {
+            try
+            {
+                var valueExp = (int)Convert.ToInt64(Character.Exp);
+                var fullExp = ExpLevelMapper.CalculateExp(Character.Level);
+                ExpBar.Value = valueExp;
+                EXPLabelValue.Text = Character.Exp;
+                ExpValues.Text = Character.Exp;
+                ExpValues.Text = $"{valueExp} / {fullExp}";
+                ExpBar.Maximum = fullExp;
+                LevelLabelValue.Text = Character.Level;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
     }
 }

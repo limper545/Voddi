@@ -8,6 +8,7 @@ namespace GUI
     {
         String name = "";
         GameCharacter character;
+
         public GameWindow(GameCharacter cha)
         {
             Character = cha;
@@ -22,6 +23,22 @@ namespace GUI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void CharacterDetails_Click(object sender, EventArgs e) => new DetailsCharacter(Character).Show();
+        void CharacterDetails_Click(object sender, EventArgs e)
+        {
+            new DetailsCharacter(Character).Show();
+        }
+
+        void fightBtn_Click(object sender, EventArgs e)
+        {
+            var newExp = Convert.ToInt64(Character.Exp);
+            int newLevel;
+            newExp += 50;
+            if (newExp ==  ExpLevelMapper.CalculateExp(Character.Level))
+            {
+                newLevel = Convert.ToInt32(Character.Level) + 1;
+                Character.Level = newLevel.ToString();
+            }
+            Character.Exp = newExp.ToString();
+        }
     }
 }
