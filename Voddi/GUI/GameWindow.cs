@@ -33,7 +33,7 @@ namespace GUI
             var newExp = Convert.ToInt64(Character.Exp);
             int newLevel;
             newExp += 50;
-            if (newExp ==  ExpLevelMapper.CalculateExp(Character.Level))
+            if (newExp ==  ClassStatsCalculater.CalculateExp(Character.Level))
             {
                 newLevel = Convert.ToInt32(Character.Level) + 1;
                 Character.Level = newLevel.ToString();

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    public static class ExpLevelMapper
+    public static class ClassStatsCalculater
     {
 
         public static int CalculateExp(String level)
