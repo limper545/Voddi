@@ -24,19 +24,18 @@ namespace GUI
 
         static void GameMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
-            throw new NotSupportedException();
         }
 
-        async Task StartgameMenuAsync()
+        public async static Task StartgameMenuAsync()
         {
             await Task.Delay(TimeSpan.FromSeconds(1));
-            this.Close();
-            new GameMenu(u).Show();
         }
 
-        async void LoadingScreen_LoadAsync(object sender, EventArgs e)
+        private async void LoadingScreen_LoadAsync(object sender, EventArgs e)
         {
             await StartgameMenuAsync();
+            new GameMenu(u).Show();
+            Close();
         }
     }
 }

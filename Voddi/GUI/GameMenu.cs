@@ -1,8 +1,7 @@
 ﻿using Core;
+using DBHandler;
 using System;
 using System.Windows.Forms;
-using DBHandler;
-using System.Collections.Generic;
 
 namespace GUI
 {
@@ -54,19 +53,13 @@ namespace GUI
         {
             if (charOneBtn.Text == NoChar)
             {
-                using (var createCharacter = new CreateCharacter(U))
-                {
-                    createCharacter.Show();
-                }
+                new CreateCharacter(u).Show();
             }
             else
             {
                 var gameChar = Handler.GetGameCharacterInformations(charOneBtn.Name);
-                using (var gameWindow = new GameWindow(gameChar))
-                {
-                    gameWindow.Show();
-                    this.Close();
-                }
+                new GameWindow(gameChar).Show();
+                this.Close();
             }
         }
 
@@ -74,21 +67,15 @@ namespace GUI
         {
             if (charTwoBtn.Text == NoChar)
             {
-                using (var createCharacter = new CreateCharacter(U))
-                {
-                    createCharacter.Show();
-                }
+                new CreateCharacter(u).Show();
             }
         }
 
-        private void charThreeBtn_Click(object sender, EventArgs e)
+        void charThreeBtn_Click(object sender, EventArgs e)
         {
             if (charThreeBtn.Text == NoChar)
             {
-                using (var createCharacter = new CreateCharacter(U))
-                {
-                    createCharacter.Show();
-                }
+                new CreateCharacter(u).Show();
             }
         }
     }

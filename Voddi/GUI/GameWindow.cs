@@ -18,14 +18,6 @@ namespace GUI
         public GameCharacter Character { get => character; set => character = value; }
         public new string Name { get => name; set => name = value; }
 
-        private void CharacterDetails_Click(object sender, EventArgs e)
-        {
-            using (var detailsCharacter =
-                        // TODO Character Object übergeben
-                        new DetailsCharacter(Character))
-            {
-                detailsCharacter.Show();
-            }
-        }
+        void CharacterDetails_Click(object sender, EventArgs e) => new DetailsCharacter(Character).Show();
     }
 }

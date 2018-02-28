@@ -84,7 +84,7 @@ namespace GUI
 
         static void CharacterStatus_Paint(object sender, PaintEventArgs e)
         {
-            throw new NotSupportedException();
+            //throw new NotSupportedException();
         }
     }
 }
