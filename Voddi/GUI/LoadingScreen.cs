@@ -29,12 +29,9 @@ namespace GUI
 
         async Task StartgameMenuAsync()
         {
-            await Task.Delay(TimeSpan.FromSeconds(1)).ConfigureAwait(false);
-            Close();
-            using (var gameMenu = new GameMenu(u))
-            {
-                gameMenu.Show();
-            }
+            await Task.Delay(TimeSpan.FromSeconds(1));
+            this.Close();
+            new GameMenu(u).Show();
         }
 
         async void LoadingScreen_LoadAsync(object sender, EventArgs e)

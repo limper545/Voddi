@@ -71,6 +71,7 @@
             this.Name = "checkForPatch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "checkForPatch";
+            this.Load += new System.EventHandler(this.checkForPatch_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

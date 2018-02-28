@@ -52,22 +52,22 @@ namespace GUI
         private void testBtn_Start_Click(object sender, EventArgs e)
         {
             var openForms = new List<Form>();
-           
-                new LoadingScreen(u).Show();
-                foreach (Form f in Application.OpenForms) { openForms.Add(f); }
 
-                openForms.ForEach(f =>
+            new LoadingScreen(u).Show();
+            foreach (Form f in Application.OpenForms) { openForms.Add(f); }
+
+            openForms.ForEach(f =>
+            {
+                if (f.Name != nameof(LoadingScreen) && f.Name != nameof(StartMenu))
                 {
-                    if (f.Name != nameof(LoadingScreen) && f.Name != nameof(StartMenu))
-                    {
-                        f.Close();
-                    }
-                    else if (f.Name == nameof(StartMenu))
-                    {
-                        f.Hide();
-                    }
-                });
-            }
+                    f.Close();
+                }
+                else if (f.Name == nameof(StartMenu))
+                {
+                    f.Hide();
+                }
+            });
         }
     }
 }
+
