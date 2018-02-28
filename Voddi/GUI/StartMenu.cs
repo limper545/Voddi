@@ -17,14 +17,7 @@ namespace GUI
 
         void close_Btn_Click(object sender, EventArgs e) => this.Close();
 
-        void Login_Btn_Click_1(object sender, EventArgs e)
-        {
-            using (var loginForm = new LoginDataForm())
-            {
-                loginForm.StartPosition = FormStartPosition.CenterParent;
-                loginForm.Show(this);
-            }
-        }
+        static void Login_Btn_Click_1(object sender, EventArgs e) => new LoginDataForm().Show();
 
         static void reg_Btn_Click(object sender, EventArgs e) => new RegistrationForm().Show();
     }

@@ -28,7 +28,7 @@ namespace DBHandler
 
         public static User CheckLogin(String username, String password)
         {
-            var u = User.CreateUser(TransactionQueries.CheckIfLoginDataAreCorrect(username, password)); ;
+            var u = User.CreateUser(TransactionQueries.CheckIfLoginDataAreCorrect(username, password));
             return u;
         }
 

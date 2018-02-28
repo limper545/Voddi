@@ -29,7 +29,7 @@ namespace GUI
             patchBar.Maximum = 100;
             patchBar.Value = 50;
             testBtn_Start.Enabled = false;
-            await CheckIfPatchIsThereAsync().ConfigureAwait(false);
+            await CheckIfPatchIsThereAsync();
 
         }
 
@@ -52,9 +52,8 @@ namespace GUI
         private void testBtn_Start_Click(object sender, EventArgs e)
         {
             var openForms = new List<Form>();
-            using (var loadingScreen = new LoadingScreen(u))
-            {
-                loadingScreen.Show();
+           
+                new LoadingScreen(u).Show();
                 foreach (Form f in Application.OpenForms) { openForms.Add(f); }
 
                 openForms.ForEach(f =>

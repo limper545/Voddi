@@ -14,14 +14,11 @@ namespace GUI
             var username = loginUsernameField.Text;
             var password = loginPasswordField.Text;
             var user = Handler.CheckLogin(username, password);
-           if (user != null)
+            if (user != null)
             {
                 MessageBox.Show("Erfolgreich", "Anmeldung", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                using (var checkForPatch1 = new checkForPatch(user))
-                {
-                    checkForPatch1.Show();
-                    Close();
-                }
+                new checkForPatch(user).Show();
+                Close();
             }
             else
             {

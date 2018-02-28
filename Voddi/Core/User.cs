@@ -26,12 +26,6 @@ namespace Core
 
         public static User CreateUser(List<Tuple<String, String>> list)
         {
-            Contract.Ensures(Contract.Result<User>() != null);
-            if (list == null)
-            {
-                throw new ArgumentNullException(nameof(list));
-            }
-
             return list != null ? new User(list[0x0].Item1, Convert.ToByte(list[0].Item2)) : null;
         }
     }
