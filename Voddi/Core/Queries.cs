@@ -181,8 +181,9 @@ namespace Core
             {
                 throw new ArgumentException("message", nameof(character));
             }
-            return null;
-            //return $"UPDATE "
+            return $"UPDATE characterDetails SET level = '{character.Level}', leben = '{character.Leben}', exp = '{character.Exp}', atk = '{character.Atk}', " +
+                $"mana = '{character.Mana}', def = '{character.Def}', spd = '{character.Spd}' WHERE userid = " +
+                $"(SELECT userid FROM charactersFromUser WHERE name = '{character.Name}') ";
         }
     }
 }

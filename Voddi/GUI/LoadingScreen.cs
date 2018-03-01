@@ -24,7 +24,7 @@ namespace GUI
 
         static void GameMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
-            throw new NotSupportedException();
+           // throw new NotSupportedException();
         }
 
         /// <summary>

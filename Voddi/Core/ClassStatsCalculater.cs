@@ -17,7 +17,11 @@ namespace Core
         /// <returns></returns>
         public static int CalculateExp(String level)
         {
-            if (string.IsNullOrEmpty(level)) throw new ArgumentNullException("message", nameof(level));
+            if (string.IsNullOrEmpty(level))
+            {
+                Logger.Error("ClassStatsCalculater.CalculateExp", "Null Exception");
+                throw new ArgumentNullException(nameof(level), nameof(level));
+            }
             int newExp;
             return newExp = (int)(10 * 10 * Convert.ToInt64(level));
         }
@@ -28,7 +32,11 @@ namespace Core
         /// <param name="character"></param>
         public static void CharacterLevelUp(GameCharacter character)
         {
-            if (character == null) throw new ArgumentNullException(nameof(character));
+            if (character == null)
+            {
+                Logger.Error("ClassStatsCalculater.CharacterLevelUp", "Null Exception");
+                throw new ArgumentNullException(nameof(character));
+            }
 
             var newLevel = Convert.ToInt32(character.Level);
             var newExp = Convert.ToInt32(character.Exp);
