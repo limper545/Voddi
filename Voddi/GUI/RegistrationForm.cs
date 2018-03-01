@@ -25,7 +25,7 @@ namespace GUI
             var result = MessageBox.Show("Wollen Sie wirklich die Registrierung beenden?", "Achtung", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
-                this.Close();
+                Close();
             }
         }
 

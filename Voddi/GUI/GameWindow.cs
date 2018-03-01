@@ -13,6 +13,7 @@ namespace GUI
         {
             Character = cha;
             InitializeComponent();
+            LogoutLabel.Text = $"Logout {character.Name}";
         }
 
         public GameCharacter Character { get => character; set => character = value; }
@@ -37,6 +38,22 @@ namespace GUI
                 ClassStatsCalculater.CharacterLevelUp(Character);
             }
             Character.Exp = newExp.ToString();
+        }
+
+        void LogoutLabel_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Wollen Sie sich wirklich Abmelden?", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (result == DialogResult.Yes)
+            {
+                if (DBHandler.TransactionQueries.SaveCharacter(Character))
+                {
+                    Close();
+                }
+                else
+                {
+                    Logger.Error("GameWindow.LogoutLabel_Click", "Fehler beim Abmelden");
+                }
+            }
         }
     }
 }
