@@ -33,6 +33,7 @@ namespace DBHandler
                 {
                     try
                     {
+                        Logger.Error("TransactionQueries.InitProjectDatabase", "Rollback");
                         transaction.Rollback();
                     }
                     catch (Exception ex2)
@@ -77,6 +78,7 @@ namespace DBHandler
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error("TransactionQueries.CheckIfLoginDataAreCorrect", ex.Message);
                     throw new Exception(ex.Message);
                 }
             }
@@ -102,6 +104,7 @@ namespace DBHandler
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error("TransactionQueries.CheckIfUserRegistered", ex.Message);
                     throw new Exception(ex.Message);
                 }
             }
@@ -137,6 +140,7 @@ namespace DBHandler
                 {
                     try
                     {
+                        Logger.Error("TransactionQueries.RegisterNewUser", "Rollback");
                         transaction.Rollback();
                     }
                     catch (Exception ex2)
@@ -168,6 +172,7 @@ namespace DBHandler
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error("TransactionQueries.HasUserCharacters", ex.Message);
                     throw new Exception(ex.Message);
                 }
             }
@@ -198,6 +203,7 @@ namespace DBHandler
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error("TransactionQueries.GetCharacterInformations", ex.Message);
                     throw new Exception(ex.Message);
                 }
             }
@@ -221,6 +227,7 @@ namespace DBHandler
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error("TransactionQueries.CreateTimestampLogin", ex.Message);
                     throw new Exception(ex.Message);
                 }
             }
@@ -250,6 +257,7 @@ namespace DBHandler
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error("TransactionQueries.GetAllClasses", ex.Message);
                     throw new Exception(ex.Message);
                 }
             }
@@ -287,6 +295,7 @@ namespace DBHandler
                 {
                     try
                     {
+                        Logger.Error("TransactionQueries.CreateCharacterForUser", "Rollback");
                         transaction.Rollback();
                     }
                     catch (Exception ex2)
@@ -341,6 +350,7 @@ namespace DBHandler
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error("TransactionQueries.SaveCharIDInUserManager", ex.Message);
                     throw new Exception(ex.Message);
                 }
 
@@ -375,6 +385,7 @@ namespace DBHandler
                 {
                     try
                     {
+                        Logger.Error("TransactionQueries.SaveCharacterDetailsAtCreate", "Rollback");
                         transaction.Rollback();
                     }
                     catch (Exception ex2)
@@ -436,6 +447,7 @@ namespace DBHandler
                 {
                     try
                     {
+                        Logger.Error("TransactionQueries.SaveCharacter", "Rollback");
                         transaction.Rollback();
                     }
                     catch (Exception ex2)
