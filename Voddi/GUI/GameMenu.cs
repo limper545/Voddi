@@ -39,7 +39,7 @@ namespace GUI
             {
                 foreach (var item in characterList)
                 {
-                    charOneBtn.Text = String.Format("{0} - {1}", item.Item1.ToUpper(), item.Item2);
+                    charOneBtn.Text = $"{item.Item1.ToUpper()} - {item.Item2}";
                     charOneBtn.Name = item.Item1;
                 }
                 charTwoBtn.Text = NoChar;

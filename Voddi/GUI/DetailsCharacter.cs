@@ -102,6 +102,7 @@ namespace GUI
         {
             try
             {
+                // TODO Maximum der Bar ändern, wenn es höher wird
                 var valueExp = (int)Convert.ToInt64(Character.Exp);
                 var fullExp = ClassStatsCalculater.CalculateExp(Character.Level);
                 ExpBar.Value = valueExp;
@@ -112,7 +113,6 @@ namespace GUI
                 LevelLabelValue.Text = Character.Level;
                 HPLabelValue.Text = Character.Leben;
                 EXPLabelValue.Text = Character.Exp;
-                ExpValues.Text = Character.Exp;
                 ATKLabelValue.Text = Character.Atk;
                 ManaLabelValue.Text = Character.Mana;
                 DefLabelValue.Text = Character.Def;
