@@ -54,9 +54,10 @@ namespace DBHandler
         /// <returns></returns>
         public static bool ExistsUser(String username)
         {
-            if (String.IsNullOrEmpty(username)) throw new ArgumentNullException("message", nameof(username));
+            Logger.Info(nameof(ExistsUser), username);
+            if (String.IsNullOrEmpty(username)) throw new ArgumentNullException("username", nameof(username));
 
-            TransactionQueries.CheckIfUserRegistered(username);
+            return TransactionQueries.CheckIfUserRegistered(username);
         }
 
         /// <summary>
@@ -72,7 +73,7 @@ namespace DBHandler
         {
             if ((vorname ?? nachname ?? email ?? username ?? password) == null) throw new ArgumentNullException();
 
-            TransactionQueries.RegisterNewUser(vorname, nachname, email, username, password);
+            return TransactionQueries.RegisterNewUser(vorname, nachname, email, username, password);
         }
 
         /// <summary>

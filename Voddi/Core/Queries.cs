@@ -177,12 +177,11 @@ namespace Core
 
         public static String SaveCharacter(GameCharacter character)
         {
-            character.
             if (character == null)
             {
                 throw new ArgumentException("message", nameof(character));
             }
-
+            return null;
             //return $"UPDATE "
         }
     }
