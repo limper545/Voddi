@@ -85,6 +85,7 @@
     <Compile Include="Classes.cs" />
     <Compile Include="ClassStatsCalculater.cs" />
     <Compile Include="DBHandler.cs" />
+    <Compile Include="ClassStatsCalculater.cs" />
     <Compile Include="GameCharacter.cs" />
     <Compile Include="k.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
