@@ -62,7 +62,7 @@ namespace GUI
             HPLabelValue.Text = Character.Leben;
             EXPLabelValue.Text = Character.Exp;
             ExpValues.Text = Character.Exp;
-            RExpLabelValue.Text = "0";
+            //RExpLabelValue.Text = "0";
             ATKLabelValue.Text = Character.Atk;
             ManaLabelValue.Text = Character.Mana;
             DefLabelValue.Text = Character.Def;
@@ -110,6 +110,13 @@ namespace GUI
                 ExpValues.Text = $"{valueExp} / {fullExp}";
                 ExpBar.Maximum = fullExp;
                 LevelLabelValue.Text = Character.Level;
+                HPLabelValue.Text = Character.Leben;
+                EXPLabelValue.Text = Character.Exp;
+                ExpValues.Text = Character.Exp;
+                ATKLabelValue.Text = Character.Atk;
+                ManaLabelValue.Text = Character.Mana;
+                DefLabelValue.Text = Character.Def;
+                SPDLabelValue.Text = Character.Spd;
             }
             catch (Exception ex)
             {

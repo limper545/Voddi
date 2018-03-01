@@ -452,6 +452,7 @@ namespace DBHandler
                     }
                     catch (Exception ex2)
                     {
+                        Logger.Error("TransactionQueries.SaveCharacter", ex2.Message);
                         throw new Exception(ex2.Message);
                     }
                     return false;

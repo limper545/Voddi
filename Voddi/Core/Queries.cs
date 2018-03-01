@@ -14,7 +14,7 @@ namespace Core
 
         static readonly String queryCreateUsers = "CREATE TABLE IF NOT EXISTS userManager (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "vorname VARCHAR(30), nachname VARCHAR (30), email VARCHAR(50), username VARCHAR(20), created VARCHAR(30), lastlogin VARCHAR(30), charid INT, password VARCHAR(30))";
-
+        // TODO useris ist od von charactersFromUser
         static readonly String queryCreateCharacterDetails = "CREATE TABLE IF NOT EXISTS characterDetails " +
             "(id INTEGER PRIMARY KEY AUTOINCREMENT, userid int, atk int, leben int, def int, exp int, mana int, spd int, level int)";
 
@@ -183,7 +183,7 @@ namespace Core
             }
             return $"UPDATE characterDetails SET level = '{character.Level}', leben = '{character.Leben}', exp = '{character.Exp}', atk = '{character.Atk}', " +
                 $"mana = '{character.Mana}', def = '{character.Def}', spd = '{character.Spd}' WHERE userid = " +
-                $"(SELECT userid FROM charactersFromUser WHERE name = '{character.Name}') ";
+                $"(SELECT id FROM charactersFromUser WHERE name = '{character.Name}') ";
         }
     }
 }

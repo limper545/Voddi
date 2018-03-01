@@ -12,7 +12,7 @@ namespace Core
             Directory.CreateDirectory(path + "/LogsBab");
             using (StreamWriter w = File.AppendText(path + "/LogsBab/InfoLog.txt")) ;
             var logMessage = "Time: " + DateTime.Now + "=> Function: " + function + " - Message: " + message;
-            var sw = File.AppendText("InfoLog.txt");
+            var sw = File.AppendText(path + "/LogsBab/InfoLog.txt");
             sw.WriteLine(logMessage);
             sw.Close();
         }
@@ -22,7 +22,7 @@ namespace Core
             Directory.CreateDirectory(path + "/LogsBab");
             using (StreamWriter w = File.AppendText(path + "/LogsBab/SystemLog.txt")) ;
             var logMessage = "Function: " + function + " Message: " + message;
-            var sw = File.AppendText("SystemLog.txt");
+            var sw = File.AppendText(path + "/LogsBab/SystemLog.txt");
             sw.WriteLine(logMessage);
             sw.Close();
         }
@@ -32,7 +32,7 @@ namespace Core
             Directory.CreateDirectory(path + "/LogsBab");
             using (StreamWriter w = File.AppendText(path + "/LogsBab/ErrorLog.txt")) ;
             var logMessage = "Function: " + function + " Message: " + errorMessage;
-            var sw = File.AppendText("ErrorLog.txt");
+            var sw = File.AppendText(path + "/LogsBab/ErrorLog.txt");
             sw.WriteLine(logMessage);
             sw.Close();
         }

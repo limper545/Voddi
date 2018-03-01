@@ -13,7 +13,7 @@ namespace Core
         /// <summary>
         /// Calculiert die Exp, die benötigt wird, für das Level up
         /// </summary>
-        /// <param name="level"></param>
+        /// <param name="exp"></param>
         /// <returns></returns>
         public static int CalculateExp(String level)
         {
@@ -39,14 +39,20 @@ namespace Core
             }
 
             var newLevel = Convert.ToInt32(character.Level);
-            var newExp = Convert.ToInt32(character.Exp);
-            var newLife = Convert.ToInt32(character.Leben);
-            var newMana = Convert.ToInt32(character.Mana);
-            var newAtk = Convert.ToInt32(character.Atk);
-            var newDef = Convert.ToInt32(character.Def);
-            var newSpd = Convert.ToInt32(character.Spd);
+            var newExp = Convert.ToDouble(character.Exp) * 1.2;
+            var newLife = Convert.ToDouble(character.Leben) * 1.2;
+            var newMana = Convert.ToDouble(character.Mana) * 1.2;
+            var newAtk = Convert.ToDouble(character.Atk) * 1.2;
+            var newDef = Convert.ToDouble(character.Def) * 1.2;
+            var newSpd = Convert.ToDouble(character.Spd) * 1.2;
 
             character.Level = (newLevel + 1).ToString();
+            character.Exp = newExp.ToString();
+            character.Leben = newLife.ToString();
+            character.Mana = newMana.ToString();
+            character.Atk = newAtk.ToString();
+            character.Def = newDef.ToString();
+            character.Spd = newSpd.ToString();
             Handler.SaveNewCharacterAttributes(character);
         }
     }
