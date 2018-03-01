@@ -17,12 +17,8 @@ namespace Core
         /// <returns></returns>
         public static int CalculateExp(String level)
         {
+            if (string.IsNullOrEmpty(level)) throw new ArgumentNullException("message", nameof(level));
             int newExp;
-            Contract.Ensures(Contract.Result<string>() != null);
-            if (string.IsNullOrEmpty(level))
-            {
-                throw new ArgumentException("message", nameof(level));
-            }
             return newExp = (int)(10 * 10 * Convert.ToInt64(level));
         }
 
@@ -32,11 +28,7 @@ namespace Core
         /// <param name="character"></param>
         public static void CharacterLevelUp(GameCharacter character)
         {
-            Contract.Requires(character != null);
-            if (character == null)
-            {
-                throw new ArgumentNullException(nameof(character));
-            }
+            if (character == null) throw new ArgumentNullException(nameof(character));
 
             var newLevel = Convert.ToInt32(character.Level);
             var newExp = Convert.ToInt32(character.Exp);

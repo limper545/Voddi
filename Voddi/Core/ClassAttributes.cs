@@ -1,4 +1,6 @@
-﻿namespace Core
+﻿using System;
+
+namespace Core
 {
     static class ClassAttributes
     {
@@ -15,6 +17,8 @@
         /// <param name="spd"></param>
         public static void GetClassAttributes(byte classID, out int level, out int leben, out int exp, out int atk, out int mana, out int def, out int spd)
         {
+            if ((classID ?? level ?? leben ?? exp ?? atk ?? mana ?? def ?? spd) == null) throw new ArgumentNullException();
+
             switch (classID)
             {
                 case 1:

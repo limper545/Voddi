@@ -21,6 +21,8 @@ namespace Core
         /// <returns></returns>
         public static List<Classes> FillListWithClasses(List<Tuple<String, String>> list)
         {
+            if (list == null) throw new ArgumentNullException("message", nameof(list));
+
             var classesList = new List<Classes>();
             foreach (Tuple<String, String> item in list)
             {

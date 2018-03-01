@@ -39,6 +39,7 @@ namespace Core
         /// <param name="spd"></param>
         public GameCharacter(String name, String klasse, String level, String leben, String exp, String atk, String mana, String def, String spd)
         {
+            if ((name ?? klasse ?? level ?? leben ?? exp ?? atk ?? mana ?? def ?? spd) == null) throw new ArgumentNullException();
             Name = name;
             Klasse = klasse;
             Leben = leben;

@@ -40,6 +40,8 @@ namespace DBHandler
         /// <returns></returns>
         public static User CheckLogin(String username, String password)
         {
+            if (String.IsNullOrEmpty(username ?? password)) throw new ArgumentNullException();
+
             var u = User.CreateUser(TransactionQueries.CheckIfLoginDataAreCorrect(username, password));
             TransactionQueries.CreateTimestampLogin(username);
             return u;
@@ -50,7 +52,12 @@ namespace DBHandler
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        public static bool ExistsUser(String username) => TransactionQueries.CheckIfUserRegistered(username);
+        public static bool ExistsUser(String username)
+        {
+            if (String.IsNullOrEmpty(username)) throw new ArgumentNullException("message", nameof(username));
+
+            TransactionQueries.CheckIfUserRegistered(username);
+        }
 
         /// <summary>
         /// Erstellt einen neuen User in der DB 
@@ -62,7 +69,11 @@ namespace DBHandler
         /// <param name="password"></param>
         /// <returns></returns>
         public static bool CreateUser(String vorname, String nachname, String email, String username, String password)
-        => TransactionQueries.RegisterNewUser(vorname, nachname, email, username, password);
+        {
+            if ((vorname ?? nachname ?? email ?? username ?? password) == null) throw new ArgumentNullException();
+
+            TransactionQueries.RegisterNewUser(vorname, nachname, email, username, password);
+        }
 
         /// <summary>
         /// Schaut, ob der User schon Characters erstellt hat
@@ -71,6 +82,8 @@ namespace DBHandler
         /// <returns></returns>
         public static List<Tuple<String, String>> HasUserCharacters(String username)
         {
+            if (String.IsNullOrEmpty(username)) throw new ArgumentNullException("message", nameof(username));
+
             String responseHasUserCharacter;
             responseHasUserCharacter = TransactionQueries.HasUserCharacters(username);
             return responseHasUserCharacter.Length != 0 ? TransactionQueries.GetCharacterInformations(responseHasUserCharacter) : null;
@@ -91,6 +104,8 @@ namespace DBHandler
         /// <returns></returns>
         public static bool CreateCharacterForAUser(String characterName, String classID, String userID)
         {
+            if (String.IsNullOrEmpty(characterName ?? classID ?? userID)) throw new ArgumentNullException();
+
             bool responseSaveCharacter;
             String characterID;
             responseSaveCharacter = TransactionQueries.CreateCharacterForUser(characterName, classID, userID);
@@ -117,11 +132,8 @@ namespace DBHandler
         /// <returns></returns>
         public static GameCharacter GetGameCharacterInformations(String characterName)
         {
-            Contract.Ensures(Contract.Result<GameCharacter>() != null);
-            if (string.IsNullOrEmpty(characterName))
-            {
-                throw new ArgumentException("message", nameof(characterName));
-            }
+            if (String.IsNullOrEmpty(characterName)) throw new ArgumentNullException("message", nameof(characterName));
+
             String name;
             String klasse;
             String level;
@@ -153,6 +165,7 @@ namespace DBHandler
         /// <returns></returns>
         public static bool SaveNewCharacterAttributes(GameCharacter c)
         {
+            if (c == null) throw new ArgumentNullException("message", nameof(c));
             return TransactionQueries.SaveCharacter(c);
         }
     }
