@@ -145,5 +145,15 @@ namespace DBHandler
 
             return new GameCharacter(name, klasse, level, leben, exp, atk, mana, def, spd);
         }
+
+        /// <summary>
+        /// Speichert den Character in die DB
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        public static bool SaveNewCharacterAttributes(GameCharacter c)
+        {
+            return TransactionQueries.SaveCharacter(c);
+        }
     }
 }

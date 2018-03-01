@@ -413,6 +413,41 @@ namespace DBHandler
         }
 
         /// <summary>
+        /// Speichert die Character Daten in die DB
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        public static bool SaveCharacter(GameCharacter c)
+        {
+            var query = Queries.SaveCharacter(c);
+            using (SQLiteConnection connection = new SQLiteConnection(GetConnectionString()))
+            {
+                var command = CreateCommandMeta(connection);
+                SQLiteTransaction transaction;
+                transaction = connection.BeginTransaction();
+                command.Transaction = transaction;
+                try
+                {
+                    command.CommandText = query;
+                    transaction.Commit();
+                    return command.ExecuteNonQuery() == 1;
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        throw new Exception(ex2.Message);
+                    }
+                    return false;
+                }
+            }
+        }
+
+        /// <summary>
         /// Verteilt den ConnectionString der DB an andere Methoden
         /// </summary>
         /// <returns></returns>

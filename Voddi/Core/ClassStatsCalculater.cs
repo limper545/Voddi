@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBHandler;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
@@ -46,6 +47,7 @@ namespace Core
             var newSpd = Convert.ToInt32(character.Spd);
 
             character.Level = (newLevel + 1).ToString();
+            Handler.SaveNewCharacterAttributes(character);
         }
     }
 }

@@ -145,7 +145,7 @@ namespace Core
 
         public static String SaveCharIDFOrUser(String userID, String charID)
         {
-            if (string.IsNullOrEmpty(userID) || String.IsNullOrEmpty(charID))
+            if (String.IsNullOrEmpty(userID) || String.IsNullOrEmpty(charID))
             {
                 throw new ArgumentException("message", nameof(userID));
             }
@@ -155,7 +155,7 @@ namespace Core
 
         public static String GetAllCharactersForAUserFromTheDB(String charID)
         {
-            if (string.IsNullOrEmpty(charID))
+            if (String.IsNullOrEmpty(charID))
             {
                 throw new ArgumentException("message", nameof(charID));
             }
@@ -167,12 +167,23 @@ namespace Core
 
         public static String GameCharacterInformations(String name)
         {
-            if (string.IsNullOrEmpty(name))
+            if (String.IsNullOrEmpty(name))
             {
                 throw new ArgumentException("message", nameof(name));
             }
 
             return $"SELECT charactersFromUser.name, classes.name, characterDetails.level, characterDetails.leben, characterDetails.exp, characterDetails.atk, characterDetails.mana, characterDetails.def, characterDetails.spd FROM charactersFromUser LEFT JOIN characterDetails ON charactersFromUser.id = characterDetails.userid LEFT JOIN classes ON classes.id = charactersFromUser.charid WHERE charactersFromUser.name = '{name}'";
+        }
+
+        public static String SaveCharacter(GameCharacter character)
+        {
+            character.
+            if (character == null)
+            {
+                throw new ArgumentException("message", nameof(character));
+            }
+
+            //return $"UPDATE "
         }
     }
 }
