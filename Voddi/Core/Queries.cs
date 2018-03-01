@@ -37,7 +37,6 @@ namespace Core
 
         public static String SaveUserTimestamp(String username)
         {
-            Contract.Ensures(Contract.Result<string>() != null);
             if (username == null)
             {
                 throw new ArgumentNullException(nameof(username));
@@ -48,7 +47,6 @@ namespace Core
 
         public static String ExistUser(String username)
         {
-            Contract.Ensures(Contract.Result<string>() != null);
             if (string.IsNullOrEmpty(username))
             {
                 throw new ArgumentException("message", nameof(username));
@@ -59,7 +57,6 @@ namespace Core
 
         public static String RegisterUser(String vorname, String nachname, String email, String username, String password)
         {
-            Contract.Ensures(Contract.Result<String>() != null);
             if (String.IsNullOrEmpty(vorname))
             {
                 throw new ArgumentException("message", nameof(vorname));
@@ -70,7 +67,6 @@ namespace Core
 
         public static String UsersCharacters(String username)
         {
-            Contract.Ensures(Contract.Result<string>() != null);
             if (String.IsNullOrEmpty(username))
             {
                 throw new ArgumentNullException(nameof(username));
@@ -114,7 +110,6 @@ namespace Core
 
         public static String GetCharacterID(String name)
         {
-            Contract.Ensures(Contract.Result<String>() != null);
             if (String.IsNullOrEmpty(name))
             {
                 throw new ArgumentException("message", nameof(name));
@@ -122,20 +117,19 @@ namespace Core
             return $"SELECT id FROM classes WHERE name = '{name}' ";
         }
 
+
+
         public static String GetUserID(String name)
         {
-            Contract.Ensures(Contract.Result<String>() != null);
             if (String.IsNullOrEmpty(name))
             {
                 throw new ArgumentException("message", nameof(name));
             }
-
             return $"SELECT id FROM userManager WHERE username = '{name}' ";
-        }
 
+        }
         public static String CreateUserCharacter(String name, int classID, int userID)
         {
-            Contract.Ensures(Contract.Result<String>() != null);
             if (String.IsNullOrEmpty(name))
             {
                 throw new ArgumentException("message", nameof(name));
@@ -146,13 +140,11 @@ namespace Core
 
         public static String GetCharIDForUserManager(int userID)
         {
-            Contract.Ensures(Contract.Result<String>() != null);
             return $"SELECT id FROM charactersFromUser WHERE userid = {userID}";
         }
 
         public static String SaveCharIDFOrUser(String userID, String charID)
         {
-            Contract.Ensures(Contract.Result<String>() != null);
             if (string.IsNullOrEmpty(userID) || String.IsNullOrEmpty(charID))
             {
                 throw new ArgumentException("message", nameof(userID));
@@ -163,7 +155,6 @@ namespace Core
 
         public static String GetAllCharactersForAUserFromTheDB(String charID)
         {
-            Contract.Ensures(Contract.Result<String>() != null);
             if (string.IsNullOrEmpty(charID))
             {
                 throw new ArgumentException("message", nameof(charID));
@@ -172,15 +163,10 @@ namespace Core
             return $"SELECT charactersFromUser.name, classes.name FROM charactersFromUser LEFT JOIN classes ON classes.id = charactersFromUser.charid WHERE charactersFromUser.id = {charID}";
         }
 
-        public static String CreateCharacterDetail(int userid, int level, int leben, int exp, int atk, int mana, int def, int spd)
-        {
-            Contract.Ensures(Contract.Result<String>() != null);
-            return $"INSERT INTO characterDetails (userid, level, leben, exp, atk, mana, def, spd) VALUES ({userid}, {level}, {leben}, {exp}, {atk}, {mana}, {def}, {spd})";
-        }
+        public static String CreateCharacterDetail(int userid, int level, int leben, int exp, int atk, int mana, int def, int spd) => $"INSERT INTO characterDetails (userid, level, leben, exp, atk, mana, def, spd) VALUES ({userid}, {level}, {leben}, {exp}, {atk}, {mana}, {def}, {spd})";
 
         public static String GameCharacterInformations(String name)
         {
-            Contract.Ensures(Contract.Result<String>() != null);
             if (string.IsNullOrEmpty(name))
             {
                 throw new ArgumentException("message", nameof(name));

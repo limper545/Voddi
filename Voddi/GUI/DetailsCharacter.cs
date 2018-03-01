@@ -103,7 +103,7 @@ namespace GUI
             try
             {
                 var valueExp = (int)Convert.ToInt64(Character.Exp);
-                var fullExp = ExpLevelMapper.CalculateExp(Character.Level);
+                var fullExp = ClassStatsCalculater.CalculateExp(Character.Level);
                 ExpBar.Value = valueExp;
                 EXPLabelValue.Text = Character.Exp;
                 ExpValues.Text = Character.Exp;
