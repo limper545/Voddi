@@ -34,7 +34,7 @@ namespace GUI
             newExp += 50;
             if (newExp ==  ClassStatsCalculater.CalculateExp(Character.Level))
             {
-                ClassStatsCalculater.CharacterLevelUp(Character)
+                ClassStatsCalculater.CharacterLevelUp(Character);
             }
             Character.Exp = newExp.ToString();
         }
