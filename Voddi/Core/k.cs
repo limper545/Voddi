@@ -10,7 +10,7 @@ namespace Core
     {
             static void Main(string[] args)
             {
-
-            }
+            throw new NotSupportedException();
+        }
     }
 }

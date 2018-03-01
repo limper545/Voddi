@@ -1,0 +1,6 @@
+projectKey=baba
+serverUrl=http://localhost:9000
+serverVersion=6.7.2.37468
+dashboardUrl=http://localhost:9000/dashboard/index/baba
+ceTaskId=AWHjA4bPMiC7i6LLG7MC
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AWHjA4bPMiC7i6LLG7MC

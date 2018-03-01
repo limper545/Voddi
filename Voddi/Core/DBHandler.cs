@@ -27,7 +27,7 @@ namespace DBHandler
             }
             catch (Exception ex)
             {
-                // TODO Fehler an das Frontend melden
+                Logger.Error("DBHandler.CreateDatabase", ex.Message);
                 throw ex;
             }
         }
@@ -40,7 +40,11 @@ namespace DBHandler
         /// <returns></returns>
         public static User CheckLogin(String username, String password)
         {
-            if (String.IsNullOrEmpty(username ?? password)) throw new ArgumentNullException();
+            if (String.IsNullOrEmpty(username ?? password))
+            {
+                Logger.Error("DBHandler.CheckLogin", "Null Exception");
+                throw new ArgumentNullException();
+            }
 
             var u = User.CreateUser(TransactionQueries.CheckIfLoginDataAreCorrect(username, password));
             TransactionQueries.CreateTimestampLogin(username);
@@ -54,9 +58,11 @@ namespace DBHandler
         /// <returns></returns>
         public static bool ExistsUser(String username)
         {
-            Logger.Info(nameof(ExistsUser), username);
-            if (String.IsNullOrEmpty(username)) throw new ArgumentNullException("username", nameof(username));
-
+            if (String.IsNullOrEmpty(username))
+            {
+                Logger.Error("DBHandler.ExistsUser", "Null Exception");
+                throw new ArgumentNullException(nameof(username), nameof(username));
+            }
             return TransactionQueries.CheckIfUserRegistered(username);
         }
 
@@ -71,8 +77,11 @@ namespace DBHandler
         /// <returns></returns>
         public static bool CreateUser(String vorname, String nachname, String email, String username, String password)
         {
-            if ((vorname ?? nachname ?? email ?? username ?? password) == null) throw new ArgumentNullException();
-
+            if ((vorname ?? nachname ?? email ?? username ?? password) == null)
+            {
+                Logger.Error("DBHandler.CreateUser", "Null Exception");
+                throw new ArgumentNullException();
+            }
             return TransactionQueries.RegisterNewUser(vorname, nachname, email, username, password);
         }
 
@@ -83,7 +92,11 @@ namespace DBHandler
         /// <returns></returns>
         public static List<Tuple<String, String>> HasUserCharacters(String username)
         {
-            if (String.IsNullOrEmpty(username)) throw new ArgumentNullException("message", nameof(username));
+            if (String.IsNullOrEmpty(username))
+            {
+                Logger.Error("DBHandler.HasUserCharacters", "Null Exception");
+                throw new ArgumentNullException(nameof(username), nameof(username));
+            }
 
             String responseHasUserCharacter;
             responseHasUserCharacter = TransactionQueries.HasUserCharacters(username);
@@ -105,7 +118,11 @@ namespace DBHandler
         /// <returns></returns>
         public static bool CreateCharacterForAUser(String characterName, String classID, String userID)
         {
-            if (String.IsNullOrEmpty(characterName ?? classID ?? userID)) throw new ArgumentNullException();
+            if (String.IsNullOrEmpty(characterName ?? classID ?? userID))
+            {
+                Logger.Error("DBHandler.CreateCharacterForAUser", "Null Exception");
+                throw new ArgumentNullException();
+            }
 
             bool responseSaveCharacter;
             String characterID;
@@ -133,7 +150,11 @@ namespace DBHandler
         /// <returns></returns>
         public static GameCharacter GetGameCharacterInformations(String characterName)
         {
-            if (String.IsNullOrEmpty(characterName)) throw new ArgumentNullException("message", nameof(characterName));
+            if (String.IsNullOrEmpty(characterName))
+            {
+                Logger.Error("DBHandler.GetGameCharacterInformations", "Null Exception");
+                throw new ArgumentNullException(nameof(characterName), nameof(characterName));
+            }
 
             String name;
             String klasse;
@@ -166,7 +187,11 @@ namespace DBHandler
         /// <returns></returns>
         public static bool SaveNewCharacterAttributes(GameCharacter c)
         {
-            if (c == null) throw new ArgumentNullException("message", nameof(c));
+            if (c == null)
+            {
+                Logger.Error("DBHandler.SaveNewCharacterAttributes", "Null Exception");
+                throw new ArgumentNullException(nameof(c), nameof(c));
+            }
             return TransactionQueries.SaveCharacter(c);
         }
     }
