@@ -47,12 +47,12 @@ namespace Core
             var newSpd = Convert.ToDouble(character.Spd) * 1.2;
 
             character.Level = (newLevel + 1).ToString();
-            character.Exp = newExp.ToString();
-            character.Leben = newLife.ToString();
-            character.Mana = newMana.ToString();
-            character.Atk = newAtk.ToString();
-            character.Def = newDef.ToString();
-            character.Spd = newSpd.ToString();
+            character.Exp = Math.Round(newExp, 2).ToString();
+            character.Leben = Math.Round(newLife, 2).ToString();
+            character.Mana = Math.Round(newMana, 2).ToString();
+            character.Atk = Math.Round(newAtk, 2).ToString();
+            character.Def = Math.Round(newDef, 2).ToString();
+            character.Spd = Math.Round(newSpd, 2).ToString();
             Handler.SaveNewCharacterAttributes(character);
         }
     }
