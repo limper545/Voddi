@@ -47,5 +47,27 @@
     <Folder Include="DataMapper\" />
     <Folder Include="Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BaB.Commons\BaB.Commons.csproj">
+      <Project>{95f5c9ec-75f5-40ae-851f-8a69865ebd44}</Project>
+      <Name>BaB.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BaB.Domain\BaB.Domain.csproj">
+      <Project>{cf656aa7-ca0f-498e-b6f6-778c31a97068}</Project>
+      <Name>BaB.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BaB.DTO\BaB.DTO.csproj">
+      <Project>{1ca20992-7800-4d7e-b22b-e5a475823395}</Project>
+      <Name>BaB.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BaB.GUI\BaB.GUI.csproj">
+      <Project>{f4f44c25-2d85-4e64-9412-54bc768ee0a6}</Project>
+      <Name>BaB.GUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BaB.Infrastructure\BaB.Infrastructure.csproj">
+      <Project>{7781152f-b282-4053-8099-55fb8a0d1f10}</Project>
+      <Name>BaB.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
