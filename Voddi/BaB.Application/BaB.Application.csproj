@@ -61,10 +61,6 @@
       <Project>{1ca20992-7800-4d7e-b22b-e5a475823395}</Project>
       <Name>BaB.DTO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BaB.GUI\BaB.GUI.csproj">
-      <Project>{f4f44c25-2d85-4e64-9412-54bc768ee0a6}</Project>
-      <Name>BaB.GUI</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BaB.Infrastructure\BaB.Infrastructure.csproj">
       <Project>{7781152f-b282-4053-8099-55fb8a0d1f10}</Project>
       <Name>BaB.Infrastructure</Name>

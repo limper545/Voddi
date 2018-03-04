@@ -28,24 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelTest = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // labelTest
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(68, 63);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Loading";
+            this.labelTest.AutoSize = true;
+            this.labelTest.Location = new System.Drawing.Point(91, 78);
+            this.labelTest.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTest.Name = "labelTest";
+            this.labelTest.Size = new System.Drawing.Size(59, 17);
+            this.labelTest.TabIndex = 0;
+            this.labelTest.Text = "Loading";
             // 
             // CreateDbLoading
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(379, 321);
+            this.Controls.Add(this.labelTest);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "CreateDbLoading";
             this.Text = "CreateDbLoading";
             this.ResumeLayout(false);
@@ -55,6 +57,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelTest;
     }
 }

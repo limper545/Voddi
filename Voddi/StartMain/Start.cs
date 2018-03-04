@@ -11,6 +11,7 @@ namespace StartMain
         static void Main(string []args)
         {
             BaB.Application.Class1.Test();
+            Environment.Exit(0);
         }
     }
 }

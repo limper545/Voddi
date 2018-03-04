@@ -13,7 +13,7 @@ namespace BaB.Infrastructure.Transactions
             {
                 using (SQLiteConnection connection = new SQLiteConnection(GetDbConnection()))
                 {
-                    var tran = connection.BeginTransaction();
+                    SQLiteTransaction tran = connection.BeginTransaction();
                     var comm = CreateCommand(connection, tran, null);
                     try
                     {

@@ -7,19 +7,19 @@ namespace BaB.Infrastructure.DatabaseInitializer
     public static class DatabaseInitializer
     {
 
-        public static bool CheckIfDbExists() => System.IO.File.Exists(Properties.Settings.Default.connectionString);
+        public static bool CheckIfDbExists() => !System.IO.File.Exists(Properties.Settings.Default.connectionString);
 
         public static bool InitDatabase()
         {
             var dbName = Properties.Settings.Default.connectionString;
             try
             {
-                if (!System.IO.File.Exists(dbName))
+                if (!System.IO.File.Exists("BaB.sqlite"))
                 {
                     SQLiteConnection.CreateFile(dbName);
                     return TransactionsSQL.InitDatabase(DbInitializerAttributes.GetDatabaseConfigQuery);
                 }
-                return true;
+                return false;
             }
             catch (InvalidOperationException ex)
             {
