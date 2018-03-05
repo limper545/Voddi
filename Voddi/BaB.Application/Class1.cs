@@ -1,6 +1,4 @@
-﻿using BaB.GUI.Loading;
-using BaB.Infrastructure.DatabaseInitializer;
-using System;
+﻿using System;
 
 namespace BaB.Application
 {
@@ -13,23 +11,6 @@ namespace BaB.Application
         }
         public static void Test()
         {
-            new CreateDbLoading().Show();
-            if (DatabaseInitializer.CheckIfDbExists())
-            {
-                
-            }
-            else
-            {
-                // Wait for Init Form
-                if (DatabaseInitializer.InitDatabase())
-                {
-                    // Weiterleiten
-                }
-                else
-                {
-                    // Fehlermeldung und Application schließen
-                }
-            }
         }
 
     }

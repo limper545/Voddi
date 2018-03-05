@@ -13,21 +13,24 @@ namespace BaB.Infrastructure.Transactions
             {
                 using (SQLiteConnection connection = new SQLiteConnection(GetDbConnection()))
                 {
-                    SQLiteTransaction tran = connection.BeginTransaction();
-                    var comm = CreateCommand(connection, tran, null);
+                    var command = CreateCommand(connection);
+                    SQLiteTransaction transaction;
+                    transaction = connection.BeginTransaction();
+                    command.Transaction = transaction;
                     try
                     {
+  
                         query.ForEach(queryString =>
                         {
-                            comm.CommandText = queryString;
-                            comm.ExecuteNonQuery();
+                            command.CommandText = queryString;
+                            command.ExecuteNonQuery();
                         });
-                        tran.Commit();
+                        transaction.Commit();
                         return true;
                     }
                     catch (Exception)
                     {
-                        tran.Rollback();
+                        transaction.Rollback();
                         // logger
                         return false;
                     }
@@ -38,17 +41,15 @@ namespace BaB.Infrastructure.Transactions
 
         }
 
-        static SQLiteCommand CreateCommand(SQLiteConnection c, SQLiteTransaction t, String q)
+        static SQLiteCommand CreateCommand(SQLiteConnection c)
         {
-            SQLiteCommand comm;
             c.Open();
-            comm = c.CreateCommand();
-            comm.Connection = c;
-            comm.Transaction = t;
-            comm.CommandText = q;
-            return comm;
+            var command = c.CreateCommand();
+            command.Connection = c;
+            return command;
         }
 
-        static String GetDbConnection() => Properties.Settings.Default.connectionString;
+        static SQLiteConnection GetDbConnection() =>  new SQLiteConnection(Properties.Settings.Default.connectionString);
+      
     }
 }
