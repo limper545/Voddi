@@ -1,4 +1,4 @@
-﻿namespace GUI
+﻿namespace BaB.GUI.Menu
 {
     partial class RegistrationForm
     {
