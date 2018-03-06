@@ -1,4 +1,5 @@
 ﻿
+using BaB.Application.Services;
 using System;
 using System.Windows.Forms;
 namespace BaB.GUI.Menu
@@ -38,52 +39,52 @@ namespace BaB.GUI.Menu
             var passwordOne = txtPasswordOne.Text;
             var passwordTwo = txtPasswordTwo.Text;
 
-            //if (passwordOne == passwordTwo)
-            //{
-            //    var responseValidation = Validations.CheckRegistrationValidation(vorname, nachname, email, username, passwordOne, passwordTwo);
-            //    if (responseValidation == "OK")
-            //    {
-            //        if (Validations.CorrectEmailFormat(email))
-            //        {
-            //            if (!Validations.UserNotExists(username))
-            //            {
-            //                if (Registration.CreateNewUser(vorname, nachname, email, username, passwordOne))
-            //                {
-            //                    MessageBox.Show("Registrierung erfolgreich", "Erfolgreich", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //                    this.Close();
-            //                }
-            //                else
-            //                {
-            //                    MessageBox.Show("Fehler beim registrieren, versuchen Sie es erneut", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //                }
+            if (passwordOne == passwordTwo)
+            {
+                var responseValidation = ValidationServices.CheckRegistrationValidation(vorname, nachname, email, username, passwordOne, passwordTwo);
+                if (responseValidation == "OK")
+                {
+                    if (ValidationServices.CorrectEmailFormat(email))
+                    {
+                        if (ValidationServices.UserNotExists(username))
+                        {
+                            //if (Registration.CreateNewUser(vorname, nachname, email, username, passwordOne))
+                            //{
+                            //    MessageBox.Show("Registrierung erfolgreich", "Erfolgreich", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //    this.Close();
+                            //}
+                            //else
+                            //{
+                            //    MessageBox.Show("Fehler beim registrieren, versuchen Sie es erneut", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //}
 
-            //            }
-            //            else
-            //            {
-            //                MessageBox.Show("Benutzername bereits vorhanden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Benutzername bereits vorhanden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
 
 
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("Keine gültige E-Mail Adresse.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Keine gültige E-Mail Adresse.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
 
-            //    }
-            //    else
-            //    {
+                }
+                else
+                {
 
-            //        MessageBox.Show(responseValidation + " darf nich leer sein.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
+                    MessageBox.Show(responseValidation + " darf nich leer sein.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Passwörter sind nicht identisch.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    txtPasswordOne.Invalidate();
-            //    txtPasswordTwo.Invalidate();
-            //}
+            }
+            else
+            {
+                MessageBox.Show("Passwörter sind nicht identisch.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPasswordOne.Invalidate();
+                txtPasswordTwo.Invalidate();
+            }
         }
     }
 }
